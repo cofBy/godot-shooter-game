@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 @export var speed = 300.0
-
-@export var gun: Node2D
+@export var friction = 300.0
+var knockback := Vector2(0,0)
 
 @export var anim: AnimatedSprite2D
 
@@ -22,14 +22,12 @@ func _process(_delta):
 func _physics_process(_delta):
 	var moveDir = input().normalized()
 	
-	velocity = moveDir * speed * _delta
-	var mousePos = get_global_mouse_position()
-	gun.look_at(mousePos)
-	if mousePos.x > position.x:
+	velocity = moveDir * speed + knockback
+	knockback = knockback.move_toward(Vector2.ZERO, friction * _delta)
+	
+	if moveDir.x > 0:
 		anim.scale.x = 5
-		gun.scale.y = 1
 	else:
 		anim.scale.x = -5
-		gun.scale.y = -1
 	
 	move_and_slide()
