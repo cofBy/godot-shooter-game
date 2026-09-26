@@ -1,10 +1,10 @@
 extends Node2D
 
-@export var text: Label
-
 @export_group("projectile settings")
 @export var bulletSpeed : float = 500
 @export var bulletLifeTime: float = 3.0
+@export var damping: float = 50.0
+@export var knockBackStrength : float = 600.0
 
 @export_group("cooldown")
 @export var fireRate : float = 0.5
@@ -27,8 +27,8 @@ var reloadTimer : float = 0
 var startReload : bool = false
 
 @export_group("knockBack")
-@export var player: CharacterBody2D
-@export var knockBack: float = 500.0
+@export var player : CharacterBody2D
+@export var playerKnockBack : float = 500.0
 
 func _ready():
 	currentBullets = magSize
@@ -74,6 +74,8 @@ func fire():
 		
 		bulletInstance.speed = bulletSpeed
 		bulletInstance.maxLifeTime = bulletLifeTime
+		bulletInstance.damping = damping
+		bulletInstance.knockBackStrength = knockBackStrength
 		get_tree().root.add_child(bulletInstance)
 	
-	player.knockback += -Vector2(cos(rotation), sin(rotation)) * knockBack
+	player.knockback += -Vector2(cos(rotation), sin(rotation)) * playerKnockBack

@@ -74,15 +74,18 @@ shape = SubResource("RectangleShape2D_473yl")
 [node name="gun" type="Node2D" parent="." unique_id=389224559 node_paths=PackedStringArray("player")]
 position = Vector2(0, 33.67)
 script = ExtResource("7_smehm")
-bulletSpeed = 600.0
+bulletSpeed = 700.0
 bulletLifeTime = 2.0
-fireRate = 0.4
+damping = 200.0
+fireRate = 0.1
+autoFire = true
 bulletDistance = 140.0
 bullet = ExtResource("2_qhqgy")
-bulletAmount = 5
+maxRange = 0.0
+magSize = 6
 reloadTime = 2.0
 player = NodePath("..")
-knockBack = 200.0
+playerKnockBack = 150.0
 
 [node name="Sprite2D" type="Sprite2D" parent="gun" unique_id=492709942]
 texture_filter = 1

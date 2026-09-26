@@ -13,21 +13,22 @@ func input():
 	return temp
 
 func _process(_delta):
-	var vel = input().length()
+	var vel : float = input().length()
 	if vel > 0 :
 		anim.play("run")
 	else:
 		anim.play("idle")
 
 func _physics_process(_delta):
-	var moveDir = input().normalized()
+	var moveDir : Vector2 = input().normalized()
 	
 	velocity = moveDir * speed + knockback
 	knockback = knockback.move_toward(Vector2.ZERO, friction * _delta)
 	
-	if moveDir.x > 0:
-		anim.scale.x = 5
-	else:
-		anim.scale.x = -5
+	if abs(moveDir.x) > 0:
+		if moveDir.x > 0:
+			anim.scale.x = 5
+		else:
+			anim.scale.x = -5
 	
 	move_and_slide()
