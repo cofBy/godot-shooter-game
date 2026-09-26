@@ -2,11 +2,7 @@ extends CharacterBody2D
 
 @export var speed = 300.0
 
-@export var bulletDistance = 100.0
-@export var shootCoolDown = 0.5
-var timer: float
 @export var gun: Node2D
-@export var bullet: PackedScene
 
 @export var anim: AnimatedSprite2D
 
@@ -17,15 +13,6 @@ func input():
 	return temp
 
 func _process(_delta):
-	timer -= _delta
-	if (Input.is_action_just_pressed("shoot") and timer < 0):
-		timer = shootCoolDown
-		var bulletInstance = bullet.instantiate();
-		
-		bulletInstance.position = gun.get_child(0).global_position
-		bulletInstance.rotation = gun.rotation
-		get_tree().root.add_child(bulletInstance)
-		
 	var vel = input().length()
 	if vel > 0 :
 		anim.play("run")
