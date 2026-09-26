@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var text: Label
+
 @export_group("projectile settings")
 @export var bulletSpeed : float = 500
 @export var bulletLifeTime: float = 3.0
@@ -22,6 +24,7 @@ var timer: float
 @export var reloadTime : float = 1
 var currentBullets : int
 var reloadTimer : float = 0
+var startReload : bool = false
 
 @export_group("knockBack")
 @export var player: CharacterBody2D
@@ -33,7 +36,7 @@ func _ready():
 func _process(_delta):
 	timer -= _delta
 	
-	if timer < 0 and currentBullets > 0:
+	if timer < 0 and reloadTimer <= 0:
 		if autoFire:
 			if Input.is_action_pressed("shoot"):
 				fire()
@@ -41,10 +44,14 @@ func _process(_delta):
 			if Input.is_action_just_pressed("shoot"):
 				fire()
 	
-	if currentBullets <= 0:
+	if currentBullets <= 0 or Input.is_action_just_pressed("reload") and currentBullets < magSize:
+		startReload = true
+	
+	if startReload:
 		reloadTimer += _delta
 		if reloadTimer > reloadTime:
 			currentBullets = magSize
+			startReload = false
 			reloadTimer = 0
 	
 	var mousePos = get_global_mouse_position()
