@@ -14,8 +14,8 @@ var timer: float
 @export var bullet: PackedScene
 
 @export var bulletAmount : int = 1
-@export var range : float = 45.0
-@export var random : bool = false
+@export var maxRange : float = 45.0
+@export var randomRange : float = 10.0
 
 @export_group("reload")
 @export var magSize : int = 2
@@ -60,10 +60,11 @@ func fire():
 	for i in bulletAmount:
 		var bulletInstance = bullet.instantiate();
 		bulletInstance.position = get_child(0).global_position
-		if random == false:
-			bulletInstance.rotation = rotation + ((float(i) - 0.5) / bulletAmount * deg_to_rad(range))
-		else:
-			bulletInstance.rotation = rotation + deg_to_rad(RandomNumberGenerator.new().randf_range(-range*0.5, range*0.5))
+		
+		var randomAngle : float = deg_to_rad(RandomNumberGenerator.new().randf_range(-randomRange*0.5, randomRange*0.5))
+		var mainAngle : float = (float(i) - 0.5) / bulletAmount * deg_to_rad(maxRange)
+		bulletInstance.rotation = rotation + mainAngle + randomAngle
+		
 		bulletInstance.speed = bulletSpeed
 		bulletInstance.maxLifeTime = bulletLifeTime
 		get_tree().root.add_child(bulletInstance)
