@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b2wt57d26ieef" path="res://art/player/player_1.png" id="4_fjrip"]
 [ext_resource type="Texture2D" uid="uid://bjl1v67pdnvo" path="res://art/player/player_3.png" id="4_smehm"]
 [ext_resource type="Texture2D" uid="uid://dby47au8guxdo" path="res://art/player/player_2.png" id="5_smehm"]
-[ext_resource type="Texture2D" uid="uid://d7xpk37ien1i" path="res://art/weabons/pistol.png" id="7_fjrip"]
+[ext_resource type="Texture2D" uid="uid://d7xpk37ien1i" path="res://art/weapons/pistol.png" id="7_fjrip"]
 [ext_resource type="Script" uid="uid://bvkspcbfpu4v3" path="res://scripts/gun.gd" id="7_smehm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qhqgy"]
@@ -77,6 +77,7 @@ script = ExtResource("7_smehm")
 shootCoolDown = 0.25
 bulletDistance = 140.0
 bullet = ExtResource("2_qhqgy")
+bulletAmount = 5
 player = NodePath("..")
 knockBack = 200.0
 
