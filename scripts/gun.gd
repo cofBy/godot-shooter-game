@@ -1,10 +1,11 @@
 extends Node2D
 
-@export_group("projectile settings")
+@export_group("projectile movment")
 @export var bulletSpeed : float = 500
 @export var bulletLifeTime: float = 3.0
+@export var pierceAmount: int = 1.0
+@export var timePerPierce: float = 1.0
 @export var damping: float = 50.0
-@export var knockBackStrength : float = 600.0
 
 @export_group("cooldown")
 @export var fireRate : float = 0.5
@@ -29,13 +30,13 @@ var startReload : bool = false
 @export_group("knockBack")
 @export var player : CharacterBody2D
 @export var playerKnockBack : float = 500.0
+@export var knockBackStrength : float = 600.0
 
 func _ready():
 	currentBullets = magSize
 
 func _process(_delta):
 	timer -= _delta
-	
 	if timer < 0 and reloadTimer <= 0:
 		if autoFire:
 			if Input.is_action_pressed("shoot"):
@@ -46,7 +47,6 @@ func _process(_delta):
 	
 	if currentBullets <= 0 or Input.is_action_just_pressed("reload") and currentBullets < magSize:
 		startReload = true
-	
 	if startReload:
 		reloadTimer += _delta
 		if reloadTimer > reloadTime:
@@ -76,6 +76,8 @@ func fire():
 		bulletInstance.maxLifeTime = bulletLifeTime
 		bulletInstance.damping = damping
 		bulletInstance.knockBackStrength = knockBackStrength
+		bulletInstance.pierceAmount = pierceAmount
+		bulletInstance.timePerPierce = timePerPierce
 		get_tree().root.add_child(bulletInstance)
 	
 	player.knockback += -Vector2(cos(rotation), sin(rotation)) * playerKnockBack
