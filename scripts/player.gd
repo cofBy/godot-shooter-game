@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-@export var speed = 300.0
-@export var friction = 300.0
-var knockback := Vector2(0,0)
+@export var speed : float = 300.0
+@export var friction : float = 300.0
+var knockback : Vector2 = Vector2(0,0)
 
 @export var anim: AnimatedSprite2D
 

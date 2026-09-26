@@ -1,30 +1,47 @@
 extends Node2D
 
 @export_group("cooldown")
-@export var fireRate = 0.5
-@export var autoFire := false
+@export var fireRate : float = 0.5
+@export var autoFire : bool = false
 var timer: float
 
 @export_group("instansiating bullets")
-@export var bulletDistance = 100.0
+@export var bulletDistance : float = 100.0
 @export var bullet: PackedScene
 
-@export var bulletAmount = 1
-@export var range = 45.0
-@export var random := false
+@export var bulletAmount : int = 1
+@export var range : float = 45.0
+@export var random : bool = false
+
+@export_group("reload")
+@export var magSize : int = 2
+@export var reloadTime : float = 1
+var currentBullets : int
+var reloadTimer : float = 0
 
 @export_group("knockBack")
 @export var player: CharacterBody2D
 @export var knockBack: float = 500.0
 
+func _ready():
+	currentBullets = magSize
+
 func _process(_delta):
 	timer -= _delta
-	if autoFire:
-		if Input.is_action_pressed("shoot") and timer < 0:
-			fire()
-	else:
-		if Input.is_action_just_pressed("shoot") and timer < 0:
-			fire()
+	
+	if timer < 0 and currentBullets > 0:
+		if autoFire:
+			if Input.is_action_pressed("shoot"):
+				fire()
+		else:
+			if Input.is_action_just_pressed("shoot"):
+				fire()
+	
+	if currentBullets <= 0:
+		reloadTimer += _delta
+		if reloadTimer > reloadTime:
+			currentBullets = magSize
+			reloadTimer = 0
 	
 	var mousePos = get_global_mouse_position()
 	if mousePos.x > position.x:
@@ -34,6 +51,7 @@ func _process(_delta):
 	look_at(mousePos)
 
 func fire():
+	currentBullets -= 1
 	timer = fireRate
 	for i in bulletAmount:
 		var bulletInstance = bullet.instantiate();

@@ -74,6 +74,7 @@ shape = SubResource("RectangleShape2D_473yl")
 [node name="gun" type="Node2D" parent="." unique_id=389224559 node_paths=PackedStringArray("player")]
 position = Vector2(0, 33.67)
 script = ExtResource("7_smehm")
+fireRate = 0.35
 bulletDistance = 140.0
 bullet = ExtResource("2_qhqgy")
 bulletAmount = 5
