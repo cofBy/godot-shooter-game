@@ -1,5 +1,9 @@
 extends Node2D
 
+@export_group("projectile settings")
+@export var bulletSpeed : float = 500
+@export var bulletLifeTime: float = 3.0
+
 @export_group("cooldown")
 @export var fireRate : float = 0.5
 @export var autoFire : bool = false
@@ -60,6 +64,8 @@ func fire():
 			bulletInstance.rotation = rotation + ((float(i) - 0.5) / bulletAmount * deg_to_rad(range))
 		else:
 			bulletInstance.rotation = rotation + deg_to_rad(RandomNumberGenerator.new().randf_range(-range*0.5, range*0.5))
+		bulletInstance.speed = bulletSpeed
+		bulletInstance.maxLifeTime = bulletLifeTime
 		get_tree().root.add_child(bulletInstance)
 	
 	player.knockback += -Vector2(cos(rotation), sin(rotation)) * knockBack
