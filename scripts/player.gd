@@ -22,13 +22,12 @@ func _process(_delta):
 		timer = shootCoolDown
 		var bulletInstance = bullet.instantiate();
 		
-		var angle = deg_to_rad(gun.rotation_degrees);
-		bulletInstance.position = position + Vector2(cos(angle), sin(angle)) * bulletDistance
+		bulletInstance.position = gun.get_child(0).global_position
 		bulletInstance.rotation = gun.rotation
 		get_tree().root.add_child(bulletInstance)
 		
 	var vel = input().length()
-	if (vel > 0):
+	if vel > 0 :
 		anim.play("run")
 	else:
 		anim.play("idle")
@@ -39,5 +38,11 @@ func _physics_process(_delta):
 	velocity = moveDir * speed * _delta
 	var mousePos = get_global_mouse_position()
 	gun.look_at(mousePos)
+	if mousePos.x > position.x:
+		anim.scale.x = 5
+		gun.scale.y = 1
+	else:
+		anim.scale.x = -5
+		gun.scale.y = -1
 	
 	move_and_slide()

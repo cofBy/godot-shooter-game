@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dhmjqo7qumuoc" path="res://scripts/player.gd" id="1_onrkg"]
 [ext_resource type="PackedScene" uid="uid://b2tfcsfdf88p5" path="res://scenes/bullet.tscn" id="2_qhqgy"]
-[ext_resource type="Texture2D" uid="uid://b2lxrdd4q6nu4" path="res://scripts/icon.svg" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://c3xq7lr57dadf" path="res://art/player/player_0.png" id="3_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://b2wt57d26ieef" path="res://art/player/player_1.png" id="4_fjrip"]
 [ext_resource type="Texture2D" uid="uid://bjl1v67pdnvo" path="res://art/player/player_3.png" id="4_smehm"]
 [ext_resource type="Texture2D" uid="uid://dby47au8guxdo" path="res://art/player/player_2.png" id="5_smehm"]
+[ext_resource type="Texture2D" uid="uid://d7xpk37ien1i" path="res://art/gun.png" id="7_fjrip"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qhqgy"]
 animations = [{
@@ -65,7 +65,7 @@ anim = NodePath("AnimatedSprite2D")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=399878394]
 texture_filter = 1
 position = Vector2(1, -2)
-scale = Vector2(5, 4.9166665)
+scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_qhqgy")
 animation = &"idle"
 frame_progress = 0.6040675
@@ -75,8 +75,10 @@ position = Vector2(0, 20.5)
 shape = SubResource("RectangleShape2D_473yl")
 
 [node name="gun" type="Node2D" parent="." unique_id=389224559]
+position = Vector2(0, 33.67)
 
 [node name="Sprite2D" type="Sprite2D" parent="gun" unique_id=492709942]
-position = Vector2(70, 0)
-scale = Vector2(1, 0.28125)
-texture = ExtResource("3_qhqgy")
+texture_filter = 1
+position = Vector2(35.000004, 2.3300016)
+scale = Vector2(5, 5)
+texture = ExtResource("7_fjrip")
