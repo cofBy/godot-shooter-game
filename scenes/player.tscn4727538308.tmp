@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://bg7gmdq4fue7k"]
+
+[ext_resource type="Script" uid="uid://dhmjqo7qumuoc" path="res://scripts/player.gd" id="1_onrkg"]
+[ext_resource type="PackedScene" uid="uid://b2tfcsfdf88p5" path="res://scenes/bullet.tscn" id="2_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://b2lxrdd4q6nu4" path="res://scripts/icon.svg" id="3_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://c3xq7lr57dadf" path="res://art/player/player_0.png" id="3_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://b2wt57d26ieef" path="res://art/player/player_1.png" id="4_fjrip"]
+[ext_resource type="Texture2D" uid="uid://bjl1v67pdnvo" path="res://art/player/player_3.png" id="4_smehm"]
+[ext_resource type="Texture2D" uid="uid://dby47au8guxdo" path="res://art/player/player_2.png" id="5_smehm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qhqgy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 3.0,
+"texture": ExtResource("3_tuyoq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_smehm")
+}],
+"loop": 0,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_tuyoq")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.3,
+"texture": ExtResource("3_tuyoq")
+}, {
+"duration": 0.4,
+"texture": ExtResource("4_fjrip")
+}, {
+"duration": 0.6,
+"texture": ExtResource("5_smehm")
+}, {
+"duration": 0.3,
+"texture": ExtResource("4_fjrip")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_473yl"]
+size = Vector2(48, 79)
+
+[node name="player" type="CharacterBody2D" unique_id=2020279129 node_paths=PackedStringArray("gun", "anim")]
+script = ExtResource("1_onrkg")
+speed = 9000.0
+bulletDistance = 140.0
+shootCoolDown = 0.25
+gun = NodePath("gun")
+bullet = ExtResource("2_qhqgy")
+anim = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=399878394]
+texture_filter = 1
+position = Vector2(1, -2)
+scale = Vector2(5, 4.9166665)
+sprite_frames = SubResource("SpriteFrames_qhqgy")
+animation = &"idle"
+frame_progress = 0.6679405
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1009962940]
+position = Vector2(0, 20.5)
+shape = SubResource("RectangleShape2D_473yl")
+
+[node name="gun" type="Node2D" parent="." unique_id=389224559]
+
+[node name="Sprite2D" type="Sprite2D" parent="gun" unique_id=492709942]
+position = Vector2(70, 0)
+scale = Vector2(1, 0.28125)
+texture = ExtResource("3_qhqgy")
