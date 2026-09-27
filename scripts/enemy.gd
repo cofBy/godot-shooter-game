@@ -10,3 +10,6 @@ func _physics_process(_delta: float):
 	knockback = knockback.move_toward(Vector2.ZERO, friction * _delta)
 	
 	move_and_slide()
+
+func hit(pos : Vector2, strength : float):
+	knockback += (position - pos).normalized() * (strength - knockBackRes)

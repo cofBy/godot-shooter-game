@@ -36,6 +36,10 @@ var startReload : bool = false
 @export var homingStrength : float = 0.2
 @export var homingRadius : float = 200
 
+@export_group("exploding bullets")
+@export var expRadius : float = 600
+@export var expKnockBackMultiplier : float = 2
+
 func _ready():
 	currentBullets = magSize
 
@@ -85,6 +89,8 @@ func fire():
 		bulletInstance.timePerPierce = timePerPierce
 		bulletInstance.homingRadius = homingRadius
 		bulletInstance.homingStrength = homingStrength
+		bulletInstance.expRadius = expRadius
+		bulletInstance.expKnockBackMultiplier = expKnockBackMultiplier
 		get_tree().root.add_child(bulletInstance)
 	
 	player.knockback += -Vector2(cos(rotation), sin(rotation)) * playerKnockBack

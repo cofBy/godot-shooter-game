@@ -17,11 +17,16 @@ var homingStrength : float = 0.2
 var homingRadius : float = 200
 @onready var homingArea : Area2D = $"homing area"
 
+var expRadius : float = 200.0
+var expKnockBackMultiplier : float = 2.0
+@onready var expArea : Area2D = $"explosion area"
+
 var enemy : Node2D
 
 func _ready():
 	currentPierces = pierceAmount
 	homingArea.scale = homingRadius * Vector2.ONE
+	expArea.scale = expRadius * Vector2.ONE
 
 func _physics_process(_delta):
 	var bodies : Array[Node2D] = homingArea.get_overlapping_bodies()
@@ -51,11 +56,19 @@ func _physics_process(_delta):
 func _process(_delta):
 	timeLived += _delta
 	if timeLived > maxLifeTime or currentPierces <= 0:
+		var bodies : Array[Node2D] = expArea.get_overlapping_bodies()
+		for i in bodies:
+			if not i.is_in_group("enemy") : continue
+			if i == enemy : continue
+			
+			var dst : float = 1 - clampf((position - i.position).length() / expRadius, 0, 1)
+			i.hit(position, knockBackStrength * expKnockBackMultiplier * dst)
+		
 		queue_free()
 	
 	if enemy != null:
 		if piercesTimer <= 0:
-			enemy.knockback += (enemy.position - position).normalized() * (knockBackStrength - enemy.knockBackRes)
+			enemy.hit(position, knockBackStrength)
 			currentPierces -= 1
 			piercesTimer = timePerPierce
 		else:

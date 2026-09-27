@@ -90,7 +90,7 @@ playerKnockBack = 150.0
 knockBackStrength = 300.0
 homingStrength = 0.0
 homingRadius = 750.0
-expRadius = 400.0
+expRadius = 200.0
 
 [node name="Sprite2D" type="Sprite2D" parent="gun" unique_id=492709942]
 texture_filter = 1

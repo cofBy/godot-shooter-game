@@ -29,5 +29,10 @@ shape = SubResource("RectangleShape2D_xb5fl")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="homing area" unique_id=1566076948]
 shape = SubResource("CircleShape2D_xb5fl")
 
+[node name="explosion area" type="Area2D" parent="." unique_id=403356456]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="explosion area" unique_id=1724271294]
+shape = SubResource("CircleShape2D_xb5fl")
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
