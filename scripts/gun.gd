@@ -3,7 +3,7 @@ extends Node2D
 @export_group("projectile movment")
 @export var bulletSpeed : float = 500
 @export var bulletLifeTime: float = 3.0
-@export var pierceAmount: int = 1.0
+@export var pierceAmount: int = 1
 @export var timePerPierce: float = 1.0
 @export var damping: float = 50.0
 
@@ -31,6 +31,10 @@ var startReload : bool = false
 @export var player : CharacterBody2D
 @export var playerKnockBack : float = 500.0
 @export var knockBackStrength : float = 600.0
+
+@export_group("homing bullets")
+@export var homingStrength : float = 0.2
+@export var homingRadius : float = 200
 
 func _ready():
 	currentBullets = magSize
@@ -70,7 +74,8 @@ func fire():
 		
 		var randomAngle : float = deg_to_rad(RandomNumberGenerator.new().randf_range(-randomRange*0.5, randomRange*0.5))
 		var mainAngle : float = (float(i) - 0.5) / bulletAmount * deg_to_rad(maxRange)
-		bulletInstance.rotation = rotation + mainAngle + randomAngle
+		var bulletAngle : float = rotation + mainAngle + randomAngle
+		bulletInstance.initialRotation = Vector2(cos(bulletAngle), sin(bulletAngle))
 		
 		bulletInstance.speed = bulletSpeed
 		bulletInstance.maxLifeTime = bulletLifeTime
@@ -78,6 +83,8 @@ func fire():
 		bulletInstance.knockBackStrength = knockBackStrength
 		bulletInstance.pierceAmount = pierceAmount
 		bulletInstance.timePerPierce = timePerPierce
+		bulletInstance.homingRadius = homingRadius
+		bulletInstance.homingStrength = homingStrength
 		get_tree().root.add_child(bulletInstance)
 	
 	player.knockback += -Vector2(cos(rotation), sin(rotation)) * playerKnockBack

@@ -76,8 +76,7 @@ position = Vector2(0, 33.67)
 script = ExtResource("7_smehm")
 bulletSpeed = 700.0
 bulletLifeTime = 2.0
-pierceAmount = 2
-timePerPierce = 0.2
+timePerPierce = 0.0
 damping = 200.0
 fireRate = 0.1
 autoFire = true
@@ -88,6 +87,9 @@ magSize = 6
 reloadTime = 2.0
 player = NodePath("..")
 playerKnockBack = 150.0
+knockBackStrength = 300.0
+homingStrength = 0.5
+homingRadius = 750.0
 
 [node name="Sprite2D" type="Sprite2D" parent="gun" unique_id=492709942]
 texture_filter = 1
