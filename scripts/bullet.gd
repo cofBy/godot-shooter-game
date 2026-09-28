@@ -21,7 +21,12 @@ var expRadius : float = 200.0
 var expKnockBackMultiplier : float = 2.0
 @onready var expArea : Area2D = $"explosion area"
 
+var ricochetCount : int = 2
+var ricochetStrength : float = 0.8
+var ricochetTimes : int = 0
+
 var enemy : Node2D
+var hitEnemies : Array[Node2D] = []
 
 func _ready():
 	currentPierces = pierceAmount
@@ -34,6 +39,7 @@ func _physics_process(_delta):
 	var closestDistance : float = 99999
 	for i in bodies:
 		if not i.is_in_group("enemy") : continue
+		if hitEnemies.find(i) != -1: continue
 		var dir : Vector2 = i.position - position
 		if dir.length() < closestDistance:
 			closestDistance = dir.length()
@@ -50,7 +56,7 @@ func _physics_process(_delta):
 	
 	var dir : Vector2 = lerp(initialRotation, homingDir, homingStrength * homingDistance)
 	rotation = atan2(dir.y, dir.x)
-	position += transform.x * speed * _delta
+	position += transform.x * (speed) * _delta
 	speed = max(speed - damping * _delta, 0)
 
 func _process(_delta):
@@ -59,7 +65,6 @@ func _process(_delta):
 		var bodies : Array[Node2D] = expArea.get_overlapping_bodies()
 		for i in bodies:
 			if not i.is_in_group("enemy") : continue
-			if i == enemy : continue
 			
 			var dst : float = 1 - clampf((position - i.position).length() / expRadius, 0, 1)
 			i.hit(position, knockBackStrength * expKnockBackMultiplier * dst)
@@ -69,8 +74,15 @@ func _process(_delta):
 	if enemy != null:
 		if piercesTimer <= 0:
 			enemy.hit(position, knockBackStrength)
+			hitEnemies.append(enemy)
+			
 			currentPierces -= 1
 			piercesTimer = timePerPierce
+			if ricochetTimes < ricochetCount:
+				var normal : Vector2 = round((position - enemy.position).normalized()).normalized()
+				initialRotation = reflect(initialRotation, normal)
+				ricochetTimes += 1
+				speed *= ricochetStrength
 		else:
 			piercesTimer -= _delta
 
@@ -81,3 +93,6 @@ func _on_area_2d_body_entered(body: Node2D):
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
 		enemy = null
+
+func reflect(v : Vector2, n : Vector2):
+	return v - 2.0 * v.dot(n) * n

@@ -3,9 +3,19 @@ extends Node2D
 @export_group("projectile movment")
 @export var bulletSpeed : float = 500
 @export var bulletLifeTime: float = 3.0
+@export var damping: float = 50.0
+
+@export_subgroup("pierce")
 @export var pierceAmount: int = 1
 @export var timePerPierce: float = 1.0
-@export var damping: float = 50.0
+
+@export_subgroup("ricochet")
+@export var ricochetCount : int = 2
+@export_range(0.0, 1.0) var ricochetStrength : float = 0.8
+
+@export_subgroup("homing bullets")
+@export_range(0.0, 1.0) var homingStrength : float = 0.2
+@export var homingRadius : float = 200
 
 @export_group("cooldown")
 @export var fireRate : float = 0.5
@@ -31,10 +41,6 @@ var startReload : bool = false
 @export var player : CharacterBody2D
 @export var playerKnockBack : float = 500.0
 @export var knockBackStrength : float = 600.0
-
-@export_group("homing bullets")
-@export var homingStrength : float = 0.2
-@export var homingRadius : float = 200
 
 @export_group("exploding bullets")
 @export var expRadius : float = 600
@@ -91,6 +97,8 @@ func fire():
 		bulletInstance.homingStrength = homingStrength
 		bulletInstance.expRadius = expRadius
 		bulletInstance.expKnockBackMultiplier = expKnockBackMultiplier
+		bulletInstance.ricochetCount = ricochetCount
+		bulletInstance.ricochetStrength = ricochetStrength
 		get_tree().root.add_child(bulletInstance)
 	
 	player.knockback += -Vector2(cos(rotation), sin(rotation)) * playerKnockBack
