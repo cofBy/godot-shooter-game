@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="gunData" format=3 uid="uid://bbttnojwt724p"]
+
+[ext_resource type="PackedScene" uid="uid://b2tfcsfdf88p5" path="res://scenes/bullet.tscn" id="1_8xgg7"]
+[ext_resource type="Script" uid="uid://dmmfces08odig" path="res://scripts/gunData.gd" id="1_rk3wf"]
+[ext_resource type="Texture2D" uid="uid://d7xpk37ien1i" path="res://art/weapons/pistol.png" id="2_ut2k5"]
+
+[resource]
+script = ExtResource("1_rk3wf")
+gunTexture = ExtResource("2_ut2k5")
+pierceAmount = 2
+timePerPierce = 0.2
+homingStrength = 0.0
+homingRadius = 0.0
+fireRate = 0.3
+bullet = ExtResource("1_8xgg7")
+maxRange = 0.0
+randomRange = 5.0
+magSize = 6
+playerKnockBack = 200.0
+knockBackStrength = 400.0
+expRadius = 0.0
+expKnockBackMultiplier = 0.0
+metadata/_custom_type_script = "uid://dmmfces08odig"
