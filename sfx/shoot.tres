@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="soundEffect" format=3 uid="uid://b4vilfyhbo8ba"]
+
+[ext_resource type="Script" uid="uid://dxnral3u5xfmw" path="res://scripts/soundEffect.gd" id="1_epjer"]
+[ext_resource type="AudioStream" uid="uid://nhnhnrjgiexq" path="res://sfx/shoot.ogg" id="2_epjer"]
+
+[resource]
+script = ExtResource("1_epjer")
+streams = Array[AudioStream]([ExtResource("2_epjer")])
+soundName = "shoot"
+minVolume = 0.3
+maxVolume = 0.6
+minPitch = 0.7
+maxPitch = 1.5
+metadata/_custom_type_script = "uid://dxnral3u5xfmw"

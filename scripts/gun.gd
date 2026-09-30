@@ -5,6 +5,7 @@ var timer: float
 var currentBullets : int
 var reloadTimer : float = 0
 var startReload : bool = false
+var rng = RandomNumberGenerator.new()
 
 @export var data : Resource
 @export var player : CharacterBody2D
@@ -43,10 +44,11 @@ func fire():
 	currentBullets -= 1
 	timer = data.fireRate
 	for i in data.bulletAmount:
+		SOUND.playSound("shoot")
 		var bulletInstance = data.bullet.instantiate();
 		bulletInstance.position = get_child(0).global_position
 		
-		var randomAngle : float = deg_to_rad(RandomNumberGenerator.new().randf_range(-data.randomRange*0.5, data.randomRange*0.5))
+		var randomAngle : float = deg_to_rad(rng.randf_range(-data.randomRange*0.5, data.randomRange*0.5))
 		var mainAngle : float = (float(i) - 0.5) / data.bulletAmount * deg_to_rad(data.maxRange)
 		var bulletAngle : float = rotation + mainAngle + randomAngle
 		bulletInstance.initialRotation = Vector2(cos(bulletAngle), sin(bulletAngle))

@@ -13,12 +13,17 @@ config_version=5
 config/name="first godot game shooter"
 run/main_scene="uid://byrw8k2j3tbhl"
 config/features=PackedStringArray("4.7", "Forward Plus")
-config/icon="res://scripts/icon.svg"
+
+[autoload]
+
+SOUND="*uid://drptxbngkwlo6"
 
 [display]
 
-window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/size/viewport_width=480
+window/size/viewport_height=270
+window/size/mode=3
+window/stretch/mode="viewport"
 
 [editor_plugins]
 

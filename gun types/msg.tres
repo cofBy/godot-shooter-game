@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="gunData" format=3 uid="uid://djl6d4mjqukgb"]
+
+[ext_resource type="PackedScene" uid="uid://b2tfcsfdf88p5" path="res://scenes/bullet.tscn" id="1_30qqx"]
+[ext_resource type="Texture2D" uid="uid://bga14mexw1pg" path="res://art/weapons/msg.png" id="2_30qqx"]
+[ext_resource type="Script" uid="uid://dmmfces08odig" path="res://scripts/gunData.gd" id="3_oeefu"]
+
+[resource]
+script = ExtResource("3_oeefu")
+gunTexture = ExtResource("2_30qqx")
+bulletSpeed = 600.0
+pierceAmount = 3
+timePerPierce = 0.5
+ricochetCount = 0
+ricochetStrength = 0.0
+homingStrength = 0.5
+homingRadius = 500.0
+fireRate = 0.2
+autoFire = true
+bullet = ExtResource("1_30qqx")
+maxRange = 0.0
+magSize = 10
+playerKnockBack = 100.0
+knockBackStrength = 300.0
+expRadius = 0.0
+expKnockBackMultiplier = 0.0
+metadata/_custom_type_script = "uid://dmmfces08odig"

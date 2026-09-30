@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://drptxbngkwlo6"]
+
+[ext_resource type="Script" uid="uid://b0a1vw7xtamb7" path="res://scripts/SOUND.gd" id="1_iulhf"]
+[ext_resource type="Script" uid="uid://dxnral3u5xfmw" path="res://scripts/soundEffect.gd" id="2_h4juq"]
+[ext_resource type="Resource" uid="uid://b4vilfyhbo8ba" path="res://sfx/shoot.tres" id="3_jgl1y"]
+
+[node name="sound player" type="Node2D" unique_id=1733549454]
+script = ExtResource("1_iulhf")
+streams = Array[ExtResource("2_h4juq")]([ExtResource("3_jgl1y")])

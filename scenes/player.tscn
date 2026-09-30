@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dby47au8guxdo" path="res://art/player/player_2.png" id="5_smehm"]
 [ext_resource type="Texture2D" uid="uid://d7xpk37ien1i" path="res://art/weapons/pistol.png" id="7_fjrip"]
 [ext_resource type="Script" uid="uid://bvkspcbfpu4v3" path="res://scripts/gun.gd" id="7_smehm"]
-[ext_resource type="Resource" uid="uid://bbttnojwt724p" path="res://gun types/pistol.tres" id="7_ur7pv"]
+[ext_resource type="Resource" uid="uid://djl6d4mjqukgb" path="res://gun types/msg.tres" id="7_ur7pv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qhqgy"]
 animations = [{
