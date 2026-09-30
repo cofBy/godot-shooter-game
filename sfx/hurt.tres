@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="soundEffect" format=3 uid="uid://c5lvlvyjwdb2v"]
+
+[ext_resource type="Script" uid="uid://dxnral3u5xfmw" path="res://scripts/soundEffect.gd" id="1_5w3lb"]
+[ext_resource type="AudioStream" uid="uid://cg654ebfada5l" path="res://sfx/hurt-a.ogg" id="2_ewt5k"]
+[ext_resource type="AudioStream" uid="uid://dpt7i2goaegvj" path="res://sfx/hurt-b.ogg" id="3_pnesj"]
+[ext_resource type="AudioStream" uid="uid://ce2kkja853wcy" path="res://sfx/hurt-c.ogg" id="4_4lm4v"]
+[ext_resource type="AudioStream" uid="uid://k6qmwiqplmdu" path="res://sfx/hurt-d.ogg" id="5_so1yq"]
+[ext_resource type="AudioStream" uid="uid://cs67trt6wtslb" path="res://sfx/hurt-e.ogg" id="6_maehp"]
+
+[resource]
+script = ExtResource("1_5w3lb")
+streams = Array[AudioStream]([ExtResource("2_ewt5k"), ExtResource("3_pnesj"), ExtResource("4_4lm4v"), ExtResource("5_so1yq"), ExtResource("6_maehp")])
+soundName = "hurt"
+minVolume = 0.5
+maxVolume = 0.7
+minPitch = 0.7
+maxPitch = 1.3
+metadata/_custom_type_script = "uid://dxnral3u5xfmw"

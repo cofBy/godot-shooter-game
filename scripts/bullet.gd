@@ -62,12 +62,13 @@ func _physics_process(_delta):
 func _process(_delta):
 	timeLived += _delta
 	if timeLived > maxLifeTime or currentPierces <= 0:
-		var bodies : Array[Node2D] = expArea.get_overlapping_bodies()
-		for i in bodies:
-			if not i.is_in_group("enemy") : continue
-			
-			var dst : float = 1 - clampf((position - i.position).length() / expRadius, 0, 1)
-			i.hit(position, knockBackStrength * expKnockBackMultiplier * dst)
+		if expRadius > 0:
+			SOUND.playSound("explosion")
+			var bodies : Array[Node2D] = expArea.get_overlapping_bodies()
+			for i in bodies:
+				if not i.is_in_group("enemy") : continue
+				var dst : float = 1 - clampf((position - i.position).length() / expRadius, 0, 1)
+				i.hit(position, knockBackStrength * expKnockBackMultiplier * dst)
 		
 		queue_free()
 	

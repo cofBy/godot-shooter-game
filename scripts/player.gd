@@ -6,6 +6,9 @@ var knockback : Vector2 = Vector2(0,0)
 
 @export var anim: AnimatedSprite2D
 
+@export var timePerStep : float = 0.2
+var stepTimer : float = 0
+
 func input():
 	var temp: Vector2
 	temp.x = Input.get_action_raw_strength("right") - Input.get_action_raw_strength("left")
@@ -16,6 +19,10 @@ func _process(_delta):
 	var vel : float = input().length()
 	if vel > 0 :
 		anim.play("run")
+		stepTimer -= _delta
+		if stepTimer < 0:
+			stepTimer = timePerStep
+			SOUND.playSound("step")
 	else:
 		anim.play("idle")
 

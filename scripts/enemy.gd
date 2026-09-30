@@ -13,3 +13,4 @@ func _physics_process(_delta: float):
 
 func hit(pos : Vector2, strength : float):
 	knockback += (position - pos).normalized() * (strength - knockBackRes)
+	SOUND.playSound("hurt")

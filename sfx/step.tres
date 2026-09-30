@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="soundEffect" format=3 uid="uid://bdc7rsyspce00"]
+
+[ext_resource type="Script" uid="uid://dxnral3u5xfmw" path="res://scripts/soundEffect.gd" id="1_6ugat"]
+[ext_resource type="AudioStream" uid="uid://bnion3xg2j86j" path="res://sfx/move-a.ogg" id="2_tbxcc"]
+[ext_resource type="AudioStream" uid="uid://jtsrw1rmg4et" path="res://sfx/move-b.ogg" id="3_iduoq"]
+
+[resource]
+script = ExtResource("1_6ugat")
+streams = Array[AudioStream]([ExtResource("2_tbxcc"), ExtResource("3_iduoq")])
+soundName = "step"
+minVolume = 0.05
+maxVolume = 0.1
+minPitch = 0.7
+maxPitch = 1.3
+metadata/_custom_type_script = "uid://dxnral3u5xfmw"

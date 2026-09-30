@@ -4,7 +4,10 @@
 [ext_resource type="Script" uid="uid://dxnral3u5xfmw" path="res://scripts/soundEffect.gd" id="2_h4juq"]
 [ext_resource type="Resource" uid="uid://b4vilfyhbo8ba" path="res://sfx/shoot.tres" id="3_jgl1y"]
 [ext_resource type="Resource" uid="uid://bmove2byjn786" path="res://sfx/reload.tres" id="4_jgl1y"]
+[ext_resource type="Resource" uid="uid://bdc7rsyspce00" path="res://sfx/step.tres" id="5_r2igq"]
+[ext_resource type="Resource" uid="uid://c5lvlvyjwdb2v" path="res://sfx/hurt.tres" id="6_t6mkj"]
+[ext_resource type="Resource" uid="uid://bpm7oj5y10of8" path="res://sfx/exp.tres" id="7_lbpyl"]
 
 [node name="sound player" type="Node2D" unique_id=1733549454]
 script = ExtResource("1_iulhf")
-streams = Array[ExtResource("2_h4juq")]([ExtResource("3_jgl1y"), ExtResource("4_jgl1y")])
+streams = Array[ExtResource("2_h4juq")]([ExtResource("3_jgl1y"), ExtResource("4_jgl1y"), ExtResource("5_r2igq"), ExtResource("6_t6mkj"), ExtResource("7_lbpyl")])

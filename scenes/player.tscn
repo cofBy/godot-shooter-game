@@ -79,6 +79,6 @@ player = NodePath("..")
 
 [node name="Sprite2D" type="Sprite2D" parent="gun" unique_id=492709942]
 texture_filter = 1
-position = Vector2(35.000004, 2.3300016)
+position = Vector2(50, 0)
 scale = Vector2(5, 5)
 texture = ExtResource("7_fjrip")

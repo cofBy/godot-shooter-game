@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="soundEffect" format=3 uid="uid://bpm7oj5y10of8"]
+
+[ext_resource type="Script" uid="uid://dxnral3u5xfmw" path="res://scripts/soundEffect.gd" id="1_8h5o2"]
+[ext_resource type="AudioStream" uid="uid://df1pflf7dvlnl" path="res://sfx/explosion-a.ogg" id="2_gxqsk"]
+[ext_resource type="AudioStream" uid="uid://swo0xo8c6rt3" path="res://sfx/explosion-b.ogg" id="3_nllu8"]
+[ext_resource type="AudioStream" uid="uid://bd2s8qwp3ndre" path="res://sfx/explosion-c.ogg" id="4_8h5o2"]
+
+[resource]
+script = ExtResource("1_8h5o2")
+streams = Array[AudioStream]([ExtResource("2_gxqsk"), ExtResource("3_nllu8"), ExtResource("4_8h5o2")])
+soundName = "explosion"
+minVolume = 0.6
+maxVolume = 0.8
+minPitch = 0.9
+maxPitch = 1.1
+metadata/_custom_type_script = "uid://dxnral3u5xfmw"
