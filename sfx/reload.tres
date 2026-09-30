@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="soundEffect" format=3 uid="uid://bmove2byjn786"]
+
+[ext_resource type="Script" uid="uid://dxnral3u5xfmw" path="res://scripts/soundEffect.gd" id="1_15uea"]
+[ext_resource type="AudioStream" uid="uid://tm3ndvlaj80q" path="res://sfx/reload.ogg" id="2_15uea"]
+
+[resource]
+script = ExtResource("1_15uea")
+streams = Array[AudioStream]([ExtResource("2_15uea")])
+soundName = "reload"
+minVolume = 0.6
+maxVolume = 0.9
+minPitch = 0.8
+maxPitch = 1.2
+metadata/_custom_type_script = "uid://dxnral3u5xfmw"

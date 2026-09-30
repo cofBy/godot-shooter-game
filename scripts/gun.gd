@@ -25,6 +25,7 @@ func _process(_delta):
 				fire()
 	
 	if currentBullets <= 0 or Input.is_action_just_pressed("reload") and currentBullets < data.magSize:
+		if startReload == false: SOUND.playSound("reload")
 		startReload = true
 	if startReload:
 		reloadTimer += _delta
@@ -34,7 +35,7 @@ func _process(_delta):
 			reloadTimer = 0
 	
 	var mousePos = get_global_mouse_position()
-	if mousePos.x > position.x:
+	if mousePos.x > player.position.x:
 		scale.y = 1
 	else:
 		scale.y = -1
