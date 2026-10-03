@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://bg7gmdq4fue7k" path="res://scenes/player.tscn" id="1_nnsk1"]
 [ext_resource type="PackedScene" uid="uid://7itvrd6bacr4" path="res://scenes/enemyBlue.tscn" id="2_rwgxs"]
+[ext_resource type="Script" uid="uid://bbkkpuoqdk6nm" path="res://scripts/spawner.gd" id="3_4wyf3"]
+[ext_resource type="PackedScene" uid="uid://c3u2tqe3tpf6g" path="res://scenes/portal.tscn" id="4_k0juu"]
 
 [node name="world" type="Node2D" unique_id=1917202882]
 
@@ -11,6 +13,9 @@ zoom = Vector2(0.2, 0.2)
 [node name="player" parent="." unique_id=2020279129 instance=ExtResource("1_nnsk1")]
 position = Vector2(-590, 197)
 
-[node name="enemy blue" parent="." unique_id=1923404304 instance=ExtResource("2_rwgxs")]
-position = Vector2(-8, -7)
-friction = 300.0
+[node name="Node2D" type="Node2D" parent="." unique_id=2123303888]
+script = ExtResource("3_4wyf3")
+portal = ExtResource("4_k0juu")
+blSpawnCorner = Vector2(-1000, 600)
+trSpawnCorner = Vector2(1000, -600)
+enemies = Array[PackedScene]([ExtResource("2_rwgxs")])
