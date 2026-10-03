@@ -4,7 +4,8 @@ extends CharacterBody2D
 @export var friction : float = 300.0
 var knockback : Vector2 = Vector2(0,0)
 
-@export var anim: AnimatedSprite2D
+@onready var anim: AnimationPlayer = $"player animations"
+@onready var sprite: Sprite2D = $"player sprite"
 
 @export var timePerStep : float = 0.2
 var stepTimer : float = 0
@@ -33,9 +34,6 @@ func _physics_process(_delta):
 	knockback = knockback.move_toward(Vector2.ZERO, friction * _delta)
 	
 	if abs(moveDir.x) > 0:
-		if moveDir.x > 0:
-			anim.scale.x = 5
-		else:
-			anim.scale.x = -5
+		sprite.flip_h = moveDir.x < 0
 	
 	move_and_slide()

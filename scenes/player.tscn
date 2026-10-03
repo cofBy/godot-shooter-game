@@ -3,69 +3,292 @@
 [ext_resource type="Script" uid="uid://dhmjqo7qumuoc" path="res://scripts/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://c3xq7lr57dadf" path="res://art/player/player_0.png" id="3_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://b2wt57d26ieef" path="res://art/player/player_1.png" id="4_fjrip"]
-[ext_resource type="Texture2D" uid="uid://bjl1v67pdnvo" path="res://art/player/player_3.png" id="4_smehm"]
 [ext_resource type="Texture2D" uid="uid://dby47au8guxdo" path="res://art/player/player_2.png" id="5_smehm"]
 [ext_resource type="Texture2D" uid="uid://d7xpk37ien1i" path="res://art/weapons/pistol.png" id="7_fjrip"]
 [ext_resource type="Script" uid="uid://bvkspcbfpu4v3" path="res://scripts/gun.gd" id="7_smehm"]
 [ext_resource type="Resource" uid="uid://djl6d4mjqukgb" path="res://gun types/msg.tres" id="7_ur7pv"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_qhqgy"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": null
-}, {
-"duration": 3.0,
-"texture": ExtResource("3_tuyoq")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_smehm")
-}],
-"loop": 0,
-"name": &"death",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_tuyoq")
-}],
-"loop": 1,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 0.3,
-"texture": ExtResource("3_tuyoq")
-}, {
-"duration": 0.4,
-"texture": ExtResource("4_fjrip")
-}, {
-"duration": 0.6,
-"texture": ExtResource("5_smehm")
-}, {
-"duration": 0.3,
-"texture": ExtResource("4_fjrip")
-}],
-"loop": 1,
-"name": &"run",
-"speed": 5.0
-}]
+[sub_resource type="Animation" id="Animation_qlg0r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("player sprite:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_tuyoq")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("player sprite:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.17453292]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("gun/gun sprite:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_tuyoq"]
+resource_name = "idle"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player sprite:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.73333335, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(5, 5), Vector2(5, 6), Vector2(5, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player sprite:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -12.5), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("player sprite:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_tuyoq")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("player sprite:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_fjrip"]
+resource_name = "run"
+length = 0.75
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.4, 0.5666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_tuyoq"), ExtResource("4_fjrip"), ExtResource("5_smehm"), ExtResource("4_fjrip")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.4, 0.5666667),
+"transitions": PackedFloat32Array(0.17075476, 0.17075476, 0.17075476, 0.17075509),
+"update": 0,
+"values": [-0.17453292519943295, 0.17453292519943295, -0.17453292519943295, 0.17453292519943295]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_smehm"]
+_data = {
+&"RESET": SubResource("Animation_qlg0r"),
+&"idle": SubResource("Animation_tuyoq"),
+&"run": SubResource("Animation_fjrip")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_473yl"]
 size = Vector2(48, 79)
 
-[node name="player" type="CharacterBody2D" unique_id=2020279129 node_paths=PackedStringArray("anim")]
+[sub_resource type="Animation" id="Animation_smehm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gun/gun sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("player sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 12)]
+}
+
+[sub_resource type="Animation" id="Animation_ur7pv"]
+resource_name = "reload"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gun/gun sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.5358868, 1),
+"update": 0,
+"values": [0.0, 6.2831855]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.2, 0.30000004, 0.4),
+"transitions": PackedFloat32Array(1.5157168, 0.50000024, 1, 0.50000024, 1),
+"update": 0,
+"values": [0.0, 0.34906584, 0.0, -0.3490658503988659, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("player sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.2, 0.30000004, 0.4),
+"transitions": PackedFloat32Array(1.5157168, 0.50000024, 1, 0.50000024, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(5, 5), Vector2(0, 0), Vector2(5, 5), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_y4r1p"]
+resource_name = "shoot"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gun/gun sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.23333335),
+"transitions": PackedFloat32Array(0.32987702, 1.8025014, 1),
+"update": 0,
+"values": [0.0, -0.5235988, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.23333335),
+"transitions": PackedFloat32Array(0.3186403, 1.9318731, 1),
+"update": 0,
+"values": [0.0, -0.34906584, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d2wvv"]
+_data = {
+&"RESET": SubResource("Animation_smehm"),
+&"reload": SubResource("Animation_ur7pv"),
+&"shoot": SubResource("Animation_y4r1p")
+}
+
+[node name="player" type="CharacterBody2D" unique_id=2020279129]
 script = ExtResource("1_onrkg")
 friction = 700.0
-anim = NodePath("AnimatedSprite2D")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=399878394]
+[node name="player sprite" type="Sprite2D" parent="." unique_id=1481821429]
 texture_filter = 1
-position = Vector2(1, -2)
+position = Vector2(0, 12)
 scale = Vector2(5, 5)
-sprite_frames = SubResource("SpriteFrames_qhqgy")
-animation = &"idle"
-frame_progress = 0.6040675
+texture = ExtResource("3_tuyoq")
+
+[node name="player animations" type="AnimationPlayer" parent="." unique_id=397570666]
+libraries/ = SubResource("AnimationLibrary_smehm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1009962940]
 position = Vector2(0, 20.5)
@@ -77,8 +300,12 @@ script = ExtResource("7_smehm")
 data = ExtResource("7_ur7pv")
 player = NodePath("..")
 
-[node name="Sprite2D" type="Sprite2D" parent="gun" unique_id=492709942]
+[node name="gun sprite" type="Sprite2D" parent="gun" unique_id=492709942]
 texture_filter = 1
-position = Vector2(50, 0)
+position = Vector2(30, 0)
 scale = Vector2(5, 5)
 texture = ExtResource("7_fjrip")
+
+[node name="gun animations" type="AnimationPlayer" parent="gun" unique_id=1026628957]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_d2wvv")

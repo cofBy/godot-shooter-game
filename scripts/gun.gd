@@ -9,10 +9,11 @@ var rng = RandomNumberGenerator.new()
 
 @export var data : Resource
 @export var player : CharacterBody2D
+@onready var anim : AnimationPlayer = $"gun animations"
 
 func _ready():
 	currentBullets = data.magSize
-	$Sprite2D.texture = data.gunTexture
+	$"gun sprite".texture = data.gunTexture
 
 func _process(_delta):
 	timer -= _delta
@@ -25,7 +26,9 @@ func _process(_delta):
 				fire()
 	
 	if currentBullets <= 0 or Input.is_action_just_pressed("reload") and currentBullets < data.magSize:
-		if startReload == false: SOUND.playSound("reload")
+		if startReload == false:
+			SOUND.playSound("reload")
+			anim.play("reload")
 		startReload = true
 	if startReload:
 		reloadTimer += _delta
@@ -45,6 +48,7 @@ func fire():
 	currentBullets -= 1
 	timer = data.fireRate
 	for i in data.bulletAmount:
+		anim.play("shoot")
 		SOUND.playSound("shoot")
 		var bulletInstance = data.bullet.instantiate();
 		bulletInstance.position = get_child(0).global_position

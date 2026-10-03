@@ -16,6 +16,7 @@ homingStrength = 0.5
 homingRadius = 500.0
 fireRate = 0.2
 autoFire = true
+bulletDistance = 150.0
 bullet = ExtResource("1_30qqx")
 maxRange = 0.0
 magSize = 10
