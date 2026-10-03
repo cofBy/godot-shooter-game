@@ -28,7 +28,8 @@ func _process(_delta):
 		anim.play("idle")
 
 func _physics_process(_delta):
-	var moveDir : Vector2 = input().normalized()
+	var moveDir : Vector2 = input()
+	if moveDir != Vector2(0,0) : moveDir = moveDir.normalized()
 	
 	velocity = moveDir * speed + knockback
 	knockback = knockback.move_toward(Vector2.ZERO, friction * _delta)
@@ -37,3 +38,7 @@ func _physics_process(_delta):
 		sprite.flip_h = moveDir.x < 0
 	
 	move_and_slide()
+
+func hit(pos : Vector2, strength : float):
+	knockback += (position - pos).normalized() * strength
+	SOUND.playSound("hurt")

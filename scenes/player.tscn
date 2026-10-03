@@ -277,7 +277,7 @@ _data = {
 &"shoot": SubResource("Animation_y4r1p")
 }
 
-[node name="player" type="CharacterBody2D" unique_id=2020279129]
+[node name="player" type="CharacterBody2D" unique_id=2020279129 groups=["player"]]
 script = ExtResource("1_onrkg")
 friction = 700.0
 
@@ -294,11 +294,11 @@ libraries/ = SubResource("AnimationLibrary_smehm")
 position = Vector2(0, 20.5)
 shape = SubResource("RectangleShape2D_473yl")
 
-[node name="gun" type="Node2D" parent="." unique_id=389224559 node_paths=PackedStringArray("player")]
+[node name="gun" type="Node2D" parent="." unique_id=389224559 node_paths=PackedStringArray("holder")]
 position = Vector2(0, 33.67)
 script = ExtResource("7_smehm")
 data = ExtResource("7_ur7pv")
-player = NodePath("..")
+holder = NodePath("..")
 
 [node name="gun sprite" type="Sprite2D" parent="gun" unique_id=492709942]
 texture_filter = 1

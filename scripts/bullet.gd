@@ -1,5 +1,7 @@
 extends Node2D
 
+var hitGroup : String
+
 var initialRotation := Vector2.ZERO
 var speed : float = 500
 var maxLifeTime : float = 5.0
@@ -38,11 +40,11 @@ func _physics_process(_delta):
 	var closestBody : Node2D
 	var closestDistance : float = 99999
 	for i in bodies:
-		if not i.is_in_group("enemy") : continue
+		if not i.is_in_group(hitGroup) : continue
 		if hitEnemies.find(i) != -1: continue
-		var dir : Vector2 = i.position - position
-		if dir.length() < closestDistance:
-			closestDistance = dir.length()
+		var direction : Vector2 = i.position - position
+		if direction.length() < closestDistance:
+			closestDistance = direction.length()
 			closestBody = i
 	
 	var homingDir := Vector2.ZERO
@@ -88,11 +90,11 @@ func _process(_delta):
 			piercesTimer -= _delta
 
 func _on_area_2d_body_entered(body: Node2D):
-	if body.is_in_group("enemy"):
+	if body.is_in_group(hitGroup):
 		enemy = body
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body.is_in_group("enemy"):
+	if body.is_in_group(hitGroup):
 		enemy = null
 
 func reflect(v : Vector2, n : Vector2):
