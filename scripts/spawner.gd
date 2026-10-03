@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var player : CharacterBody2D
+
 @export_group("portal")
 @export var portal : PackedScene
 @export var timeForPortal : float = 1
@@ -23,6 +25,7 @@ func _process(delta):
 			pos = Vector2(randf_range(blSpawnCorner.x, trSpawnCorner.x), randf_range(trSpawnCorner.y, blSpawnCorner.y))
 			portalInstance = portal.instantiate()
 			portalInstance.position = pos
+			portalInstance.get_child(0).play("default")
 			add_child(portalInstance)
 			SOUND.playSound("portalSpawn")
 		
@@ -34,6 +37,7 @@ func _process(delta):
 			
 			var enemyInstance = enemies[rng.randi_range(0, enemies.size() - 1)].instantiate()
 			enemyInstance.position = pos
+			enemyInstance.player = player
 			add_child(enemyInstance)
 			SOUND.playSound("enemySpawn")
 			

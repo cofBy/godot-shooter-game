@@ -191,10 +191,11 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xb5fl"]
-size = Vector2(74, 94)
+size = Vector2(58, 84)
 
 [node name="enemy blue" type="CharacterBody2D" unique_id=1923404304 groups=["enemy"]]
 script = ExtResource("1_jxh48")
+friction = 0.0
 baseSpeed = 310.0
 acceleration = 150.0
 
@@ -206,7 +207,6 @@ amount = 1
 texture = ExtResource("2_buv3b")
 one_shot = true
 explosiveness = 0.8
-local_coords = true
 direction = Vector2(0, -1)
 spread = 0.0
 gravity = Vector2(0, 0)
@@ -228,7 +228,7 @@ texture = ExtResource("1_yuuqn")
 libraries/ = SubResource("AnimationLibrary_nansy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1989497628]
-position = Vector2(3, 12)
+position = Vector2(3, 17)
 shape = SubResource("RectangleShape2D_xb5fl")
 
 [node name="Label" type="Label" parent="." unique_id=1242665101]

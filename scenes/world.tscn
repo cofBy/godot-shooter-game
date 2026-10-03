@@ -13,8 +13,9 @@ zoom = Vector2(0.2, 0.2)
 [node name="player" parent="." unique_id=2020279129 instance=ExtResource("1_nnsk1")]
 position = Vector2(-590, 197)
 
-[node name="Node2D" type="Node2D" parent="." unique_id=2123303888]
+[node name="spawner" type="Node2D" parent="." unique_id=2123303888 node_paths=PackedStringArray("player")]
 script = ExtResource("3_4wyf3")
+player = NodePath("../player")
 portal = ExtResource("4_k0juu")
 blSpawnCorner = Vector2(-1000, 600)
 trSpawnCorner = Vector2(1000, -600)

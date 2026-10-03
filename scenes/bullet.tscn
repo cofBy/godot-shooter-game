@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b17bt53t6553b" path="res://art/weapons/bullet.png" id="2_y25gk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xb5fl"]
-size = Vector2(85.333336, 137.84616)
+size = Vector2(184.88889, 187.07693)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xb5fl"]
 radius = 1.0
