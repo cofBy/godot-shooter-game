@@ -7,7 +7,9 @@
 [ext_resource type="Resource" uid="uid://bdc7rsyspce00" path="res://sfx/step.tres" id="5_r2igq"]
 [ext_resource type="Resource" uid="uid://c5lvlvyjwdb2v" path="res://sfx/hurt.tres" id="6_t6mkj"]
 [ext_resource type="Resource" uid="uid://bpm7oj5y10of8" path="res://sfx/exp.tres" id="7_lbpyl"]
+[ext_resource type="Resource" uid="uid://dwimbluo40oik" path="res://sfx/enemySpawn.tres" id="8_b2ji1"]
+[ext_resource type="Resource" uid="uid://bvpqnnkxl87t0" path="res://sfx/portalSpawn.tres" id="9_eqn3n"]
 
 [node name="sound player" type="Node2D" unique_id=1733549454]
 script = ExtResource("1_iulhf")
-streams = Array[ExtResource("2_h4juq")]([ExtResource("3_jgl1y"), ExtResource("4_jgl1y"), ExtResource("5_r2igq"), ExtResource("6_t6mkj"), ExtResource("7_lbpyl")])
+streams = Array[ExtResource("2_h4juq")]([ExtResource("3_jgl1y"), ExtResource("4_jgl1y"), ExtResource("5_r2igq"), ExtResource("6_t6mkj"), ExtResource("7_lbpyl"), ExtResource("8_b2ji1"), ExtResource("9_eqn3n")])

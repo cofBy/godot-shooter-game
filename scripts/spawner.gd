@@ -24,6 +24,7 @@ func _process(delta):
 			portalInstance = portal.instantiate()
 			portalInstance.position = pos
 			add_child(portalInstance)
+			SOUND.playSound("portalSpawn")
 		
 		portalTimer -= delta
 		if portalTimer < 0:
@@ -34,4 +35,5 @@ func _process(delta):
 			var enemyInstance = enemies[rng.randi_range(0, enemies.size() - 1)].instantiate()
 			enemyInstance.position = pos
 			add_child(enemyInstance)
+			SOUND.playSound("enemySpawn")
 			

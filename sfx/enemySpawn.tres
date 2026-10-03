@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="soundEffect" format=3 uid="uid://dwimbluo40oik"]
+
+[ext_resource type="Script" uid="uid://dxnral3u5xfmw" path="res://scripts/soundEffect.gd" id="1_jdtnd"]
+[ext_resource type="AudioStream" uid="uid://c8egig1fepbt" path="res://sfx/enemy spawn.ogg" id="2_x7pbh"]
+
+[resource]
+script = ExtResource("1_jdtnd")
+streams = Array[AudioStream]([ExtResource("2_x7pbh")])
+soundName = "enemySpawn"
+minVolume = 0.6
+maxVolume = 0.8
+minPitch = 1.0
+maxPitch = 1.0
+metadata/_custom_type_script = "uid://dxnral3u5xfmw"

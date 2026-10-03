@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c8egig1fepbt"
+path="res://.godot/imported/enemy spawn.ogg-0a2955d217a17dcbb83698fa2eb0d3df.oggvorbisstr"
+
+[deps]
+
+source_file="res://sfx/enemy spawn.ogg"
+dest_files=["res://.godot/imported/enemy spawn.ogg-0a2955d217a17dcbb83698fa2eb0d3df.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
