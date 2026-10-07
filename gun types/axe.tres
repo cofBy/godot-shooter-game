@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="gunData" format=3 uid="uid://b7nagvw80ovm7"]
+
+[ext_resource type="PackedScene" uid="uid://cdwsxa80de5c5" path="res://scenes/slash.tscn" id="1_rk13t"]
+[ext_resource type="Texture2D" uid="uid://bi0vlqccdrqoc" path="res://art/weapons/axe.png" id="2_rk13t"]
+[ext_resource type="Script" uid="uid://dmmfces08odig" path="res://scripts/gunData.gd" id="3_bxr06"]
+
+[resource]
+script = ExtResource("3_bxr06")
+isMelee = true
+gunTexture = ExtResource("2_rk13t")
+gunOffset = Vector2(50, 0)
+bulletSpeed = 700.0
+bulletLifeTime = 0.25
+damping = 2800.0
+pierceAmount = 3
+timePerPierce = 0.2
+ricochetCount = 0
+homingStrength = 0.0
+homingRadius = 0.0
+bulletDistance = 150.0
+bullet = ExtResource("1_rk13t")
+maxRange = 0.0
+randomRange = 0.0
+magSize = 0
+reloadTime = 0.0
+playerKnockBack = 300.0
+knockBackStrength = 400.0
+expRadius = 0.0
+expKnockBackMultiplier = 0.0
+metadata/_custom_type_script = "uid://dmmfces08odig"

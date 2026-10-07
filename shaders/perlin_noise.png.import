@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf6f51rccpc23"
-path="res://.godot/imported/portal_1.png-ae3cbfea9ba2ceecb96f285465437f52.ctex"
+uid="uid://w6po1vmd54aa"
+path="res://.godot/imported/perlin_noise.png-5f1cd167aff41d5404b824c27483fc67.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/portal_1.png"
-dest_files=["res://.godot/imported/portal_1.png-ae3cbfea9ba2ceecb96f285465437f52.ctex"]
+source_file="res://shaders/perlin_noise.png"
+dest_files=["res://.godot/imported/perlin_noise.png-5f1cd167aff41d5404b824c27483fc67.ctex"]
 
 [params]
 

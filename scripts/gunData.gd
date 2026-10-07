@@ -1,7 +1,12 @@
 class_name gunData
 extends Resource
 
+@export var isMelee : bool = false
+
+@export_group("visuals")
 @export var gunTexture : Texture2D
+@export var addedAngle : float = 0.0
+@export var gunOffset : Vector2
 
 @export_group("projectile movment")
 @export var bulletSpeed : float = 500

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dx04uhla4ofkc"
-path="res://.godot/imported/portal_0.png-668061b5f1de7d0ec7bb96654e637181.ctex"
+uid="uid://b0laxswy50a8l"
+path="res://.godot/imported/tilemap.png-765ae4d166fbc21ce39ce6604322d120.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/portal_0.png"
-dest_files=["res://.godot/imported/portal_0.png-668061b5f1de7d0ec7bb96654e637181.ctex"]
+source_file="res://art/env/tilemap.png"
+dest_files=["res://.godot/imported/tilemap.png-765ae4d166fbc21ce39ce6604322d120.ctex"]
 
 [params]
 

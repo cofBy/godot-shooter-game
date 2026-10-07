@@ -14,7 +14,10 @@ var rng = RandomNumberGenerator.new()
 
 func _ready():
 	currentBullets = data.magSize
-	$"gun sprite".texture = data.gunTexture
+	
+	var gunSprite : Sprite2D = $"gun sprite"
+	gunSprite.texture = data.gunTexture
+	gunSprite.position = data.gunOffset
 
 func _process(_delta):
 	timer -= _delta
@@ -26,7 +29,7 @@ func _process(_delta):
 			if Input.is_action_just_pressed("shoot"):
 				tryShoot(rotation)
 	
-	if currentBullets <= 0 or Input.is_action_just_pressed("reload") and currentBullets < data.magSize:
+	if data.magSize > 0 and (currentBullets <= 0 or Input.is_action_just_pressed("reload") and currentBullets < data.magSize):
 		if startReload == false:
 			SOUND.playSound("reload")
 			anim.play("reload")
@@ -48,7 +51,8 @@ func _process(_delta):
 		scale.y = 1
 	else:
 		scale.y = -1
-	look_at(target)
+	var direction : Vector2 = target - holder.position
+	rotation = atan2(direction.y, direction.x) + data.addedAngle
 
 func tryShoot(angle: float):
 	if timer < 0 and reloadTimer <= 0: fire(angle)
@@ -57,8 +61,11 @@ func fire(angle: float):
 	currentBullets -= 1
 	timer = data.fireRate
 	for i in data.bulletAmount:
-		anim.play("shoot")
-		SOUND.playSound("shoot")
+		if data.isMelee:
+			anim.play("meleeHit")
+		else:
+			anim.play("shoot")
+			SOUND.playSound("shoot")
 		var bulletInstance = data.bullet.instantiate();
 		bulletInstance.position = get_child(0).global_position
 		

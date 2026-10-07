@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var anim : AnimationPlayer = $AnimationPlayer
 @onready var gun: Node2D = $gun
+var rng = RandomNumberGenerator.new()
 
 @export_group("knockBack")
 @export var knockBackRes : float = 100.0
@@ -20,6 +21,7 @@ var speed : float = 0
 
 @export_subgroup("shooting")
 @export var shootingRadius : float = 500
+@export_range(0.0, 0.05, 0.001) var shootChance : float 
 
 enum STATES{
 	idle,
@@ -55,7 +57,8 @@ func _physics_process(delta: float):
 			knockback = knockback.move_toward(Vector2.ZERO, friction * delta)
 		STATES.shoot:
 			var direction : Vector2 = (player.position - position)
-			gun.tryShoot(atan2(direction.y, direction.x))
+			if rng.randf_range(0, 1) < shootChance:
+				gun.tryShoot(atan2(direction.y, direction.x))
 	
 	move_and_slide()
 
