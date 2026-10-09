@@ -318,9 +318,11 @@ _data = {
 &"shoot": SubResource("Animation_y4r1p")
 }
 
-[node name="player" type="CharacterBody2D" unique_id=2020279129 groups=["player"]]
+[node name="player" type="CharacterBody2D" unique_id=2020279129 node_paths=PackedStringArray("anim", "sprite") groups=["player"]]
 script = ExtResource("1_onrkg")
 friction = 700.0
+anim = NodePath("player animations")
+sprite = NodePath("player sprite")
 
 [node name="player sprite" type="Sprite2D" parent="." unique_id=1481821429]
 texture_filter = 1
