@@ -36,35 +36,43 @@ var state : STATES = STATES.idle
 @onready var stateDisplay : Label = $Label
 
 func _process(_delta):
-	if state == STATES.idle:
-		if (player.position - position).length() < agroRadius:
-			state = STATES.agro
-	elif state != STATES.agro:
-		if (player.position - position).length() < shootingRadius:
-			state = STATES.shoot
-		else:
-			state = STATES.follow
+	if player == null:
+		state = STATES.idle
+	else:
+		if state == STATES.idle:
+			if (player.position - position).length() < agroRadius:
+				state = STATES.agro
+		elif state != STATES.agro:
+			if (player.position - position).length() < shootingRadius:
+				state = STATES.shoot
+			else:
+				state = STATES.follow
 	if Engine.get_process_frames() % 5 and not collider.isOverlap(position):
 		state = STATES.dead
 
 func _physics_process(delta: float):
-	velocity = (player.position - position).normalized() * speed + knockback
+	knockback = knockback.move_toward(Vector2.ZERO, friction * delta)
+	if player != null : velocity = (player.position - position).normalized() * speed + knockback
+	else : velocity = velocity.normalized() * speed + knockback
 	stateDisplay.text = STATES.keys()[state]
 	match state:
 		STATES.idle:
 			anim.play("idle")
+			speed = move_toward(speed, 0, deacceleration * delta)
 		STATES.agro:
-			anim.play("agro")
-			if anim.current_animation == "agro" and anim.current_animation_position == 0.55: state = STATES.follow
+			if player != null:
+				anim.play("agro")
+				if anim.current_animation == "agro" and anim.current_animation_position == 0.55: state = STATES.follow
 		STATES.follow:
-			anim.play("run")
-			speed = move_toward(speed, baseSpeed, acceleration * delta)
-			knockback = knockback.move_toward(Vector2.ZERO, friction * delta)
+			if player != null:
+				anim.play("run")
+				speed = move_toward(speed, baseSpeed, acceleration * delta)
 		STATES.shoot:
-			speed = move_toward(speed, baseSpeed, deacceleration * delta)
-			var direction : Vector2 = (player.position - position)
-			if rng.randf_range(0, 1) < shootChance:
-				gun.tryShoot(atan2(direction.y, direction.x))
+			if player != null:
+				speed = move_toward(speed, 0, deacceleration * delta)
+				var direction : Vector2 = (player.position - position)
+				if rng.randf_range(0, 1) < shootChance:
+					gun.tryShoot(atan2(direction.y, direction.x))
 		STATES.dead:
 			queue_free()
 			var particleInstance = bodyParticle.instantiate()

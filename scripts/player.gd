@@ -12,7 +12,9 @@ var knockback : Vector2 = Vector2(0,0)
 var stepTimer : float = 0
 
 @export_group("lava collision")
-@export var collider : TileMapLayer
+@export var collider : Node
+@export var deadParticle : PackedScene
+@export var deadTexture : Texture2D
 
 func input():
 	var temp : Vector2
@@ -30,12 +32,20 @@ func _process(_delta):
 			SOUND.playSound("step")
 	else:
 		anim.play("idle")
+	
+	if not collider.isOverlap(position):
+		var particleInstnace = deadParticle.instantiate()
+		get_tree().root.add_child(particleInstnace)
+		particleInstnace.position = position
+		particleInstnace.texture = deadTexture
+		particleInstnace.restart()
+		particleInstnace.get_child(0).restart()
+		queue_free()
 
 func _physics_process(_delta):
 	var moveDir : Vector2 = input()
 	if moveDir != Vector2(0,0) : moveDir = moveDir.normalized()
 	
-	var isGrounded : bool = collider.isOverlap(position)
 	velocity = moveDir * speed + knockback
 	knockback = knockback.move_toward(Vector2.ZERO, friction * _delta)
 	

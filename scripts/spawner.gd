@@ -20,7 +20,7 @@ var pos : Vector2
 
 func _process(delta):
 	spawnTimer -= delta
-	if spawnTimer < 0:
+	if player != null and spawnTimer < 0:
 		if portalTimer == timeForPortal:
 			pos = Vector2(map.cells[randi_range(0, map.cells.size() - 1)]) * 80 + Vector2(40, 0)
 			portalInstance = portal.instantiate()
@@ -38,7 +38,7 @@ func _process(delta):
 			var enemyInstance = enemies[rng.randi_range(0, enemies.size() - 1)].instantiate()
 			enemyInstance.position = pos
 			enemyInstance.collider = map
-			enemyInstance.player = player
+			if player != null: enemyInstance.player = player
 			add_child(enemyInstance)
 			SOUND.playSound("enemySpawn")
 			
