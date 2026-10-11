@@ -12,22 +12,25 @@ var knockback : Vector2 = Vector2.ZERO
 @export_group("states settings")
 @export_subgroup("agro")
 @export var agroRadius : float = 500
-
 @export_subgroup("follow")
 @export var baseSpeed : float = 500
 @export var acceleration : float = 100
+@export var deacceleration : float = 100
 var player : CharacterBody2D
 var speed : float = 0
-
 @export_subgroup("shooting")
 @export var shootingRadius : float = 500
-@export_range(0.0, 0.05, 0.001) var shootChance : float 
+@export_range(0.0, 0.05, 0.001) var shootChance : float
+@export_subgroup("dying")
+@export var bodyParticle : PackedScene
+var collider : Node
 
 enum STATES{
 	idle,
 	agro,
 	follow,
-	shoot
+	shoot,
+	dead
 }
 var state : STATES = STATES.idle
 @onready var stateDisplay : Label = $Label
@@ -41,6 +44,8 @@ func _process(_delta):
 			state = STATES.shoot
 		else:
 			state = STATES.follow
+	if Engine.get_process_frames() % 5 and not collider.isOverlap(position):
+		state = STATES.dead
 
 func _physics_process(delta: float):
 	velocity = (player.position - position).normalized() * speed + knockback
@@ -56,9 +61,17 @@ func _physics_process(delta: float):
 			speed = move_toward(speed, baseSpeed, acceleration * delta)
 			knockback = knockback.move_toward(Vector2.ZERO, friction * delta)
 		STATES.shoot:
+			speed = move_toward(speed, baseSpeed, deacceleration * delta)
 			var direction : Vector2 = (player.position - position)
 			if rng.randf_range(0, 1) < shootChance:
 				gun.tryShoot(atan2(direction.y, direction.x))
+		STATES.dead:
+			queue_free()
+			var particleInstance = bodyParticle.instantiate()
+			get_tree().root.add_child(particleInstance)
+			particleInstance.position = position
+			particleInstance.restart()
+			particleInstance.get_child(0).restart()
 	
 	move_and_slide()
 

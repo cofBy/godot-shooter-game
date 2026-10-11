@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://davtxlle3m3w0" path="res://scripts/enemy.gd" id="1_jxh48"]
 [ext_resource type="Texture2D" uid="uid://bi572bd7d6s1" path="res://art/enemy blue/eb1.png" id="1_yuuqn"]
+[ext_resource type="PackedScene" uid="uid://dnx73g4hcw8p5" path="res://scenes/deadParticle.tscn" id="2_7hffy"]
 [ext_resource type="Texture2D" uid="uid://dnatf3uimjahl" path="res://art/enemy blue/agroMark.png" id="2_buv3b"]
 [ext_resource type="Texture2D" uid="uid://dduwj5vl3uvnw" path="res://art/enemy blue/eb2.png" id="3_606l4"]
 [ext_resource type="Texture2D" uid="uid://de14y8mdfmq5s" path="res://art/enemy blue/eb3.png" id="4_buv3b"]
@@ -334,6 +335,7 @@ baseSpeed = 310.0
 acceleration = 150.0
 shootingRadius = 350.0
 shootChance = 0.018
+bodyParticle = ExtResource("2_7hffy")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1983997679]
 texture_filter = 1
@@ -356,6 +358,7 @@ scale_amount_max = 5.0
 color_ramp = SubResource("Gradient_606l4")
 
 [node name="enemy sprite" type="Sprite2D" parent="." unique_id=1047314949]
+z_index = 1
 texture_filter = 1
 rotation = -0.17453292
 scale = Vector2(5, 5)
@@ -386,6 +389,7 @@ holder = NodePath("..")
 isEnemy = true
 
 [node name="gun sprite" type="Sprite2D" parent="gun" unique_id=474665326]
+z_index = 1
 texture_filter = 1
 position = Vector2(30, 0)
 scale = Vector2(5, 5)

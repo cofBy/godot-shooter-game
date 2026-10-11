@@ -9,20 +9,20 @@ var portalTimer : float = timeForPortal
 var rng = RandomNumberGenerator.new()
 
 @export_group("enemies")
-@export var blSpawnCorner : Vector2
-@export var trSpawnCorner : Vector2
 @export var enemies : Array[PackedScene]
 @export var minTimePerSpawn : float = 2
 @export var maxTimePerSpawn : float = 3
 var spawnTimer : float = minTimePerSpawn 
 var portalInstance : Node2D
 var pos : Vector2
+@export_subgroup("positioning")
+@export var map : Node
 
 func _process(delta):
 	spawnTimer -= delta
 	if spawnTimer < 0:
 		if portalTimer == timeForPortal:
-			pos = Vector2(randf_range(blSpawnCorner.x, trSpawnCorner.x), randf_range(trSpawnCorner.y, blSpawnCorner.y))
+			pos = Vector2(map.cells[randi_range(0, map.cells.size() - 1)]) * 80 + Vector2(40, 0)
 			portalInstance = portal.instantiate()
 			portalInstance.position = pos
 			portalInstance.get_child(0).play("default")
@@ -37,6 +37,7 @@ func _process(delta):
 			
 			var enemyInstance = enemies[rng.randi_range(0, enemies.size() - 1)].instantiate()
 			enemyInstance.position = pos
+			enemyInstance.collider = map
 			enemyInstance.player = player
 			add_child(enemyInstance)
 			SOUND.playSound("enemySpawn")

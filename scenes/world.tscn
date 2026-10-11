@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://byrw8k2j3tbhl"]
 
 [ext_resource type="PackedScene" uid="uid://bg7gmdq4fue7k" path="res://scenes/player.tscn" id="1_nnsk1"]
-[ext_resource type="Script" uid="uid://ngdw2sprppph" path="res://scenes/proceduralGen.gd" id="2_qfnet"]
+[ext_resource type="Script" uid="uid://ngdw2sprppph" path="res://scripts/proceduralGen.gd" id="2_qfnet"]
+[ext_resource type="Script" uid="uid://bbkkpuoqdk6nm" path="res://scripts/spawner.gd" id="4_k0juu"]
 [ext_resource type="Texture2D" uid="uid://b0laxswy50a8l" path="res://art/env/tilemap.png" id="5_71j4m"]
+[ext_resource type="PackedScene" uid="uid://c3u2tqe3tpf6g" path="res://scenes/portal.tscn" id="5_i7141"]
+[ext_resource type="PackedScene" uid="uid://7itvrd6bacr4" path="res://scenes/enemyBlue.tscn" id="5_qfnet"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qfnet"]
 texture = ExtResource("5_71j4m")
@@ -178,4 +181,9 @@ zoom = Vector2(0.2, 0.2)
 [node name="player" parent="." unique_id=2020279129 node_paths=PackedStringArray("collider") instance=ExtResource("1_nnsk1")]
 collider = NodePath("../grass")
 
-[node name="spawner" type="Node2D" parent="." unique_id=2123303888]
+[node name="spawner" type="Node2D" parent="." unique_id=2123303888 node_paths=PackedStringArray("player", "map")]
+script = ExtResource("4_k0juu")
+player = NodePath("../player")
+portal = ExtResource("5_i7141")
+enemies = Array[PackedScene]([ExtResource("5_qfnet")])
+map = NodePath("../grass")

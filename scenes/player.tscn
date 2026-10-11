@@ -325,6 +325,7 @@ anim = NodePath("player animations")
 sprite = NodePath("player sprite")
 
 [node name="player sprite" type="Sprite2D" parent="." unique_id=1481821429]
+z_index = 1
 texture_filter = 1
 position = Vector2(0, 12)
 scale = Vector2(5, 5)
@@ -343,6 +344,7 @@ data = ExtResource("6_fjrip")
 holder = NodePath("..")
 
 [node name="gun sprite" type="Sprite2D" parent="gun" unique_id=492709942]
+z_index = 1
 texture_filter = 1
 position = Vector2(75, 0)
 scale = Vector2(5, 5)

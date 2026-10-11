@@ -35,7 +35,7 @@ func _physics_process(_delta):
 	var moveDir : Vector2 = input()
 	if moveDir != Vector2(0,0) : moveDir = moveDir.normalized()
 	
-	var grounded : bool = collider.isOverlap(position)
+	var isGrounded : bool = collider.isOverlap(position)
 	velocity = moveDir * speed + knockback
 	knockback = knockback.move_toward(Vector2.ZERO, friction * _delta)
 	
