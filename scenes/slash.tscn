@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dpaifwr0652rl" path="res://scripts/bullet.gd" id="1_3c2nd"]
 [ext_resource type="Shader" uid="uid://cdnsr516qq3jd" path="res://shaders/slash.gdshader" id="2_3c2nd"]
-[ext_resource type="Texture2D" uid="uid://w6po1vmd54aa" path="res://shaders/perlin_noise.png" id="3_e2dr4"]
+[ext_resource type="Texture2D" uid="uid://c530iq6esj4a8" path="res://shaders/perlin.png" id="3_e2dr4"]
 [ext_resource type="Texture2D" uid="uid://dx04uhla4ofkc" path="res://art/env/portal_0.png" id="3_fg1j7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e2dr4"]
@@ -10,11 +10,11 @@ shader = ExtResource("2_3c2nd")
 shader_parameter/slashRadius = 0.4
 shader_parameter/thickness = 0.1499999966472
 shader_parameter/slashCenter = Vector2(0.445, 0.5)
-shader_parameter/multiplierStrength = 0.12999999709423998
+shader_parameter/multiplierStrength = 0.13999999687072
 shader_parameter/color1 = Color(1, 1, 1, 1)
 shader_parameter/color2 = Color(0.47058824, 0.8392157, 1, 0.7764706)
 shader_parameter/perlinNoise = ExtResource("3_e2dr4")
-shader_parameter/perlinStrength = 8.0000001192096
+shader_parameter/perlinStrength = 3.90000005811468
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fg1j7"]
 radius = 43.0

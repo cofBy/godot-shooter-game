@@ -1,11 +1,38 @@
 [gd_scene format=3 uid="uid://byrw8k2j3tbhl"]
 
+[ext_resource type="Shader" uid="uid://dkn76fj3r1ttr" path="res://shaders/lava.gdshader" id="1_i7141"]
 [ext_resource type="PackedScene" uid="uid://bg7gmdq4fue7k" path="res://scenes/player.tscn" id="1_nnsk1"]
+[ext_resource type="Texture2D" uid="uid://c530iq6esj4a8" path="res://shaders/perlin.png" id="2_7r4gi"]
 [ext_resource type="Script" uid="uid://ngdw2sprppph" path="res://scripts/proceduralGen.gd" id="2_qfnet"]
+[ext_resource type="Texture2D" uid="uid://dx04uhla4ofkc" path="res://art/env/portal_0.png" id="3_7r4gi"]
 [ext_resource type="Script" uid="uid://bbkkpuoqdk6nm" path="res://scripts/spawner.gd" id="4_k0juu"]
+[ext_resource type="Script" uid="uid://dv0nr6budcisj" path="res://scenes/lava.gd" id="4_w7kh3"]
 [ext_resource type="Texture2D" uid="uid://b0laxswy50a8l" path="res://art/env/tilemap.png" id="5_71j4m"]
 [ext_resource type="PackedScene" uid="uid://c3u2tqe3tpf6g" path="res://scenes/portal.tscn" id="5_i7141"]
 [ext_resource type="PackedScene" uid="uid://7itvrd6bacr4" path="res://scenes/enemyBlue.tscn" id="5_qfnet"]
+
+[sub_resource type="Gradient" id="Gradient_7r4gi"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.1352657, 0.22222222, 0.3768116, 0.5024155, 0.647343, 0.7777778, 0.9227053)
+colors = PackedColorArray(0.28627452, 0.17254902, 0.3254902, 1, 0.42803597, 0.19433674, 0.30592245, 1, 0.65882355, 0.24705882, 0.28235295, 1, 0.9019608, 0.41960785, 0.3137255, 1, 0.9399172, 0.5245185, 0.33112106, 1, 0.9607843, 0.6431373, 0.37254903, 1, 1.0614431, 0.8829948, 0.5883476, 1, 1.1723902, 1.0329273, 0.7121625, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7r4gi"]
+gradient = SubResource("Gradient_7r4gi")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_34ov8"]
+shader = ExtResource("1_i7141")
+shader_parameter/perlinNoiseTexture = ExtResource("2_7r4gi")
+shader_parameter/perlinSize = 0.35
+shader_parameter/noiseDisplacmentStrength = 0.1
+shader_parameter/noiseScrollSpeed = 2.0
+shader_parameter/foamMultiplier = 250.0
+shader_parameter/foamStrength = 0.5
+shader_parameter/foamThickness = 5.0
+shader_parameter/gradient = SubResource("GradientTexture1D_7r4gi")
+shader_parameter/dt = 0.017
+shader_parameter/tilesTexture = ExtResource("2_7r4gi")
+shader_parameter/rect_min = Vector2(0, 0)
+shader_parameter/rect_max = Vector2(0, 0)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qfnet"]
 texture = ExtResource("5_71j4m")
@@ -166,7 +193,15 @@ sources/0 = SubResource("TileSetAtlasSource_qfnet")
 
 [node name="world" type="Node2D" unique_id=1917202882]
 
-[node name="grass" type="TileMapLayer" parent="." unique_id=1412301437 node_paths=PackedStringArray("tileMap")]
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1213472635]
+material = SubResource("ShaderMaterial_34ov8")
+texture = ExtResource("3_7r4gi")
+invert_border = 0.1
+polygon = PackedVector2Array(-1200, 675, -1200, -675, 1200, -675, 1200, 675)
+uv = PackedVector2Array(0, 15, 0, 0, 15, 0, 15, 15)
+script = ExtResource("4_w7kh3")
+
+[node name="grass" type="TileMapLayer" parent="." unique_id=1412301437 node_paths=PackedStringArray("tileMap", "lava")]
 texture_filter = 1
 scale = Vector2(4.9999995, 4.9999995)
 tile_set = SubResource("TileSet_xb5fl")
@@ -174,6 +209,7 @@ script = ExtResource("2_qfnet")
 tileMap = NodePath(".")
 maxCellsCount = 200
 chanceToRotate = 0.75
+lava = NodePath("../Polygon2D")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1715013904]
 zoom = Vector2(0.2, 0.2)

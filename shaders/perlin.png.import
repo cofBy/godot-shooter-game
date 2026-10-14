@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://w6po1vmd54aa"
-path="res://.godot/imported/perlin_noise.png-5f1cd167aff41d5404b824c27483fc67.ctex"
+uid="uid://c530iq6esj4a8"
+path="res://.godot/imported/perlin.png-841b4067ef40433014bd4cf850e77ea4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://shaders/perlin_noise.png"
-dest_files=["res://.godot/imported/perlin_noise.png-5f1cd167aff41d5404b824c27483fc67.ctex"]
+source_file="res://shaders/perlin.png"
+dest_files=["res://.godot/imported/perlin.png-841b4067ef40433014bd4cf850e77ea4.ctex"]
 
 [params]
 

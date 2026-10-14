@@ -11,9 +11,29 @@ var walksCount : int = 0
 
 var denom : float = 1.0 / sqrt(2.0)
 
+@export_group("lava")
+@export var lava : Polygon2D
+
 func _ready():
 	walk()
+	lava.material.set_shader_parameter("tilesTexture", tilesTexture())
+
+	var half := Vector2(tileMap.tile_set.tile_size) / 2.0
+	var a := lava.to_local(tileMap.to_global(tileMap.map_to_local(Vector2i(-13, -7)) - half))
+	var b := lava.to_local(tileMap.to_global(tileMap.map_to_local(Vector2i(15, 9)) - half))
+	lava.material.set_shader_parameter("rect_min", a)
+	lava.material.set_shader_parameter("rect_max", b)
+
 	tileMap.set_cells_terrain_connect(cells, 0, 0)
+
+func tilesTexture():
+	var image := Image.create(28, 16, false, Image.FORMAT_R8)
+	for cell in cells:
+		var px := cell.x + 13
+		var py := cell.y + 7
+		if px >= 0 and px < 28 and py >= 0 and py < 16:
+			image.set_pixel(px, py, Color.WHITE)
+	return ImageTexture.create_from_image(image)
 
 func isOverlap(pos : Vector2):
 	for cell in cells:
