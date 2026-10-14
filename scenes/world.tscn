@@ -10,6 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://b0laxswy50a8l" path="res://art/env/tilemap.png" id="5_71j4m"]
 [ext_resource type="PackedScene" uid="uid://c3u2tqe3tpf6g" path="res://scenes/portal.tscn" id="5_i7141"]
 [ext_resource type="PackedScene" uid="uid://7itvrd6bacr4" path="res://scenes/enemyBlue.tscn" id="5_qfnet"]
+[ext_resource type="Resource" uid="uid://b7nagvw80ovm7" path="res://gun types/axe.tres" id="12_o8fc1"]
+[ext_resource type="Resource" uid="uid://djl6d4mjqukgb" path="res://gun types/msg.tres" id="13_xo05s"]
+[ext_resource type="Resource" uid="uid://bbttnojwt724p" path="res://gun types/pistol.tres" id="14_o8fc1"]
 
 [sub_resource type="Gradient" id="Gradient_7r4gi"]
 interpolation_mode = 1
@@ -223,3 +226,8 @@ player = NodePath("../player")
 portal = ExtResource("5_i7141")
 enemies = Array[PackedScene]([ExtResource("5_qfnet")])
 map = NodePath("../grass")
+gunTypes = Dictionary[Resource, float]({
+ExtResource("12_o8fc1"): 0.5,
+ExtResource("13_xo05s"): 0.3,
+ExtResource("14_o8fc1"): 0.2
+})

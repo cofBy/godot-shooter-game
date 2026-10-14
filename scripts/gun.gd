@@ -12,7 +12,9 @@ var rng = RandomNumberGenerator.new()
 @export var isEnemy : bool = false
 @onready var anim : AnimationPlayer = $"gun animations"
 
-func _ready():
+func _ready(): if isEnemy == false: init()
+
+func init():
 	currentBullets = data.magSize
 	
 	var gunSprite : Sprite2D = $"gun sprite"

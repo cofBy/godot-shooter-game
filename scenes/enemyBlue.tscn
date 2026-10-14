@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://dduwj5vl3uvnw" path="res://art/enemy blue/eb2.png" id="3_606l4"]
 [ext_resource type="Texture2D" uid="uid://de14y8mdfmq5s" path="res://art/enemy blue/eb3.png" id="4_buv3b"]
 [ext_resource type="Script" uid="uid://bvkspcbfpu4v3" path="res://scripts/gun.gd" id="6_on660"]
-[ext_resource type="Resource" uid="uid://b7nagvw80ovm7" path="res://gun types/axe.tres" id="7_on660"]
 [ext_resource type="Texture2D" uid="uid://d7xpk37ien1i" path="res://art/weapons/pistol.png" id="8_acjvw"]
 
 [sub_resource type="Gradient" id="Gradient_606l4"]
@@ -371,20 +370,9 @@ libraries/ = SubResource("AnimationLibrary_nansy")
 position = Vector2(3, 12)
 shape = SubResource("RectangleShape2D_xb5fl")
 
-[node name="Label" type="Label" parent="." unique_id=1242665101]
-offset_left = -117.0
-offset_top = -126.0
-offset_right = -38.0
-offset_bottom = -103.0
-scale = Vector2(3.13125, 3.13125)
-text = "idle"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="gun" type="Node2D" parent="." unique_id=2136805117 node_paths=PackedStringArray("holder")]
 position = Vector2(0, 33.67)
 script = ExtResource("6_on660")
-data = ExtResource("7_on660")
 holder = NodePath("..")
 isEnemy = true
 

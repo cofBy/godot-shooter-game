@@ -17,6 +17,8 @@ var portalInstance : Node2D
 var pos : Vector2
 @export_subgroup("positioning")
 @export var map : Node
+@export_subgroup("gun")
+@export var gunTypes: Dictionary[Resource, float] = {}
 
 func _process(delta):
 	spawnTimer -= delta
@@ -39,6 +41,14 @@ func _process(delta):
 			enemyInstance.position = pos
 			enemyInstance.collider = map
 			if player != null: enemyInstance.player = player
-			add_child(enemyInstance)
-			SOUND.playSound("enemySpawn")
+			var rnd = rng.randf()
+			for gun in gunTypes:
+				if rnd >= gunTypes[gun]:
+					enemyInstance.gunType = gun
+					break
+				enemyInstance.gunType = gun
 			
+			add_child(enemyInstance)
+			enemyInstance.gun.init()
+			
+			SOUND.playSound("enemySpawn")

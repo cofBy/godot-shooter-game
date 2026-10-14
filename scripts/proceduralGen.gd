@@ -38,7 +38,7 @@ func tilesTexture():
 func isOverlap(pos : Vector2):
 	for cell in cells:
 		var delta = pos - (Vector2(cell * 80) + Vector2(40, 0))
-		if (abs(delta.x - delta.y) * denom + abs(delta.y + delta.x) * denom) * denom < 40.0:
+		if (abs(delta.x - delta.y) * denom + abs(delta.y + delta.x) * denom) * denom < 41.0:
 			return true
 	return false
 

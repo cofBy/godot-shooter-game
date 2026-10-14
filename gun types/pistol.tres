@@ -7,6 +7,7 @@
 [resource]
 script = ExtResource("1_rk3wf")
 gunTexture = ExtResource("2_ut2k5")
+gunOffset = Vector2(40, -10)
 pierceAmount = 2
 timePerPierce = 0.2
 homingStrength = 0.0

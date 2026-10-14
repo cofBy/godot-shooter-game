@@ -21,6 +21,7 @@ var speed : float = 0
 @export_subgroup("shooting")
 @export var shootingRadius : float = 500
 @export_range(0.0, 0.05, 0.001) var shootChance : float
+@export var gunType : Resource
 @export_subgroup("dying")
 @export var bodyParticle : PackedScene
 var collider : Node
@@ -33,7 +34,9 @@ enum STATES{
 	dead
 }
 var state : STATES = STATES.idle
-@onready var stateDisplay : Label = $Label
+
+func _ready():
+	gun.data = gunType
 
 func _process(_delta):
 	if player == null:
@@ -54,7 +57,6 @@ func _physics_process(delta: float):
 	knockback = knockback.move_toward(Vector2.ZERO, friction * delta)
 	if player != null : velocity = (player.position - position).normalized() * speed + knockback
 	else : velocity = velocity.normalized() * speed + knockback
-	stateDisplay.text = STATES.keys()[state]
 	match state:
 		STATES.idle:
 			anim.play("idle")
