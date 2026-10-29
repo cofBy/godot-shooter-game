@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export var gun : Node2D
 @export_group("movment")
 @export var speed : float = 300.0
 @export var friction : float = 300.0
@@ -15,6 +16,7 @@ var stepTimer : float = 0
 @export var collider : Node
 @export var deadParticle : PackedScene
 @export var deadTexture : Texture2D
+var isDead : bool
 
 func input():
 	var temp : Vector2
@@ -33,14 +35,15 @@ func _process(_delta):
 	else:
 		anim.play("idle")
 	
-	if not collider.isOverlap(position):
+	if not collider.isOverlap(position) and isDead == false:
 		var particleInstnace = deadParticle.instantiate()
 		get_tree().root.add_child(particleInstnace)
 		particleInstnace.position = position
 		particleInstnace.texture = deadTexture
 		particleInstnace.restart()
 		particleInstnace.get_child(0).restart()
-		queue_free()
+		isDead = true
+		visible = false
 
 func _physics_process(_delta):
 	var moveDir : Vector2 = input()

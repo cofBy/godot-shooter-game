@@ -320,8 +320,9 @@ _data = {
 &"shoot": SubResource("Animation_y4r1p")
 }
 
-[node name="player" type="CharacterBody2D" unique_id=2020279129 node_paths=PackedStringArray("anim", "sprite") groups=["player"]]
+[node name="player" type="CharacterBody2D" unique_id=2020279129 node_paths=PackedStringArray("gun", "anim", "sprite") groups=["player"]]
 script = ExtResource("1_onrkg")
+gun = NodePath("gun")
 friction = 700.0
 anim = NodePath("player animations")
 sprite = NodePath("player sprite")

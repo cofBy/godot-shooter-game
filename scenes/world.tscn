@@ -6,18 +6,33 @@
 [ext_resource type="Script" uid="uid://ngdw2sprppph" path="res://scripts/proceduralGen.gd" id="2_qfnet"]
 [ext_resource type="Texture2D" uid="uid://dx04uhla4ofkc" path="res://art/env/portal_0.png" id="3_7r4gi"]
 [ext_resource type="Script" uid="uid://bbkkpuoqdk6nm" path="res://scripts/spawner.gd" id="4_k0juu"]
-[ext_resource type="Script" uid="uid://dv0nr6budcisj" path="res://scenes/lava.gd" id="4_w7kh3"]
+[ext_resource type="Script" uid="uid://dv0nr6budcisj" path="res://scripts/lava.gd" id="4_w7kh3"]
 [ext_resource type="Texture2D" uid="uid://b0laxswy50a8l" path="res://art/env/tilemap.png" id="5_71j4m"]
 [ext_resource type="PackedScene" uid="uid://c3u2tqe3tpf6g" path="res://scenes/portal.tscn" id="5_i7141"]
 [ext_resource type="PackedScene" uid="uid://7itvrd6bacr4" path="res://scenes/enemyBlue.tscn" id="5_qfnet"]
 [ext_resource type="Resource" uid="uid://b7nagvw80ovm7" path="res://gun types/axe.tres" id="12_o8fc1"]
 [ext_resource type="Resource" uid="uid://djl6d4mjqukgb" path="res://gun types/msg.tres" id="13_xo05s"]
+[ext_resource type="Script" uid="uid://dqh5iig6pprgh" path="res://scripts/UI.gd" id="14_dss4m"]
 [ext_resource type="Resource" uid="uid://bbttnojwt724p" path="res://gun types/pistol.tres" id="14_o8fc1"]
+[ext_resource type="Texture2D" uid="uid://b17bt53t6553b" path="res://art/weapons/bullet.png" id="14_xo05s"]
+[ext_resource type="Script" uid="uid://ccxe6qupfwc1t" path="res://scripts/customLabel.gd" id="16_dss4m"]
+[ext_resource type="PackedScene" uid="uid://bvuvo1w0pkbug" path="res://art/UI/customChar.tscn" id="17_7t5mc"]
+[ext_resource type="Texture2D" uid="uid://drtjtrw2exs5p" path="res://art/UI/0.png" id="18_0nbtd"]
+[ext_resource type="Texture2D" uid="uid://bnje2k0ppv3mv" path="res://art/UI/1.png" id="19_37qwj"]
+[ext_resource type="Texture2D" uid="uid://banlj80j6mw8k" path="res://art/UI/2.png" id="20_navra"]
+[ext_resource type="Texture2D" uid="uid://cwyo38kd2erjv" path="res://art/UI/3.png" id="21_luhhm"]
+[ext_resource type="Texture2D" uid="uid://bsdwcjgyt1e7e" path="res://art/UI/4.png" id="22_fh13f"]
+[ext_resource type="Texture2D" uid="uid://batvrd651bmc6" path="res://art/UI/5.png" id="23_rup4s"]
+[ext_resource type="Texture2D" uid="uid://ctnowxwpfc0fa" path="res://art/UI/6.png" id="24_4kbfs"]
+[ext_resource type="Texture2D" uid="uid://b4psveyjbtfbv" path="res://art/UI/7.png" id="25_f17e3"]
+[ext_resource type="Texture2D" uid="uid://c7d0a7k4jxuun" path="res://art/UI/8.png" id="26_x2olw"]
+[ext_resource type="Texture2D" uid="uid://c0s87twf33a6" path="res://art/UI/9.png" id="27_817gm"]
+[ext_resource type="Texture2D" uid="uid://dmwnii0swnmeu" path="res://art/UI/-.png" id="28_ggc52"]
 
 [sub_resource type="Gradient" id="Gradient_7r4gi"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.1352657, 0.22222222, 0.3768116, 0.5024155, 0.647343, 0.7777778, 0.9227053)
-colors = PackedColorArray(0.28627452, 0.17254902, 0.3254902, 1, 0.42803597, 0.19433674, 0.30592245, 1, 0.65882355, 0.24705882, 0.28235295, 1, 0.9019608, 0.41960785, 0.3137255, 1, 0.9399172, 0.5245185, 0.33112106, 1, 0.9607843, 0.6431373, 0.37254903, 1, 1.0614431, 0.8829948, 0.5883476, 1, 1.1723902, 1.0329273, 0.7121625, 1)
+offsets = PackedFloat32Array(0, 0.20289855, 0.38164252, 0.5458937, 0.7536232, 0.9516908)
+colors = PackedColorArray(0.22745098, 0.14117648, 0.23137255, 1, 0.5137255, 0.23137255, 0.34509805, 1, 0.8784314, 0.3254902, 0.27058825, 1, 1, 0.54509807, 0.3019608, 1, 1, 0.8784314, 0.49019608, 1, 1.353256, 1.1909814, 0.6727494, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_7r4gi"]
 gradient = SubResource("Gradient_7r4gi")
@@ -27,6 +42,7 @@ shader = ExtResource("1_i7141")
 shader_parameter/perlinNoiseTexture = ExtResource("2_7r4gi")
 shader_parameter/perlinSize = 0.35
 shader_parameter/noiseDisplacmentStrength = 0.1
+shader_parameter/voronoiNoiseStrength = 4.5
 shader_parameter/noiseScrollSpeed = 2.0
 shader_parameter/foamMultiplier = 250.0
 shader_parameter/foamStrength = 0.5
@@ -231,3 +247,55 @@ ExtResource("12_o8fc1"): 0.5,
 ExtResource("13_xo05s"): 0.3,
 ExtResource("14_o8fc1"): 0.2
 })
+
+[node name="Control" type="Control" parent="." unique_id=2069703263 node_paths=PackedStringArray("player", "bulletsLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1200.0
+offset_top = -675.0
+offset_right = 1200.0
+offset_bottom = 675.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("14_dss4m")
+player = NodePath("../player")
+bulletsLabel = NodePath("bullet rect/bullets label")
+
+[node name="bullet rect" type="TextureRect" parent="Control" unique_id=559932577]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -300.0
+offset_right = 300.0
+grow_vertical = 0
+texture = ExtResource("14_xo05s")
+
+[node name="bullets label" type="Control" parent="Control/bullet rect" unique_id=88006209]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -60.0
+offset_right = 160.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("16_dss4m")
+text = "1-1"
+charSprite = ExtResource("17_7t5mc")
+selectTextures = Array[Texture2D]([ExtResource("18_0nbtd"), ExtResource("19_37qwj"), ExtResource("20_navra"), ExtResource("21_luhhm"), ExtResource("22_fh13f"), ExtResource("23_rup4s"), ExtResource("24_4kbfs"), ExtResource("25_f17e3"), ExtResource("26_x2olw"), ExtResource("27_817gm"), ExtResource("28_ggc52")])
+spacing = 90.0
+wobbleSpeed = 2.0
+wobbleRange = 30.0
+wobbleFrequancy = 0.85
+wobbleAxis = Vector2(0, -1)
+wiggleSpeed = 5.0
+wiggleFrequancy = 0.5
+wiggleRange = 20.0

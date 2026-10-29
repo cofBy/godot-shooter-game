@@ -3,6 +3,7 @@ shader_type canvas_item;
 uniform sampler2D perlinNoiseTexture : repeat_enable;
 uniform float perlinSize;
 uniform float noiseDisplacmentStrength;
+uniform float voronoiNoiseStrength;
 uniform float noiseScrollSpeed;
 uniform float foamMultiplier;
 uniform float foamStrength;
@@ -62,7 +63,7 @@ void fragment() {
 	float time = TIME * noiseScrollSpeed * dt;
 	vec2 noiseOffset = vec2(texture(perlinNoiseTexture, UV / perlinSize + vec2(sin(time), cos(time))).r - 0.5, texture(perlinNoiseTexture, UV / perlinSize + vec2(cos(time), sin(time))).r - 0.5);
 	for (int i = 0; i < 20; i++){
-		float dst = length(UV + noiseOffset * noiseDisplacmentStrength - voronoiPoints[i]) * 4.0;
+		float dst = length(UV + noiseOffset * noiseDisplacmentStrength - voronoiPoints[i]) * voronoiNoiseStrength;
 		voronoiNoise = min(dst, voronoiNoise);
 	}
 	

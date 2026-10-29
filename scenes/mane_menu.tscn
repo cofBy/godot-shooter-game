@@ -1,0 +1,149 @@
+[gd_scene format=3 uid="uid://k02sltg1d5gt"]
+
+[ext_resource type="Texture2D" uid="uid://85po1hhpllj7" path="res://art/UI/tilemap_packed.png" id="1_deho8"]
+[ext_resource type="Shader" uid="uid://dkn76fj3r1ttr" path="res://shaders/lava.gdshader" id="1_r4ri1"]
+[ext_resource type="Texture2D" uid="uid://c530iq6esj4a8" path="res://shaders/perlin.png" id="2_5omg7"]
+[ext_resource type="Texture2D" uid="uid://dx04uhla4ofkc" path="res://art/env/portal_0.png" id="3_2kfqj"]
+[ext_resource type="Script" uid="uid://dv0nr6budcisj" path="res://scripts/lava.gd" id="4_6m8dx"]
+[ext_resource type="Texture2D" uid="uid://c3xq7lr57dadf" path="res://art/player/player_0.png" id="6_5omg7"]
+[ext_resource type="Script" uid="uid://cejewfa1vnxgm" path="res://scripts/maneMenu.gd" id="6_d65t2"]
+[ext_resource type="FontFile" uid="uid://c3pvu7per8ve0" path="res://art/UI/Sora-VariableFont_wght.ttf" id="7_2kfqj"]
+[ext_resource type="Script" uid="uid://dtshvdnery8rx" path="res://scripts/customButton.gd" id="7_6m8dx"]
+[ext_resource type="PackedScene" uid="uid://byrw8k2j3tbhl" path="res://scenes/world.tscn" id="7_cfe4y"]
+
+[sub_resource type="Gradient" id="Gradient_d65t2"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.20289855, 0.38164252, 0.5458937, 0.7536232, 0.9516908)
+colors = PackedColorArray(0.22745098, 0.14117648, 0.23137255, 1, 0.5137255, 0.23137255, 0.34509805, 1, 0.8784314, 0.3254902, 0.27058825, 1, 1, 0.54509807, 0.3019608, 1, 1, 0.8784314, 0.49019608, 1, 1.353256, 1.1909814, 0.6727494, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7r4gi"]
+gradient = SubResource("Gradient_d65t2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cfe4y"]
+shader = ExtResource("1_r4ri1")
+shader_parameter/perlinNoiseTexture = ExtResource("2_5omg7")
+shader_parameter/perlinSize = 0.35
+shader_parameter/noiseDisplacmentStrength = 0.1
+shader_parameter/voronoiNoiseStrength = 4.5
+shader_parameter/noiseScrollSpeed = 2.0
+shader_parameter/foamMultiplier = 250.0
+shader_parameter/foamStrength = 0.5
+shader_parameter/foamThickness = 5.0
+shader_parameter/gradient = SubResource("GradientTexture1D_7r4gi")
+shader_parameter/dt = 0.017
+shader_parameter/tilesTexture = ExtResource("2_5omg7")
+shader_parameter/rect_min = Vector2(0, 0)
+shader_parameter/rect_max = Vector2(0, 0)
+
+[node name="Mane menu" type="Control" unique_id=1791733048]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=694855702]
+position = Vector2(243.99998, 134.99998)
+scale = Vector2(0.2, 0.2)
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=297540290]
+material = SubResource("ShaderMaterial_cfe4y")
+position = Vector2(243.99998, 134.99998)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_2kfqj")
+invert_border = 0.1
+polygon = PackedVector2Array(-1200, 675, -1200, -675, 1200, -675, 1200, 675)
+uv = PackedVector2Array(0, 15, 0, 0, 15, 0, 15, 15)
+script = ExtResource("4_6m8dx")
+
+[node name="main panel" type="NinePatchRect" parent="." unique_id=1055966696 node_paths=PackedStringArray("playButton")]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = -30.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_deho8")
+region_rect = Rect2(48, 0, 48, 48)
+patch_margin_left = 9
+patch_margin_top = 9
+patch_margin_right = 9
+patch_margin_bottom = 9
+script = ExtResource("6_d65t2")
+playButton = NodePath("start button")
+gameScene = ExtResource("7_cfe4y")
+
+[node name="TextureRect" type="TextureRect" parent="main panel" unique_id=706064395]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 25.0
+offset_right = -25.0
+offset_bottom = 70.0
+grow_horizontal = 2
+texture = ExtResource("6_5omg7")
+
+[node name="start button" type="Button" parent="main panel" unique_id=515583351 node_paths=PackedStringArray("defultRect", "pressedRect")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -15.0
+offset_right = 50.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_6m8dx")
+defultRect = NodePath("defult")
+pressedRect = NodePath("pressed")
+
+[node name="pressed" type="NinePatchRect" parent="main panel/start button" unique_id=1196856157]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_deho8")
+region_rect = Rect2(160, 66, 16, 14)
+patch_margin_left = 12
+patch_margin_top = 10
+patch_margin_right = 12
+patch_margin_bottom = 10
+
+[node name="defult" type="NinePatchRect" parent="main panel/start button" unique_id=1342761688]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_deho8")
+region_rect = Rect2(160, 48, 16, 16)
+patch_margin_left = 12
+patch_margin_top = 11
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="button label" type="Label" parent="main panel/start button" unique_id=899206653]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_2kfqj")
+text = "Start"
+horizontal_alignment = 1
+vertical_alignment = 1

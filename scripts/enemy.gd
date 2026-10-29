@@ -55,26 +55,22 @@ func _process(_delta):
 
 func _physics_process(delta: float):
 	knockback = knockback.move_toward(Vector2.ZERO, friction * delta)
-	if player != null : velocity = (player.position - position).normalized() * speed + knockback
-	else : velocity = velocity.normalized() * speed + knockback
+	velocity = (player.position - position).normalized() * speed + knockback
 	match state:
 		STATES.idle:
 			anim.play("idle")
 			speed = move_toward(speed, 0, deacceleration * delta)
 		STATES.agro:
-			if player != null:
-				anim.play("agro")
-				if anim.current_animation == "agro" and anim.current_animation_position == 0.55: state = STATES.follow
+			anim.play("agro")
+			if anim.current_animation == "agro" and anim.current_animation_position == 0.55: state = STATES.follow
 		STATES.follow:
-			if player != null:
-				anim.play("run")
-				speed = move_toward(speed, baseSpeed, acceleration * delta)
+			anim.play("run")
+			speed = move_toward(speed, baseSpeed, acceleration * delta)
 		STATES.shoot:
-			if player != null:
-				speed = move_toward(speed, 0, deacceleration * delta)
-				var direction : Vector2 = (player.position - position)
-				if rng.randf_range(0, 1) < shootChance:
-					gun.tryShoot(atan2(direction.y, direction.x))
+			speed = move_toward(speed, 0, deacceleration * delta)
+			var direction : Vector2 = (player.position - position)
+			if rng.randf_range(0, 1) < shootChance:
+				gun.tryShoot(atan2(direction.y, direction.x))
 		STATES.dead:
 			queue_free()
 			var particleInstance = bodyParticle.instantiate()

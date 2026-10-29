@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="first godot game shooter"
-run/main_scene="uid://byrw8k2j3tbhl"
+run/main_scene="uid://k02sltg1d5gt"
 config/features=PackedStringArray("4.7", "Forward Plus")
 
 [autoload]
