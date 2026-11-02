@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="gunData" format=3 uid="uid://bbttnojwt724p"]
+
+[ext_resource type="PackedScene" uid="uid://b2tfcsfdf88p5" path="res://scenes/bullet.tscn" id="1_euaj4"]
+[ext_resource type="Texture2D" uid="uid://b8yamrqbwhrd0" path="res://art/weapons/shotgun.png" id="2_euaj4"]
+[ext_resource type="Script" uid="uid://dmmfces08odig" path="res://scripts/gunData.gd" id="3_vrtkt"]
+
+[resource]
+script = ExtResource("3_vrtkt")
+gunTexture = ExtResource("2_euaj4")
+gunOffset = Vector2(40, 20)
+bulletSpeed = 400.0
+bulletLifeTime = 1.0
+damping = 200.0
+pierceAmount = 2
+timePerPierce = 0.2
+ricochetCount = 0
+ricochetStrength = 0.0
+homingStrength = 0.0
+homingRadius = 0.0
+bulletDistance = 0.0
+bullet = ExtResource("1_euaj4")
+bulletAmount = 4
+maxRange = 70.0
+randomRange = 5.0
+playerKnockBack = 400.0
+knockBackStrength = 200.0
+expRadius = 0.0
+expKnockBackMultiplier = 0.0
+metadata/_custom_type_script = "uid://dmmfces08odig"

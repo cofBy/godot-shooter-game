@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://cejewfa1vnxgm" path="res://scripts/maneMenu.gd" id="6_d65t2"]
 [ext_resource type="FontFile" uid="uid://c3pvu7per8ve0" path="res://art/UI/Sora-VariableFont_wght.ttf" id="7_2kfqj"]
 [ext_resource type="Script" uid="uid://dtshvdnery8rx" path="res://scripts/customButton.gd" id="7_6m8dx"]
-[ext_resource type="PackedScene" uid="uid://byrw8k2j3tbhl" path="res://scenes/world.tscn" id="7_cfe4y"]
 
 [sub_resource type="Gradient" id="Gradient_d65t2"]
 interpolation_mode = 1
@@ -26,7 +25,7 @@ shader_parameter/perlinSize = 0.35
 shader_parameter/noiseDisplacmentStrength = 0.1
 shader_parameter/voronoiNoiseStrength = 4.5
 shader_parameter/noiseScrollSpeed = 2.0
-shader_parameter/foamMultiplier = 250.0
+shader_parameter/foamDisplacmentStrength = 0.0
 shader_parameter/foamStrength = 0.5
 shader_parameter/foamThickness = 5.0
 shader_parameter/gradient = SubResource("GradientTexture1D_7r4gi")
@@ -49,7 +48,7 @@ scale = Vector2(0.2, 0.2)
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=297540290]
 material = SubResource("ShaderMaterial_cfe4y")
-position = Vector2(243.99998, 134.99998)
+position = Vector2(240, 135)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_2kfqj")
 invert_border = 0.1
@@ -75,9 +74,10 @@ patch_margin_left = 9
 patch_margin_top = 9
 patch_margin_right = 9
 patch_margin_bottom = 9
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 script = ExtResource("6_d65t2")
 playButton = NodePath("start button")
-gameScene = ExtResource("7_cfe4y")
 
 [node name="TextureRect" type="TextureRect" parent="main panel" unique_id=706064395]
 layout_mode = 1

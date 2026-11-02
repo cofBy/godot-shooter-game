@@ -1,0 +1,461 @@
+[gd_scene format=3 uid="uid://byrw8k2j3tbhl"]
+
+[ext_resource type="Shader" uid="uid://dkn76fj3r1ttr" path="res://shaders/lava.gdshader" id="1_i7141"]
+[ext_resource type="PackedScene" uid="uid://bg7gmdq4fue7k" path="res://scenes/player.tscn" id="1_nnsk1"]
+[ext_resource type="Texture2D" uid="uid://c530iq6esj4a8" path="res://shaders/perlin.png" id="2_7r4gi"]
+[ext_resource type="Script" uid="uid://ngdw2sprppph" path="res://scripts/proceduralGen.gd" id="2_qfnet"]
+[ext_resource type="Texture2D" uid="uid://dx04uhla4ofkc" path="res://art/env/portal_0.png" id="3_7r4gi"]
+[ext_resource type="Script" uid="uid://bbkkpuoqdk6nm" path="res://scripts/spawner.gd" id="4_k0juu"]
+[ext_resource type="Script" uid="uid://dv0nr6budcisj" path="res://scripts/lava.gd" id="4_w7kh3"]
+[ext_resource type="Texture2D" uid="uid://b0laxswy50a8l" path="res://art/env/tilemap.png" id="5_71j4m"]
+[ext_resource type="PackedScene" uid="uid://c3u2tqe3tpf6g" path="res://scenes/portal.tscn" id="5_i7141"]
+[ext_resource type="PackedScene" uid="uid://7itvrd6bacr4" path="res://scenes/enemyBlue.tscn" id="5_qfnet"]
+[ext_resource type="Resource" uid="uid://b7nagvw80ovm7" path="res://gun types/axe.tres" id="12_o8fc1"]
+[ext_resource type="Resource" uid="uid://bbttnojwt724p" path="res://gun types/shotgun.tres" id="13_37qwj"]
+[ext_resource type="Resource" uid="uid://djl6d4mjqukgb" path="res://gun types/rifle.tres" id="13_xo05s"]
+[ext_resource type="Script" uid="uid://dqh5iig6pprgh" path="res://scripts/UI.gd" id="14_dss4m"]
+[ext_resource type="Resource" uid="uid://csd3385fq07kq" path="res://gun types/pistol.tres" id="14_o8fc1"]
+[ext_resource type="Texture2D" uid="uid://dciqhsnk1gii0" path="res://art/UI/bulletsUI.png" id="15_0nbtd"]
+[ext_resource type="Texture2D" uid="uid://85po1hhpllj7" path="res://art/UI/tilemap_packed.png" id="15_navra"]
+[ext_resource type="Script" uid="uid://ccxe6qupfwc1t" path="res://scripts/customLabel.gd" id="16_dss4m"]
+[ext_resource type="PackedScene" uid="uid://bvuvo1w0pkbug" path="res://art/UI/customChar.tscn" id="17_7t5mc"]
+[ext_resource type="Script" uid="uid://dtshvdnery8rx" path="res://scripts/customButton.gd" id="32_4kbfs"]
+[ext_resource type="FontFile" uid="uid://c3pvu7per8ve0" path="res://art/UI/Sora-VariableFont_wght.ttf" id="33_f17e3"]
+
+[sub_resource type="Gradient" id="Gradient_7r4gi"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.20289855, 0.38164252, 0.5458937, 0.7536232, 0.9516908)
+colors = PackedColorArray(0.22745098, 0.14117648, 0.23137255, 1, 0.5137255, 0.23137255, 0.34509805, 1, 0.8784314, 0.3254902, 0.27058825, 1, 1, 0.54509807, 0.3019608, 1, 1, 0.8784314, 0.49019608, 1, 1.353256, 1.1909814, 0.6727494, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7r4gi"]
+gradient = SubResource("Gradient_7r4gi")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_34ov8"]
+shader = ExtResource("1_i7141")
+shader_parameter/perlinNoiseTexture = ExtResource("2_7r4gi")
+shader_parameter/perlinSize = 0.3
+shader_parameter/noiseDisplacmentStrength = 0.1
+shader_parameter/voronoiNoiseStrength = 4.5
+shader_parameter/noiseScrollSpeed = 2.0
+shader_parameter/foamDisplacmentStrength = 25.0
+shader_parameter/foamStrength = 0.8
+shader_parameter/foamThickness = 5.0
+shader_parameter/gradient = SubResource("GradientTexture1D_7r4gi")
+shader_parameter/dt = 0.017
+shader_parameter/tilesTexture = ExtResource("2_7r4gi")
+shader_parameter/rect_min = Vector2(0, 0)
+shader_parameter/rect_max = Vector2(0, 0)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qfnet"]
+texture = ExtResource("5_71j4m")
+5:0/0 = 0
+5:0/0/terrain_set = 0
+5:0/0/terrain = 0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:0/0/terrains_peering_bit/right_side = 0
+5:0/0/terrains_peering_bit/bottom_right_corner = 0
+5:0/0/terrains_peering_bit/bottom_side = 0
+5:1/0 = 0
+5:1/0/terrain_set = 0
+5:1/0/terrain = 0
+5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:1/0/terrains_peering_bit/right_side = 0
+5:1/0/terrains_peering_bit/bottom_right_corner = 0
+5:1/0/terrains_peering_bit/bottom_side = 0
+5:1/0/terrains_peering_bit/top_side = 0
+5:1/0/terrains_peering_bit/top_right_corner = 0
+7:1/0 = 0
+7:1/0/terrain_set = 0
+7:1/0/terrain = 0
+7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:1/0/terrains_peering_bit/bottom_side = 0
+7:1/0/terrains_peering_bit/bottom_left_corner = 0
+7:1/0/terrains_peering_bit/left_side = 0
+7:1/0/terrains_peering_bit/top_left_corner = 0
+7:1/0/terrains_peering_bit/top_side = 0
+6:1/0 = 0
+6:1/0/terrain_set = 0
+6:1/0/terrain = 0
+6:1/0/probability = 0.6
+6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:1/0/terrains_peering_bit/right_side = 0
+6:1/0/terrains_peering_bit/bottom_right_corner = 0
+6:1/0/terrains_peering_bit/bottom_side = 0
+6:1/0/terrains_peering_bit/bottom_left_corner = 0
+6:1/0/terrains_peering_bit/left_side = 0
+6:1/0/terrains_peering_bit/top_left_corner = 0
+6:1/0/terrains_peering_bit/top_side = 0
+6:1/0/terrains_peering_bit/top_right_corner = 0
+6:0/0 = 0
+6:0/0/terrain_set = 0
+6:0/0/terrain = 0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:0/0/terrains_peering_bit/right_side = 0
+6:0/0/terrains_peering_bit/bottom_right_corner = 0
+6:0/0/terrains_peering_bit/bottom_side = 0
+6:0/0/terrains_peering_bit/bottom_left_corner = 0
+6:0/0/terrains_peering_bit/left_side = 0
+7:0/0 = 0
+7:0/0/terrain_set = 0
+7:0/0/terrain = 0
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:0/0/terrains_peering_bit/bottom_side = 0
+7:0/0/terrains_peering_bit/bottom_left_corner = 0
+7:0/0/terrains_peering_bit/left_side = 0
+9:1/0 = 0
+9:1/0/terrain_set = 0
+9:1/0/terrain = 0
+9:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:1/0/terrains_peering_bit/right_side = 0
+9:1/0/terrains_peering_bit/bottom_right_corner = 0
+9:1/0/terrains_peering_bit/bottom_side = 0
+9:1/0/terrains_peering_bit/bottom_left_corner = 0
+9:1/0/terrains_peering_bit/left_side = 0
+9:1/0/terrains_peering_bit/top_side = 0
+9:1/0/terrains_peering_bit/top_right_corner = 0
+8:1/0 = 0
+8:1/0/terrain_set = 0
+8:1/0/terrain = 0
+8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:1/0/terrains_peering_bit/right_side = 0
+8:1/0/terrains_peering_bit/bottom_right_corner = 0
+8:1/0/terrains_peering_bit/bottom_side = 0
+8:1/0/terrains_peering_bit/bottom_left_corner = 0
+8:1/0/terrains_peering_bit/left_side = 0
+8:1/0/terrains_peering_bit/top_left_corner = 0
+8:1/0/terrains_peering_bit/top_side = 0
+8:0/0 = 0
+8:0/0/terrain_set = 0
+8:0/0/terrain = 0
+8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:0/0/terrains_peering_bit/right_side = 0
+8:0/0/terrains_peering_bit/bottom_side = 0
+8:0/0/terrains_peering_bit/bottom_left_corner = 0
+8:0/0/terrains_peering_bit/left_side = 0
+8:0/0/terrains_peering_bit/top_left_corner = 0
+8:0/0/terrains_peering_bit/top_side = 0
+8:0/0/terrains_peering_bit/top_right_corner = 0
+9:0/0 = 0
+9:0/0/terrain_set = 0
+9:0/0/terrain = 0
+9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:0/0/terrains_peering_bit/right_side = 0
+9:0/0/terrains_peering_bit/bottom_right_corner = 0
+9:0/0/terrains_peering_bit/bottom_side = 0
+9:0/0/terrains_peering_bit/left_side = 0
+9:0/0/terrains_peering_bit/top_left_corner = 0
+9:0/0/terrains_peering_bit/top_side = 0
+9:0/0/terrains_peering_bit/top_right_corner = 0
+6:6/0 = 0
+6:6/0/terrain_set = 0
+6:6/0/terrain = 0
+6:6/0/probability = 0.3
+6:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:6/0/terrains_peering_bit/right_side = 0
+6:6/0/terrains_peering_bit/bottom_right_corner = 0
+6:6/0/terrains_peering_bit/bottom_side = 0
+6:6/0/terrains_peering_bit/bottom_left_corner = 0
+6:6/0/terrains_peering_bit/left_side = 0
+6:6/0/terrains_peering_bit/top_left_corner = 0
+6:6/0/terrains_peering_bit/top_side = 0
+6:6/0/terrains_peering_bit/top_right_corner = 0
+8:7/0 = 0
+8:7/0/terrain_set = 0
+8:7/0/terrain = 0
+8:7/0/probability = 0.1
+8:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:7/0/terrains_peering_bit/right_side = 0
+8:7/0/terrains_peering_bit/bottom_right_corner = 0
+8:7/0/terrains_peering_bit/bottom_side = 0
+8:7/0/terrains_peering_bit/bottom_left_corner = 0
+8:7/0/terrains_peering_bit/left_side = 0
+8:7/0/terrains_peering_bit/top_left_corner = 0
+8:7/0/terrains_peering_bit/top_side = 0
+8:7/0/terrains_peering_bit/top_right_corner = 0
+5:2/0 = 0
+5:2/0/terrain_set = 0
+5:2/0/terrain = 0
+5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4, -8, -4)
+5:2/0/terrains_peering_bit/right_side = 0
+5:2/0/terrains_peering_bit/top_side = 0
+5:2/0/terrains_peering_bit/top_right_corner = 0
+6:2/0 = 0
+6:2/0/terrain_set = 0
+6:2/0/terrain = 0
+6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4, -8, -4)
+6:2/0/terrains_peering_bit/right_side = 0
+6:2/0/terrains_peering_bit/left_side = 0
+6:2/0/terrains_peering_bit/top_left_corner = 0
+6:2/0/terrains_peering_bit/top_side = 0
+6:2/0/terrains_peering_bit/top_right_corner = 0
+7:2/0 = 0
+7:2/0/terrain_set = 0
+7:2/0/terrain = 0
+7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4, -8, -4)
+7:2/0/terrains_peering_bit/left_side = 0
+7:2/0/terrains_peering_bit/top_left_corner = 0
+7:2/0/terrains_peering_bit/top_side = 0
+
+[sub_resource type="TileSet" id="TileSet_xb5fl"]
+physics_layer_0/collision_layer = 2
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "grass"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_qfnet")
+
+[node name="world" type="Node2D" unique_id=1917202882]
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1213472635]
+material = SubResource("ShaderMaterial_34ov8")
+texture = ExtResource("3_7r4gi")
+invert_border = 0.1
+polygon = PackedVector2Array(-1200, 675, -1200, -675, 1200, -675, 1200, 675)
+uv = PackedVector2Array(0, 15, 0, 0, 15, 0, 15, 15)
+script = ExtResource("4_w7kh3")
+
+[node name="grass" type="TileMapLayer" parent="." unique_id=1412301437 node_paths=PackedStringArray("tileMap", "lava")]
+texture_filter = 1
+scale = Vector2(4.9999995, 4.9999995)
+tile_set = SubResource("TileSet_xb5fl")
+script = ExtResource("2_qfnet")
+tileMap = NodePath(".")
+maxCellsCount = 200
+chanceToRotate = 0.75
+lava = NodePath("../Polygon2D")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1715013904]
+zoom = Vector2(0.2, 0.2)
+
+[node name="player" parent="." unique_id=2020279129 node_paths=PackedStringArray("collider") instance=ExtResource("1_nnsk1")]
+collider = NodePath("../grass")
+
+[node name="spawner" type="Node2D" parent="." unique_id=2123303888 node_paths=PackedStringArray("player", "map")]
+script = ExtResource("4_k0juu")
+player = NodePath("../player")
+portal = ExtResource("5_i7141")
+enemies = Array[PackedScene]([ExtResource("5_qfnet")])
+map = NodePath("../grass")
+gunTypes = Dictionary[Resource, float]({
+ExtResource("12_o8fc1"): 0.4,
+ExtResource("14_o8fc1"): 0.3,
+ExtResource("13_37qwj"): 0.2,
+ExtResource("13_xo05s"): 0.1
+})
+
+[node name="Control" type="Control" parent="." unique_id=2069703263 node_paths=PackedStringArray("player", "bulletsLabel", "lostPanel", "retryButton", "mainMenuButton")]
+z_index = 200
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1200.0
+offset_top = -675.0
+offset_right = 1200.0
+offset_bottom = 675.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("14_dss4m")
+player = NodePath("../player")
+bulletsLabel = NodePath("bullet rect/bullets label")
+lostPanel = NodePath("lose panel")
+retryButton = NodePath("lose panel/retry button")
+mainMenuButton = NodePath("lose panel/mane menu button")
+
+[node name="bullet rect" type="TextureRect" parent="Control" unique_id=559932577]
+texture_filter = 1
+layout_mode = 1
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 250.0
+offset_bottom = 250.0
+rotation = 6.2831855
+texture = ExtResource("15_0nbtd")
+
+[node name="bullets label" type="Control" parent="Control/bullet rect" unique_id=88006209]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -60.0
+offset_right = 160.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("16_dss4m")
+text = "1-1"
+charSprite = ExtResource("17_7t5mc")
+spacing = 90.0
+wobbleSpeed = 1.0
+wobbleRange = 15.0
+wobbleFrequancy = 0.85
+wobbleAxis = Vector2(0, -1)
+wiggleSpeed = 2.5
+wiggleFrequancy = 0.5
+wiggleRange = 10.0
+
+[node name="lose panel" type="NinePatchRect" parent="Control" unique_id=758925181]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 200.0
+offset_top = 110.0
+offset_right = -1800.0
+offset_bottom = -1020.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+texture = ExtResource("15_navra")
+region_rect = Rect2(48, 0, 48, 48)
+patch_margin_left = 9
+patch_margin_top = 9
+patch_margin_right = 9
+patch_margin_bottom = 9
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="lose label" type="Control" parent="Control/lose panel" unique_id=458159259]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 20.0
+offset_bottom = 120.0
+grow_horizontal = 2
+scale = Vector2(0.5, 0.5)
+script = ExtResource("16_dss4m")
+text = "you ded"
+charSprite = ExtResource("17_7t5mc")
+spacing = 90.0
+posStart = 1
+wobbleSpeed = 2.0
+wobbleRange = 20.0
+wobbleFrequancy = 2.0
+wobbleAxis = Vector2(0, -1)
+wiggleSpeed = 4.0
+wiggleFrequancy = 2.0
+wiggleRange = 20.0
+
+[node name="retry button" type="Button" parent="Control/lose panel" unique_id=950922625 node_paths=PackedStringArray("defultRect", "pressedRect")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -15.0
+offset_right = 50.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("32_4kbfs")
+defultRect = NodePath("defult")
+pressedRect = NodePath("pressed")
+
+[node name="pressed" type="NinePatchRect" parent="Control/lose panel/retry button" unique_id=457938298]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_navra")
+region_rect = Rect2(160, 66, 16, 14)
+patch_margin_left = 12
+patch_margin_top = 10
+patch_margin_right = 12
+patch_margin_bottom = 10
+
+[node name="defult" type="NinePatchRect" parent="Control/lose panel/retry button" unique_id=990649586]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_navra")
+region_rect = Rect2(160, 48, 16, 16)
+patch_margin_left = 12
+patch_margin_top = 11
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="button label" type="Label" parent="Control/lose panel/retry button" unique_id=292485628]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("33_f17e3")
+text = "Retry "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="mane menu button" type="Button" parent="Control/lose panel" unique_id=308715006 node_paths=PackedStringArray("defultRect", "pressedRect")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 40.0
+offset_right = 50.0
+offset_bottom = 69.999985
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("32_4kbfs")
+defultRect = NodePath("defult")
+pressedRect = NodePath("pressed")
+
+[node name="pressed" type="NinePatchRect" parent="Control/lose panel/mane menu button" unique_id=402056476]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_navra")
+region_rect = Rect2(160, 66, 16, 14)
+patch_margin_left = 12
+patch_margin_top = 10
+patch_margin_right = 12
+patch_margin_bottom = 10
+
+[node name="defult" type="NinePatchRect" parent="Control/lose panel/mane menu button" unique_id=5153930]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_navra")
+region_rect = Rect2(160, 48, 16, 16)
+patch_margin_left = 12
+patch_margin_top = 11
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="button label" type="Label" parent="Control/lose panel/mane menu button" unique_id=1933710624]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("33_f17e3")
+text = "Mane menu"
+horizontal_alignment = 1
+vertical_alignment = 1

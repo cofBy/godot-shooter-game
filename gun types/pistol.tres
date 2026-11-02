@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="gunData" format=3 uid="uid://bbttnojwt724p"]
+[gd_resource type="Resource" script_class="gunData" format=3 uid="uid://csd3385fq07kq"]
 
 [ext_resource type="PackedScene" uid="uid://b2tfcsfdf88p5" path="res://scenes/bullet.tscn" id="1_8xgg7"]
 [ext_resource type="Script" uid="uid://dmmfces08odig" path="res://scripts/gunData.gd" id="1_rk3wf"]

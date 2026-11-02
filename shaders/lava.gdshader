@@ -5,7 +5,7 @@ uniform float perlinSize;
 uniform float noiseDisplacmentStrength;
 uniform float voronoiNoiseStrength;
 uniform float noiseScrollSpeed;
-uniform float foamMultiplier;
+uniform float foamDisplacmentStrength;
 uniform float foamStrength;
 uniform float foamThickness;
 uniform sampler2D gradient : source_color;
@@ -67,7 +67,7 @@ void fragment() {
 		voronoiNoise = min(dst, voronoiNoise);
 	}
 	
-	float foam = calculateFoam(local_pos + noiseOffset * noiseDisplacmentStrength * foamMultiplier);
+	float foam = calculateFoam(local_pos + noiseOffset * foamDisplacmentStrength);
 	COLOR = vec4(texture(gradient, vec2(voronoiNoise + foam, 0)));
 }
 
