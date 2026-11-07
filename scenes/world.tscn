@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://85po1hhpllj7" path="res://art/UI/tilemap_packed.png" id="15_navra"]
 [ext_resource type="Script" uid="uid://ccxe6qupfwc1t" path="res://scripts/customLabel.gd" id="16_dss4m"]
 [ext_resource type="PackedScene" uid="uid://bvuvo1w0pkbug" path="res://art/UI/customChar.tscn" id="17_7t5mc"]
+[ext_resource type="PackedScene" uid="uid://drptxbngkwlo6" path="res://scenes/soundPlayer.tscn" id="22_oo54l"]
 [ext_resource type="Script" uid="uid://dtshvdnery8rx" path="res://scripts/customButton.gd" id="32_4kbfs"]
 [ext_resource type="FontFile" uid="uid://c3pvu7per8ve0" path="res://art/UI/Sora-VariableFont_wght.ttf" id="33_f17e3"]
 
@@ -205,7 +206,7 @@ sources/0 = SubResource("TileSetAtlasSource_qfnet")
 
 [node name="world" type="Node2D" unique_id=1917202882]
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1213472635]
+[node name="lava" type="Polygon2D" parent="." unique_id=1213472635]
 process_mode = 3
 material = SubResource("ShaderMaterial_34ov8")
 texture = ExtResource("3_7r4gi")
@@ -222,7 +223,7 @@ script = ExtResource("2_qfnet")
 tileMap = NodePath(".")
 maxCellsCount = 200
 chanceToRotate = 0.75
-lava = NodePath("../Polygon2D")
+lava = NodePath("../lava")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1715013904]
 zoom = Vector2(0.2, 0.2)
@@ -262,6 +263,7 @@ script = ExtResource("14_dss4m")
 player = NodePath("../player")
 bulletsLabel = NodePath("bullet rect/bullets label")
 lostPanel = NodePath("lose panel")
+lostPaneDur = 0.5
 retryButton = NodePath("lose panel/retry button")
 mainMenuButton = NodePath("lose panel/mane menu button")
 
@@ -309,18 +311,18 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 200.0
-offset_top = 110.0
+offset_top = 103.95
 offset_right = -1800.0
-offset_bottom = -1020.0
+offset_bottom = -1026.05
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(5, 5)
 texture = ExtResource("15_navra")
-region_rect = Rect2(48, 0, 48, 48)
-patch_margin_left = 9
+region_rect = Rect2(144, 0, 48, 48)
+patch_margin_left = 16
 patch_margin_top = 9
-patch_margin_right = 9
-patch_margin_bottom = 9
+patch_margin_right = 16
+patch_margin_bottom = 16
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 
@@ -374,11 +376,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("15_navra")
-region_rect = Rect2(160, 66, 16, 14)
-patch_margin_left = 12
-patch_margin_top = 10
-patch_margin_right = 12
-patch_margin_bottom = 10
+region_rect = Rect2(224, 66, 16, 14)
+patch_margin_left = 10
+patch_margin_top = 8
+patch_margin_right = 10
+patch_margin_bottom = 8
 
 [node name="defult" type="NinePatchRect" parent="Control/lose panel/retry button" unique_id=990649586]
 texture_filter = 1
@@ -389,11 +391,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("15_navra")
-region_rect = Rect2(160, 48, 16, 16)
-patch_margin_left = 12
-patch_margin_top = 11
-patch_margin_right = 12
-patch_margin_bottom = 12
+region_rect = Rect2(224, 48, 16, 16)
+patch_margin_left = 10
+patch_margin_top = 9
+patch_margin_right = 10
+patch_margin_bottom = 10
 
 [node name="button label" type="Label" parent="Control/lose panel/retry button" unique_id=292485628]
 layout_mode = 1
@@ -425,7 +427,7 @@ script = ExtResource("32_4kbfs")
 defultRect = NodePath("defult")
 pressedRect = NodePath("pressed")
 
-[node name="pressed" type="NinePatchRect" parent="Control/lose panel/mane menu button" unique_id=402056476]
+[node name="pressed" type="NinePatchRect" parent="Control/lose panel/mane menu button" unique_id=1237843889]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -434,13 +436,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("15_navra")
-region_rect = Rect2(160, 66, 16, 14)
-patch_margin_left = 12
-patch_margin_top = 10
-patch_margin_right = 12
-patch_margin_bottom = 10
+region_rect = Rect2(224, 66, 16, 14)
+patch_margin_left = 10
+patch_margin_top = 8
+patch_margin_right = 10
+patch_margin_bottom = 8
 
-[node name="defult" type="NinePatchRect" parent="Control/lose panel/mane menu button" unique_id=5153930]
+[node name="defult" type="NinePatchRect" parent="Control/lose panel/mane menu button" unique_id=1088969064]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -449,11 +451,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("15_navra")
-region_rect = Rect2(160, 48, 16, 16)
-patch_margin_left = 12
-patch_margin_top = 11
-patch_margin_right = 12
-patch_margin_bottom = 12
+region_rect = Rect2(224, 48, 16, 16)
+patch_margin_left = 10
+patch_margin_top = 9
+patch_margin_right = 10
+patch_margin_bottom = 10
 
 [node name="button label" type="Label" parent="Control/lose panel/mane menu button" unique_id=1933710624]
 layout_mode = 1
@@ -466,3 +468,5 @@ theme_override_fonts/font = ExtResource("33_f17e3")
 text = "Mane menu"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="sound player" parent="." unique_id=1733549454 instance=ExtResource("22_oo54l")]

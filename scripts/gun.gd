@@ -18,7 +18,7 @@ func init():
 	currentBullets = data.magSize
 	
 	var gunSprite : Sprite2D = $"gun sprite"
-	gunSprite.texture = data.gunTexture
+	gunSprite.texture = data.playerGunTexture if not isEnemy else data.enemyGunTexture
 	gunSprite.position = data.gunOffset
 
 func _process(_delta):
@@ -33,8 +33,7 @@ func _process(_delta):
 	
 	if data.magSize > 0 and (currentBullets <= 0 or Input.is_action_just_pressed("reload") and currentBullets < data.magSize):
 		if startReload == false:
-			SOUND.playSound("reload")
-			anim.play("reload")
+			reload()
 		startReload = true
 	if startReload:
 		reloadTimer += _delta
@@ -55,6 +54,13 @@ func _process(_delta):
 		scale.y = -1
 	var direction : Vector2 = target - holder.position
 	rotation = atan2(direction.y, direction.x) + data.addedAngle
+
+func reload():
+	SOUND.playSound("reload")
+	anim.speed_scale = 0.8 / data.reloadTime
+	anim.play("reload")
+	await anim.animation_finished
+	anim.speed_scale = 1
 
 func tryShoot(angle: float):
 	if timer < 0 and reloadTimer <= 0: fire(angle)

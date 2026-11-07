@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://b3ej2iivqpjw5"]
+
+[ext_resource type="Shader" uid="uid://bk5d7qx52j7v3" path="res://shaders/trans.gdshader" id="1_rerct"]
+[ext_resource type="Texture2D" uid="uid://dx04uhla4ofkc" path="res://art/env/portal_0.png" id="2_px735"]
+[ext_resource type="Texture2D" uid="uid://c530iq6esj4a8" path="res://shaders/perlin.png" id="2_xmi56"]
+[ext_resource type="Script" uid="uid://dv0nr6budcisj" path="res://scripts/lava.gd" id="3_xmi56"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oo54l"]
+shader = ExtResource("1_rerct")
+shader_parameter/transTex = ExtResource("2_xmi56")
+shader_parameter/transTime = 0.0
+
+[node name="transition" type="Polygon2D" unique_id=1357144327]
+process_mode = 3
+z_index = 999
+material = SubResource("ShaderMaterial_oo54l")
+texture = ExtResource("2_px735")
+invert_border = 0.1
+polygon = PackedVector2Array(-1200, 675, -1200, -675, 1200, -675, 1200, 675)
+uv = PackedVector2Array(0, 15, 0, 0, 15, 0, 15, 15)
+script = ExtResource("3_xmi56")

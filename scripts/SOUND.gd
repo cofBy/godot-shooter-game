@@ -7,11 +7,42 @@ const streamPlayer = preload("uid://b1bmxpfsb530k")
 var streamPlayers : Array[AudioStreamPlayer]
 var rng = RandomNumberGenerator.new()
 
+@export_group("transition")
+@export var trans : PackedScene
+@export var transDuration : int
+var transTimer : float
+var transInstance
+
 func _ready():
+	transTimer = 0.0
 	for strm in streams:
 		var streamPlayerInstance : AudioStreamPlayer = streamPlayer.instantiate()
 		streamPlayers.append(streamPlayerInstance)
 		add_child(streamPlayerInstance)
+	
+	transition.call_deferred(null, true)
+	print("hee haa")
+
+func transition(scene : Variant = null, onStart : bool = false):
+	get_tree().paused = true
+	transInstance = trans.instantiate()
+	get_tree().root.add_child(transInstance)
+	transTimer = transDuration
+
+	while transTimer > 0:
+		transTimer -= get_process_delta_time()
+		if onStart : transInstance.material.set_shader_parameter("transTime", 1.0 - transTimer / transDuration)
+		else : transInstance.material.set_shader_parameter("transTime", transTimer / transDuration)
+		await get_tree().process_frame
+	
+	get_tree().paused = false
+	transInstance.queue_free()
+	transInstance = null
+	
+	if scene != null:
+		if   scene is String and scene == "reload" : get_tree().reload_current_scene()
+		elif scene is String     : get_tree().change_scene_to_file  (scene)
+		elif scene is PackedScene: get_tree().change_scene_to_packed(scene)
 
 func playSound(soundName : String):
 	for i in streams.size():

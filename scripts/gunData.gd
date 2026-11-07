@@ -4,7 +4,8 @@ extends Resource
 @export var isMelee : bool = false
 
 @export_group("visuals")
-@export var gunTexture : Texture2D
+@export var playerGunTexture : Texture2D
+@export var  enemyGunTexture : Texture2D
 @export var addedAngle : float = 0.0
 @export var gunOffset : Vector2
 
@@ -48,3 +49,7 @@ extends Resource
 @export_group("exploding bullets")
 @export var expRadius : float = 600
 @export var expKnockBackMultiplier : float = 2
+
+@export_group("enemy shi")
+@export var shootingRadius : float = 500
+@export_range(0.0, 0.1, 0.001) var shootChance : float

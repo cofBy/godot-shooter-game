@@ -1,12 +1,14 @@
 [gd_resource type="Resource" script_class="gunData" format=3 uid="uid://bbttnojwt724p"]
 
 [ext_resource type="PackedScene" uid="uid://b2tfcsfdf88p5" path="res://scenes/bullet.tscn" id="1_euaj4"]
-[ext_resource type="Texture2D" uid="uid://b8yamrqbwhrd0" path="res://art/weapons/shotgun.png" id="2_euaj4"]
+[ext_resource type="Texture2D" uid="uid://bfk7c5mvl8knc" path="res://art/weapons/Eshotgun.png" id="2_gp88g"]
+[ext_resource type="Texture2D" uid="uid://b8yamrqbwhrd0" path="res://art/weapons/Pshotgun.png" id="3_lia84"]
 [ext_resource type="Script" uid="uid://dmmfces08odig" path="res://scripts/gunData.gd" id="3_vrtkt"]
 
 [resource]
 script = ExtResource("3_vrtkt")
-gunTexture = ExtResource("2_euaj4")
+playerGunTexture = ExtResource("3_lia84")
+enemyGunTexture = ExtResource("2_gp88g")
 gunOffset = Vector2(40, 20)
 bulletSpeed = 400.0
 bulletLifeTime = 1.0
@@ -22,8 +24,11 @@ bullet = ExtResource("1_euaj4")
 bulletAmount = 4
 maxRange = 70.0
 randomRange = 5.0
+reloadTime = 5.0
 playerKnockBack = 400.0
 knockBackStrength = 200.0
 expRadius = 0.0
 expKnockBackMultiplier = 0.0
+shootingRadius = 400.0
+shootChance = 0.02
 metadata/_custom_type_script = "uid://dmmfces08odig"

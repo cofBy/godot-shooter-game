@@ -6,17 +6,26 @@ extends Control
 @export_group("UI elements")
 @export var bulletsLabel : Control
 @export var lostPanel : NinePatchRect
+@export var lostPaneDur : float
+var lostPanelPos : Vector2
 @export var retryButton: Button
 @export var mainMenuButton: Button
 
+func _ready():
+	lostPanel.visible = false
+	lostPanelPos = lostPanel.position
+	lostPanel.position = lostPanelPos + Vector2(0, 1200)
+	player.died.connect(playerDed)
+	
+	retryButton.pressed.connect(SOUND.transition.bind("reload"))
+	mainMenuButton.pressed.connect(SOUND.transition.bind("res://scenes/main_menu.tscn"))
+
 func _process(delta: float):
 	bulletsLabel.text = str(player.gun.currentBullets) + "-" + str(player.gun.data.magSize)
-	
-	lostPanel.visible = player.isDead
-	get_tree().paused = player.isDead
-	
-	if retryButton.button_pressed == true:
-		get_tree().reload_current_scene()
-	if mainMenuButton.button_pressed == true:
-		get_tree().paused = false
-		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+func playerDed():
+	lostPanel.visible = true
+	var tween : Tween = get_tree().create_tween()
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	tween.tween_property(lostPanel, "position", lostPanelPos, lostPaneDur).set_trans(Tween.TRANS_QUAD)
+	get_tree().paused = true

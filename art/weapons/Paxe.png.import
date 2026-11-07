@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bga14mexw1pg"
-path="res://.godot/imported/msg.png-e180a279f2eb325be40c68fa1df34387.ctex"
+uid="uid://c2jpfahim4teo"
+path="res://.godot/imported/Paxe.png-d12ef96f5c188cf18ca50ea67d45276e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/weapons/msg.png"
-dest_files=["res://.godot/imported/msg.png-e180a279f2eb325be40c68fa1df34387.ctex"]
+source_file="res://art/weapons/Paxe.png"
+dest_files=["res://.godot/imported/Paxe.png-d12ef96f5c188cf18ca50ea67d45276e.ctex"]
 
 [params]
 

@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bbvbeaaiq2ujh" path="res://art/enemy blue/eb4.png" id="1_bw40w"]
 
 [node name="CPUParticles2D" type="CPUParticles2D" unique_id=1566745972]
+process_mode = 3
 texture_filter = 1
 emitting = false
 amount = 1
@@ -23,6 +24,7 @@ scale_amount_min = 5.0
 scale_amount_max = 5.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1062081899]
+process_mode = 3
 emitting = false
 amount = 10
 lifetime = 2.0

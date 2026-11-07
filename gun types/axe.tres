@@ -1,13 +1,15 @@
 [gd_resource type="Resource" script_class="gunData" format=3 uid="uid://b7nagvw80ovm7"]
 
 [ext_resource type="PackedScene" uid="uid://cdwsxa80de5c5" path="res://scenes/slash.tscn" id="1_rk13t"]
-[ext_resource type="Texture2D" uid="uid://bi0vlqccdrqoc" path="res://art/weapons/axe.png" id="2_rk13t"]
+[ext_resource type="Texture2D" uid="uid://bi0vlqccdrqoc" path="res://art/weapons/Eaxe.png" id="2_i28ep"]
 [ext_resource type="Script" uid="uid://dmmfces08odig" path="res://scripts/gunData.gd" id="3_bxr06"]
+[ext_resource type="Texture2D" uid="uid://c2jpfahim4teo" path="res://art/weapons/Paxe.png" id="3_p67wv"]
 
 [resource]
 script = ExtResource("3_bxr06")
 isMelee = true
-gunTexture = ExtResource("2_rk13t")
+playerGunTexture = ExtResource("3_p67wv")
+enemyGunTexture = ExtResource("2_i28ep")
 gunOffset = Vector2(50, 0)
 bulletSpeed = 700.0
 bulletLifeTime = 0.25
@@ -27,4 +29,6 @@ playerKnockBack = 300.0
 knockBackStrength = 400.0
 expRadius = 0.0
 expKnockBackMultiplier = 0.0
+shootingRadius = 200.0
+shootChance = 0.05
 metadata/_custom_type_script = "uid://dmmfces08odig"

@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dduwj5vl3uvnw" path="res://art/enemy blue/eb2.png" id="3_606l4"]
 [ext_resource type="Texture2D" uid="uid://de14y8mdfmq5s" path="res://art/enemy blue/eb3.png" id="4_buv3b"]
 [ext_resource type="Script" uid="uid://bvkspcbfpu4v3" path="res://scripts/gun.gd" id="6_on660"]
-[ext_resource type="Texture2D" uid="uid://d7xpk37ien1i" path="res://art/weapons/pistol.png" id="8_acjvw"]
+[ext_resource type="Texture2D" uid="uid://d7xpk37ien1i" path="res://art/weapons/Ppistol.png" id="8_acjvw"]
 
 [sub_resource type="Gradient" id="Gradient_606l4"]
 offsets = PackedFloat32Array(0.8608696, 1)
@@ -332,8 +332,6 @@ script = ExtResource("1_jxh48")
 agroRadius = 900.0
 baseSpeed = 310.0
 acceleration = 150.0
-shootingRadius = 350.0
-shootChance = 0.018
 bodyParticle = ExtResource("2_7hffy")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1983997679]

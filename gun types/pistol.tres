@@ -2,11 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://b2tfcsfdf88p5" path="res://scenes/bullet.tscn" id="1_8xgg7"]
 [ext_resource type="Script" uid="uid://dmmfces08odig" path="res://scripts/gunData.gd" id="1_rk3wf"]
-[ext_resource type="Texture2D" uid="uid://d7xpk37ien1i" path="res://art/weapons/pistol.png" id="2_ut2k5"]
+[ext_resource type="Texture2D" uid="uid://dbm182jhbbuf5" path="res://art/weapons/Epistol.png" id="2_wcbtu"]
+[ext_resource type="Texture2D" uid="uid://d7xpk37ien1i" path="res://art/weapons/Ppistol.png" id="3_yy7qo"]
 
 [resource]
 script = ExtResource("1_rk3wf")
-gunTexture = ExtResource("2_ut2k5")
+playerGunTexture = ExtResource("3_yy7qo")
+enemyGunTexture = ExtResource("2_wcbtu")
 gunOffset = Vector2(40, -10)
 pierceAmount = 2
 timePerPierce = 0.2
@@ -16,9 +18,12 @@ fireRate = 0.3
 bullet = ExtResource("1_8xgg7")
 maxRange = 0.0
 randomRange = 5.0
-magSize = 6
-playerKnockBack = 200.0
+magSize = 5
+reloadTime = 2.0
+playerKnockBack = 50.0
 knockBackStrength = 400.0
 expRadius = 0.0
 expKnockBackMultiplier = 0.0
+shootingRadius = 800.0
+shootChance = 0.1
 metadata/_custom_type_script = "uid://dmmfces08odig"

@@ -17,6 +17,7 @@ var stepTimer : float = 0
 @export var deadParticle : PackedScene
 @export var deadTexture : Texture2D
 var isDead : bool
+signal died
 
 func input():
 	var temp : Vector2
@@ -36,14 +37,8 @@ func _process(_delta):
 		anim.play("idle")
 	
 	if not collider.isOverlap(position) and isDead == false:
-		var particleInstnace = deadParticle.instantiate()
-		get_tree().root.add_child(particleInstnace)
-		particleInstnace.position = position
-		particleInstnace.texture = deadTexture
-		particleInstnace.restart()
-		particleInstnace.get_child(0).restart()
+		die()
 		isDead = true
-		visible = false
 
 func _physics_process(_delta):
 	var moveDir : Vector2 = input()
@@ -56,6 +51,16 @@ func _physics_process(_delta):
 		sprite.flip_h = moveDir.x < 0
 	
 	move_and_slide()
+
+func die():
+	var particleInstnace = deadParticle.instantiate()
+	get_tree().root.add_child(particleInstnace)
+	particleInstnace.position = position
+	particleInstnace.texture = deadTexture
+	particleInstnace.restart()
+	particleInstnace.get_child(0).restart()
+	visible = false
+	died.emit()
 
 func hit(pos : Vector2, strength : float):
 	knockback += (position - pos).normalized() * strength

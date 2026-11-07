@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cejewfa1vnxgm" path="res://scripts/maneMenu.gd" id="6_d65t2"]
 [ext_resource type="FontFile" uid="uid://c3pvu7per8ve0" path="res://art/UI/Sora-VariableFont_wght.ttf" id="7_2kfqj"]
 [ext_resource type="Script" uid="uid://dtshvdnery8rx" path="res://scripts/customButton.gd" id="7_6m8dx"]
+[ext_resource type="PackedScene" uid="uid://drptxbngkwlo6" path="res://scenes/soundPlayer.tscn" id="10_5dd4i"]
 
 [sub_resource type="Gradient" id="Gradient_d65t2"]
 interpolation_mode = 1
@@ -147,3 +148,5 @@ theme_override_fonts/font = ExtResource("7_2kfqj")
 text = "Start"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="sound player" parent="." unique_id=1733549454 instance=ExtResource("10_5dd4i")]

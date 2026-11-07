@@ -1,27 +1,32 @@
 [gd_resource type="Resource" script_class="gunData" format=3 uid="uid://djl6d4mjqukgb"]
 
 [ext_resource type="PackedScene" uid="uid://b2tfcsfdf88p5" path="res://scenes/bullet.tscn" id="1_30qqx"]
-[ext_resource type="Texture2D" uid="uid://bga14mexw1pg" path="res://art/weapons/msg.png" id="2_30qqx"]
+[ext_resource type="Texture2D" uid="uid://chu3rri2fusjd" path="res://art/weapons/Emsg.png" id="2_d7vd8"]
+[ext_resource type="Texture2D" uid="uid://bga14mexw1pg" path="res://art/weapons/Pmsg.png" id="3_2so3i"]
 [ext_resource type="Script" uid="uid://dmmfces08odig" path="res://scripts/gunData.gd" id="3_oeefu"]
 
 [resource]
 script = ExtResource("3_oeefu")
-gunTexture = ExtResource("2_30qqx")
+playerGunTexture = ExtResource("3_2so3i")
+enemyGunTexture = ExtResource("2_d7vd8")
 bulletSpeed = 600.0
 pierceAmount = 3
 timePerPierce = 0.5
 ricochetCount = 0
 ricochetStrength = 0.0
-homingStrength = 0.5
+homingStrength = 0.7
 homingRadius = 500.0
 fireRate = 0.2
 autoFire = true
 bulletDistance = 150.0
 bullet = ExtResource("1_30qqx")
 maxRange = 0.0
+randomRange = 20.0
 magSize = 10
-playerKnockBack = 100.0
+playerKnockBack = 150.0
 knockBackStrength = 300.0
 expRadius = 0.0
 expKnockBackMultiplier = 0.0
+shootingRadius = 600.0
+shootChance = 0.06
 metadata/_custom_type_script = "uid://dmmfces08odig"
