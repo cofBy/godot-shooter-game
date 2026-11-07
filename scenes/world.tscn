@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://ccxe6qupfwc1t" path="res://scripts/customLabel.gd" id="16_dss4m"]
 [ext_resource type="PackedScene" uid="uid://bvuvo1w0pkbug" path="res://art/UI/customChar.tscn" id="17_7t5mc"]
 [ext_resource type="PackedScene" uid="uid://drptxbngkwlo6" path="res://scenes/soundPlayer.tscn" id="22_oo54l"]
+[ext_resource type="PackedScene" uid="uid://usragadneox" path="res://scenes/camera.tscn" id="23_kpybi"]
 [ext_resource type="Script" uid="uid://dtshvdnery8rx" path="res://scripts/customButton.gd" id="32_4kbfs"]
 [ext_resource type="FontFile" uid="uid://c3pvu7per8ve0" path="res://art/UI/Sora-VariableFont_wght.ttf" id="33_f17e3"]
 
@@ -206,6 +207,9 @@ sources/0 = SubResource("TileSetAtlasSource_qfnet")
 
 [node name="world" type="Node2D" unique_id=1917202882]
 
+[node name="camera" parent="." unique_id=1836590812 instance=ExtResource("23_kpybi")]
+zoom = Vector2(0.2, 0.2)
+
 [node name="lava" type="Polygon2D" parent="." unique_id=1213472635]
 process_mode = 3
 material = SubResource("ShaderMaterial_34ov8")
@@ -224,9 +228,6 @@ tileMap = NodePath(".")
 maxCellsCount = 200
 chanceToRotate = 0.75
 lava = NodePath("../lava")
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1715013904]
-zoom = Vector2(0.2, 0.2)
 
 [node name="player" parent="." unique_id=2020279129 node_paths=PackedStringArray("collider") instance=ExtResource("1_nnsk1")]
 collider = NodePath("../grass")

@@ -9,7 +9,9 @@ var rng = RandomNumberGenerator.new()
 
 @export_group("transition")
 @export var trans : PackedScene
-@export var transDuration : int
+@export var transDuration : float
+@export var blackOutTimeFrames : int
+var cam: Camera2D
 var transTimer : float
 var transInstance
 
@@ -21,19 +23,22 @@ func _ready():
 		add_child(streamPlayerInstance)
 	
 	transition.call_deferred(null, true)
-	print("hee haa")
 
 func transition(scene : Variant = null, onStart : bool = false):
+	cam = get_viewport().get_camera_2d()
 	get_tree().paused = true
 	transInstance = trans.instantiate()
+	transInstance.scale = Vector2.ONE * 0.2 / cam.zoom.x
+	transInstance.position = cam.position
 	get_tree().root.add_child(transInstance)
-	transTimer = transDuration
+	transTimer = transDuration + (transDuration * transInstance.material.get_shader_parameter("outerColorRange"))
 
-	while transTimer > 0:
+	while transTimer > -transDuration * transInstance.material.get_shader_parameter("outerColorRange"):
 		transTimer -= get_process_delta_time()
 		if onStart : transInstance.material.set_shader_parameter("transTime", 1.0 - transTimer / transDuration)
 		else : transInstance.material.set_shader_parameter("transTime", transTimer / transDuration)
 		await get_tree().process_frame
+	if onStart == false : for f in blackOutTimeFrames: await get_tree().process_frame
 	
 	get_tree().paused = false
 	transInstance.queue_free()
@@ -43,6 +48,9 @@ func transition(scene : Variant = null, onStart : bool = false):
 		if   scene is String and scene == "reload" : get_tree().reload_current_scene()
 		elif scene is String     : get_tree().change_scene_to_file  (scene)
 		elif scene is PackedScene: get_tree().change_scene_to_packed(scene)
+
+func setCamera(camera: Camera2D):
+	cam = camera
 
 func playSound(soundName : String):
 	for i in streams.size():

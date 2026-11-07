@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://usragadneox"]
+
+[sub_resource type="GDScript" id="GDScript_qawlr"]
+script/source = "extends Camera2D
+"
+
+[node name="camera" type="Camera2D" unique_id=1836590812]
+scale = Vector2(0.2, 0.2)
+script = SubResource("GDScript_qawlr")

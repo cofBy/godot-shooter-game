@@ -51,5 +51,6 @@ extends Resource
 @export var expKnockBackMultiplier : float = 2
 
 @export_group("enemy shi")
+@export var scoreCost : float = 100
 @export var shootingRadius : float = 500
 @export_range(0.0, 0.1, 0.001) var shootChance : float

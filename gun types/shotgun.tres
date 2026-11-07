@@ -24,7 +24,6 @@ bullet = ExtResource("1_euaj4")
 bulletAmount = 4
 maxRange = 70.0
 randomRange = 5.0
-reloadTime = 5.0
 playerKnockBack = 400.0
 knockBackStrength = 200.0
 expRadius = 0.0

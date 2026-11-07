@@ -2,13 +2,21 @@
 
 [ext_resource type="Shader" uid="uid://bk5d7qx52j7v3" path="res://shaders/trans.gdshader" id="1_rerct"]
 [ext_resource type="Texture2D" uid="uid://dx04uhla4ofkc" path="res://art/env/portal_0.png" id="2_px735"]
-[ext_resource type="Texture2D" uid="uid://c530iq6esj4a8" path="res://shaders/perlin.png" id="2_xmi56"]
 [ext_resource type="Script" uid="uid://dv0nr6budcisj" path="res://scripts/lava.gd" id="3_xmi56"]
+
+[sub_resource type="Gradient" id="Gradient_px735"]
+offsets = PackedFloat32Array(0.47368422, 1)
+colors = PackedColorArray(0, 0, 0.14509805, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_px735"]
+gradient = SubResource("Gradient_px735")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oo54l"]
 shader = ExtResource("1_rerct")
-shader_parameter/transTex = ExtResource("2_xmi56")
+shader_parameter/spiralMultiplier = 20.0
 shader_parameter/transTime = 0.0
+shader_parameter/gradient = SubResource("GradientTexture1D_px735")
+shader_parameter/outerColorRange = 0.1
 
 [node name="transition" type="Polygon2D" unique_id=1357144327]
 process_mode = 3
