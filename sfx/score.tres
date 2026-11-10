@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="soundEffect" format=3 uid="uid://bv6rgmrepucvm"]
+
+[ext_resource type="Script" uid="uid://dxnral3u5xfmw" path="res://scripts/soundEffect.gd" id="1_72t1t"]
+[ext_resource type="AudioStream" uid="uid://c0i4u7tw5fv1f" path="res://sfx/score.ogg" id="2_72t1t"]
+
+[resource]
+script = ExtResource("1_72t1t")
+streams = Array[AudioStream]([ExtResource("2_72t1t")])
+soundName = "score"
+minVolume = 0.7
+maxVolume = 1.0
+minPitch = 1.0
+maxPitch = 1.2
+metadata/_custom_type_script = "uid://dxnral3u5xfmw"

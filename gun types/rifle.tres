@@ -27,6 +27,7 @@ playerKnockBack = 150.0
 knockBackStrength = 300.0
 expRadius = 0.0
 expKnockBackMultiplier = 0.0
+scoreCost = 300.0
 shootingRadius = 600.0
 shootChance = 0.06
 metadata/_custom_type_script = "uid://dmmfces08odig"

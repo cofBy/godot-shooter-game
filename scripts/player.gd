@@ -41,6 +41,7 @@ func _process(_delta):
 	
 	if not collider.isOverlap(position) and isDead == false:
 		die()
+		SOUND.playSound("lose")
 		isDead = true
 
 func _physics_process(_delta):

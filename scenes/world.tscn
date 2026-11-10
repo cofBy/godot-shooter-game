@@ -245,7 +245,7 @@ ExtResource("13_37qwj"): 0.2,
 ExtResource("13_xo05s"): 0.1
 })
 
-[node name="Control" type="Control" parent="." unique_id=2069703263 node_paths=PackedStringArray("player", "bulletsLabel", "lostPanel", "retryButton", "mainMenuButton", "scoreLabel")]
+[node name="Control" type="Control" parent="." unique_id=2069703263 node_paths=PackedStringArray("player", "bulletsLabel", "lostPanel", "retryButton", "mainMenuButton", "scoreLabel", "finalScore", "highScore")]
 process_mode = 3
 z_index = 200
 layout_mode = 3
@@ -268,6 +268,31 @@ lostPaneDur = 0.5
 retryButton = NodePath("lose panel/retry button")
 mainMenuButton = NodePath("lose panel/mane menu button")
 scoreLabel = NodePath("score")
+finalScore = NodePath("lose panel/score")
+highScore = NodePath("lose panel/high score/score")
+
+[node name="score" type="Control" parent="Control" unique_id=530184799]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+script = ExtResource("16_dss4m")
+text = "999"
+charSprite = ExtResource("17_7t5mc")
+spacing = 90.0
+posStart = 1
+wobbleSpeed = 1.0
+wobbleRange = 15.0
+wobbleFrequancy = 0.85
+wobbleAxis = Vector2(0, -1)
+wiggleSpeed = 2.5
+wiggleFrequancy = 1.0
+wiggleRange = 10.0
+effect = 1
+flashDuration = 0.1
+flashsCount = 2
 
 [node name="bullet rect" type="TextureRect" parent="Control" unique_id=559932577]
 process_mode = 3
@@ -363,10 +388,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -15.0
-offset_right = 50.0
-offset_bottom = 15.0
+offset_left = 55.59999
+offset_top = -14.989975
+offset_right = 155.59998
+offset_bottom = 15.010025
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("32_4kbfs")
@@ -423,10 +448,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = 40.0
-offset_right = 50.0
-offset_bottom = 69.999985
+offset_left = 55.59999
+offset_top = 40.010017
+offset_right = 155.59998
+offset_bottom = 70.01002
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("32_4kbfs")
@@ -475,15 +500,45 @@ text = "Mane menu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="score" type="Control" parent="Control" unique_id=530184799]
+[node name="score" type="Control" parent="Control/lose panel" unique_id=2119503098]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
+offset_left = -171.2
+offset_top = 100.41
+offset_right = -171.2
+offset_bottom = 100.41
 grow_horizontal = 2
-scale = Vector2(2, 2)
+scale = Vector2(0.2, 0.2)
 script = ExtResource("16_dss4m")
-text = "999"
+text = "score 99999"
+charSprite = ExtResource("17_7t5mc")
+spacing = 90.0
+wobbleSpeed = 1.0
+wobbleRange = 15.0
+wobbleFrequancy = 0.85
+wobbleAxis = Vector2(0, -1)
+wiggleSpeed = 2.5
+wiggleFrequancy = 1.0
+wiggleRange = 10.0
+effect = 1
+flashDuration = 0.1
+flashsCount = 2
+
+[node name="high score" type="Control" parent="Control/lose panel" unique_id=870379167]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -93.600006
+offset_top = 142.21
+offset_right = -93.600006
+offset_bottom = 142.21
+grow_horizontal = 2
+scale = Vector2(0.2, 0.2)
+script = ExtResource("16_dss4m")
+text = "highscore"
 charSprite = ExtResource("17_7t5mc")
 spacing = 90.0
 posStart = 1
@@ -496,6 +551,33 @@ wiggleFrequancy = 1.0
 wiggleRange = 10.0
 effect = 1
 flashDuration = 0.1
-flashsCount = 5
+flashsCount = 2
+
+[node name="score" type="Control" parent="Control/lose panel/high score" unique_id=1313855330]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 2.9999998
+offset_top = 122.99994
+offset_right = 2.9999998
+offset_bottom = 122.99994
+grow_horizontal = 2
+scale = Vector2(1.25, 1.25)
+script = ExtResource("16_dss4m")
+text = "99999"
+charSprite = ExtResource("17_7t5mc")
+spacing = 90.0
+posStart = 1
+wobbleSpeed = 1.0
+wobbleRange = 15.0
+wobbleFrequancy = 0.85
+wobbleAxis = Vector2(0, -1)
+wiggleSpeed = 2.5
+wiggleFrequancy = 1.0
+wiggleRange = 10.0
+effect = 1
+flashDuration = 0.1
+flashsCount = 2
 
 [node name="sound player" parent="." unique_id=1733549454 instance=ExtResource("22_oo54l")]

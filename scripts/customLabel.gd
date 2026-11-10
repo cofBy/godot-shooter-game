@@ -66,7 +66,6 @@ enum EFFECTS{none, flash}
 @export var effect : EFFECTS
 @export var flashDuration : float
 @export var flashsCount   : int
-@export var flashDiffAmp  : float
 
 func _ready():
 	resetCharachters()
@@ -89,11 +88,11 @@ func _process(delta: float):
 	
 	for i in chartInstances.size():
 		var xPos : float = 0 if posStart == POSSTART.left else chartInstances.size() * spacing * 0.5 if posStart == POSSTART.center else chartInstances.size() * spacing
-		var char = chartInstances[i]
-		char.position = Vector2(i * spacing - xPos, 0) + wobbleRange * sin(char.position.x * wobbleFrequancy + time * wobbleSpeed) * wobbleAxis
-		char.rotation = deg_to_rad(wiggleRange) * sin(char.position.x * wiggleFrequancy + time * wiggleSpeed)
-		if text[i] == " " : char.texture = null
-		else: char.texture = selectTextures[getTexture(text[i])]
+		var charS = chartInstances[i]
+		charS.position = Vector2(i * spacing - xPos, 0) + wobbleRange * sin(charS.position.x * wobbleFrequancy + time * wobbleSpeed) * wobbleAxis
+		charS.rotation = deg_to_rad(wiggleRange) * sin(charS.position.x * wiggleFrequancy + time * wiggleSpeed)
+		if text[i] == " " : charS.texture = null
+		else: charS.texture = selectTextures[getTexture(text[i])]
 		if text != oldText : runEffect(i)
 	oldText = text
 

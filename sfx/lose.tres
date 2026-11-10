@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="soundEffect" format=3 uid="uid://56knwsndij56"]
+
+[ext_resource type="Script" uid="uid://dxnral3u5xfmw" path="res://scripts/soundEffect.gd" id="1_jekpm"]
+[ext_resource type="AudioStream" uid="uid://bmucytdyotqut" path="res://sfx/lose.ogg" id="2_1kqxw"]
+
+[resource]
+script = ExtResource("1_jekpm")
+streams = Array[AudioStream]([ExtResource("2_1kqxw")])
+soundName = "lose"
+minVolume = 1.0
+maxVolume = 1.0
+minPitch = 1.0
+maxPitch = 1.0
+metadata/_custom_type_script = "uid://dxnral3u5xfmw"

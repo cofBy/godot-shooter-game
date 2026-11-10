@@ -78,6 +78,7 @@ func _physics_process(delta: float):
 			particleInstance.restart()
 			particleInstance.get_child(0).restart()
 			player.score += gunType.scoreCost
+			SOUND.playSound("score")
 	
 	move_and_slide()
 
