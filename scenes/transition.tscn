@@ -5,8 +5,7 @@
 [ext_resource type="Script" uid="uid://dv0nr6budcisj" path="res://scripts/lava.gd" id="3_xmi56"]
 
 [sub_resource type="Gradient" id="Gradient_px735"]
-offsets = PackedFloat32Array(0.47368422, 1)
-colors = PackedColorArray(0, 0, 0.14509805, 1, 0, 0, 0, 1)
+colors = PackedColorArray(0.14117648, 0.1254902, 0.21176471, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_px735"]
 gradient = SubResource("Gradient_px735")
@@ -22,6 +21,7 @@ shader_parameter/outerColorRange = 0.1
 process_mode = 3
 z_index = 999
 material = SubResource("ShaderMaterial_oo54l")
+position = Vector2(56, -19)
 texture = ExtResource("2_px735")
 invert_border = 0.1
 polygon = PackedVector2Array(-1200, 675, -1200, -675, 1200, -675, 1200, 675)

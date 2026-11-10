@@ -245,7 +245,7 @@ ExtResource("13_37qwj"): 0.2,
 ExtResource("13_xo05s"): 0.1
 })
 
-[node name="Control" type="Control" parent="." unique_id=2069703263 node_paths=PackedStringArray("player", "bulletsLabel", "lostPanel", "retryButton", "mainMenuButton")]
+[node name="Control" type="Control" parent="." unique_id=2069703263 node_paths=PackedStringArray("player", "bulletsLabel", "lostPanel", "retryButton", "mainMenuButton", "scoreLabel")]
 process_mode = 3
 z_index = 200
 layout_mode = 3
@@ -267,15 +267,20 @@ lostPanel = NodePath("lose panel")
 lostPaneDur = 0.5
 retryButton = NodePath("lose panel/retry button")
 mainMenuButton = NodePath("lose panel/mane menu button")
+scoreLabel = NodePath("score")
 
 [node name="bullet rect" type="TextureRect" parent="Control" unique_id=559932577]
 process_mode = 3
 texture_filter = 1
 layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
 offset_left = 50.0
-offset_top = 50.0
+offset_top = -250.0
 offset_right = 250.0
-offset_bottom = 250.0
+offset_bottom = -50.0
+grow_vertical = 0
 rotation = 6.2831855
 texture = ExtResource("15_0nbtd")
 
@@ -469,5 +474,28 @@ theme_override_fonts/font = ExtResource("33_f17e3")
 text = "Mane menu"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="score" type="Control" parent="Control" unique_id=530184799]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+scale = Vector2(2, 2)
+script = ExtResource("16_dss4m")
+text = "999"
+charSprite = ExtResource("17_7t5mc")
+spacing = 90.0
+posStart = 1
+wobbleSpeed = 1.0
+wobbleRange = 15.0
+wobbleFrequancy = 0.85
+wobbleAxis = Vector2(0, -1)
+wiggleSpeed = 2.5
+wiggleFrequancy = 1.0
+wiggleRange = 10.0
+effect = 1
+flashDuration = 0.1
+flashsCount = 5
 
 [node name="sound player" parent="." unique_id=1733549454 instance=ExtResource("22_oo54l")]

@@ -19,6 +19,9 @@ var stepTimer : float = 0
 var isDead : bool
 signal died
 
+@export_group("score")
+@export var score : int = 0
+
 func input():
 	var temp : Vector2
 	temp.x = Input.get_action_raw_strength("right") - Input.get_action_raw_strength("left")

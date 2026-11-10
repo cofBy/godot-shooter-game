@@ -16,5 +16,5 @@ process_mode = 3
 script = ExtResource("1_iulhf")
 streams = Array[ExtResource("2_h4juq")]([ExtResource("3_jgl1y"), ExtResource("4_jgl1y"), ExtResource("5_r2igq"), ExtResource("6_t6mkj"), ExtResource("7_lbpyl"), ExtResource("8_b2ji1"), ExtResource("9_eqn3n")])
 trans = ExtResource("10_eqn3n")
-transDuration = 1.0
+transDuration = 0.4
 blackOutTimeFrames = 20
