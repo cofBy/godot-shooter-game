@@ -1,5 +1,8 @@
 extends Node2D
 
+@export var safeTime : float
+var safeTimer : float
+
 var hitGroup : String
 
 var initialRotation := Vector2.ZERO
@@ -36,6 +39,7 @@ func _ready():
 	expArea.scale = expRadius * Vector2.ONE
 
 func _physics_process(_delta):
+	safeTimer += _delta
 	var bodies : Array[Node2D] = homingArea.get_overlapping_bodies()
 	var closestBody : Node2D
 	var closestDistance : float = 99999
@@ -90,12 +94,16 @@ func _process(_delta):
 			piercesTimer -= _delta
 
 func _on_area_2d_body_entered(body: Node2D):
-	if body.is_in_group(hitGroup):
-		enemy = body
+	if safeTimer < safeTime:
+		if body.is_in_group(hitGroup):
+			enemy = body
+	else: enemy = body
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body.is_in_group(hitGroup):
-		enemy = null
+	if safeTimer < safeTime:
+		if body.is_in_group(hitGroup):
+			enemy = null
+	else: enemy = body
 
 func reflect(v : Vector2, n : Vector2):
 	return v - 2.0 * v.dot(n) * n

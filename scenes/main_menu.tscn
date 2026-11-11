@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://k02sltg1d5gt"]
 
 [ext_resource type="Texture2D" uid="uid://85po1hhpllj7" path="res://art/UI/tilemap_packed.png" id="1_deho8"]
-[ext_resource type="PackedScene" uid="uid://usragadneox" path="res://scenes/camera.tscn" id="1_lgwnu"]
 [ext_resource type="Shader" uid="uid://dkn76fj3r1ttr" path="res://shaders/lava.gdshader" id="1_r4ri1"]
 [ext_resource type="Texture2D" uid="uid://c530iq6esj4a8" path="res://shaders/perlin.png" id="2_5omg7"]
 [ext_resource type="Texture2D" uid="uid://dx04uhla4ofkc" path="res://art/env/portal_0.png" id="3_2kfqj"]
@@ -44,7 +43,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="camera" parent="." unique_id=1836590812 instance=ExtResource("1_lgwnu")]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1591026883]
 position = Vector2(240, 135)
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=297540290]
@@ -63,10 +62,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 30.0
-offset_top = 30.0
-offset_right = -30.0
-offset_bottom = -30.0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_deho8")

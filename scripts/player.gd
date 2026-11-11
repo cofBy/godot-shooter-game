@@ -65,7 +65,10 @@ func die():
 	particleInstnace.get_child(0).restart()
 	visible = false
 	died.emit()
+	SOUND.cameraShake(60, 0.5)
+
 
 func hit(pos : Vector2, strength : float):
 	knockback += (position - pos).normalized() * strength
 	SOUND.playSound("hurt")
+	SOUND.cameraShake(10, 0.1)

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="soundEffect" format=3 uid="uid://crlqmy38afmgq"]
+
+[ext_resource type="Script" uid="uid://dxnral3u5xfmw" path="res://scripts/soundEffect.gd" id="1_w2n03"]
+[ext_resource type="AudioStream" uid="uid://clv2uu47fioqe" path="res://sfx/ui.ogg" id="2_vj5jm"]
+
+[resource]
+script = ExtResource("1_w2n03")
+streams = Array[AudioStream]([ExtResource("2_vj5jm")])
+soundName = "hover"
+minVolume = 0.7
+maxVolume = 1.0
+minPitch = 1.5
+maxPitch = 1.8
+metadata/_custom_type_script = "uid://dxnral3u5xfmw"

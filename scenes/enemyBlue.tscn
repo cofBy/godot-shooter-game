@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dduwj5vl3uvnw" path="res://art/enemy blue/eb2.png" id="3_606l4"]
 [ext_resource type="Texture2D" uid="uid://de14y8mdfmq5s" path="res://art/enemy blue/eb3.png" id="4_buv3b"]
 [ext_resource type="Script" uid="uid://bvkspcbfpu4v3" path="res://scripts/gun.gd" id="6_on660"]
+[ext_resource type="Script" uid="uid://dow0emu5a7107" path="res://scripts/elasticCollider.gd" id="7_7hffy"]
 [ext_resource type="Texture2D" uid="uid://d7xpk37ien1i" path="res://art/weapons/Ppistol.png" id="8_acjvw"]
 
 [sub_resource type="Gradient" id="Gradient_606l4"]
@@ -193,8 +194,11 @@ _data = {
 &"run": SubResource("Animation_jxh48")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_acjvw"]
+size = Vector2(80, 100)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xb5fl"]
-size = Vector2(74, 94)
+size = Vector2(70, 90)
 
 [sub_resource type="Animation" id="Animation_7hffy"]
 length = 0.001
@@ -364,8 +368,16 @@ texture = ExtResource("1_yuuqn")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=883134937]
 libraries/ = SubResource("AnimationLibrary_nansy")
 
+[node name="elastic Collider" type="Area2D" parent="." unique_id=1813559518 groups=["elastic"]]
+position = Vector2(0, 10)
+script = ExtResource("7_7hffy")
+
+[node name="shape" type="CollisionShape2D" parent="elastic Collider" unique_id=422394406]
+shape = SubResource("RectangleShape2D_acjvw")
+debug_color = Color(0.8685609, 0.179375, 0.7470108, 0.41960785)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1989497628]
-position = Vector2(3, 12)
+position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_xb5fl")
 
 [node name="gun" type="Node2D" parent="." unique_id=2136805117 node_paths=PackedStringArray("holder")]
@@ -384,3 +396,5 @@ texture = ExtResource("8_acjvw")
 [node name="gun animations" type="AnimationPlayer" parent="gun" unique_id=1392587247]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_7hffy")
+
+[connection signal="area_entered" from="elastic Collider" to="elastic Collider" method="onElasticCollision"]

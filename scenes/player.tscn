@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dby47au8guxdo" path="res://art/player/player_2.png" id="5_smehm"]
 [ext_resource type="Texture2D" uid="uid://bi0vlqccdrqoc" path="res://art/weapons/Eaxe.png" id="7_fjrip"]
 [ext_resource type="Script" uid="uid://bvkspcbfpu4v3" path="res://scripts/gun.gd" id="7_smehm"]
+[ext_resource type="Script" uid="uid://dow0emu5a7107" path="res://scripts/elasticCollider.gd" id="7_y4r1p"]
 [ext_resource type="Resource" uid="uid://bbttnojwt724p" path="res://gun types/shotgun.tres" id="8_ur7pv"]
 
 [sub_resource type="Animation" id="Animation_qlg0r"]
@@ -163,7 +164,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_473yl"]
-size = Vector2(48, 79)
+size = Vector2(70, 90)
 
 [sub_resource type="Animation" id="Animation_smehm"]
 length = 0.001
@@ -339,8 +340,16 @@ texture = ExtResource("3_tuyoq")
 [node name="player animations" type="AnimationPlayer" parent="." unique_id=397570666]
 libraries/ = SubResource("AnimationLibrary_smehm")
 
+[node name="elastic Collider" type="Area2D" parent="." unique_id=2141833279 groups=["elastic"]]
+position = Vector2(0, 20)
+script = ExtResource("7_y4r1p")
+
+[node name="shape" type="CollisionShape2D" parent="elastic Collider" unique_id=1434872828]
+shape = SubResource("RectangleShape2D_473yl")
+debug_color = Color(0.8685609, 0.179375, 0.7470108, 0.41960785)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1009962940]
-position = Vector2(0, 20.5)
+position = Vector2(0, 20)
 shape = SubResource("RectangleShape2D_473yl")
 
 [node name="gun" type="Node2D" parent="." unique_id=389224559 node_paths=PackedStringArray("holder")]
@@ -358,3 +367,5 @@ texture = ExtResource("7_fjrip")
 [node name="gun animations" type="AnimationPlayer" parent="gun" unique_id=1026628957]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_d2wvv")
+
+[connection signal="area_entered" from="elastic Collider" to="elastic Collider" method="onElasticCollision"]

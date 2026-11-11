@@ -4,13 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://b17bt53t6553b" path="res://art/weapons/bullet.png" id="2_y25gk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xb5fl"]
-size = Vector2(184.88889, 187.07693)
+size = Vector2(156.44444, 187.07693)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xb5fl"]
 radius = 1.0
 
 [node name="bullet" type="Node2D" unique_id=1945413029]
 script = ExtResource("1_y25gk")
+safeTime = 0.35
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=399366435]
 texture_filter = 1
@@ -21,6 +22,7 @@ texture = ExtResource("2_y25gk")
 [node name="Area2D" type="Area2D" parent="." unique_id=812738824]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1925189902]
+position = Vector2(20, 0)
 scale = Vector2(0.421875, 0.203125)
 shape = SubResource("RectangleShape2D_xb5fl")
 

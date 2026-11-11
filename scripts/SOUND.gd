@@ -15,6 +15,7 @@ var cam: Camera2D
 var transTimer : float
 var transInstance
 
+
 func _ready():
 	transTimer = 0.0
 	for strm in streams:
@@ -25,6 +26,9 @@ func _ready():
 	transition.call_deferred(null, true)
 
 func transition(scene : Variant = null, onStart : bool = false):
+	if onStart : playSound("trans", 0.5)
+	else       : playSound("trans", 0.0)
+	
 	cam = get_viewport().get_camera_2d()
 	get_tree().paused = true
 	transInstance = trans.instantiate()
@@ -49,15 +53,22 @@ func transition(scene : Variant = null, onStart : bool = false):
 		elif scene is String     : get_tree().change_scene_to_file  (scene)
 		elif scene is PackedScene: get_tree().change_scene_to_packed(scene)
 
-func setCamera(camera: Camera2D):
-	cam = camera
+func cameraShake(shakeMaxDist : float, shakeDuration : float):
+	cam = get_viewport().get_camera_2d()
+	var shakeTimer : float = 0
+	while shakeTimer < shakeDuration:
+		shakeTimer += get_process_delta_time()
+		var angle : float = rng.randf() * PI
+		cam.offset = Vector2(cos(angle), sin(angle)) * shakeMaxDist
+		await get_tree().process_frame
+	cam.offset = Vector2.ZERO
 
-func playSound(soundName : String):
+func playSound(soundName : String, customPitch : float = 0.0):
 	for i in streams.size():
 		if streams[i].soundName == soundName:
 			var strm = streams[i]
 			streamPlayers[i].stream = strm.streams[rng.randi_range(0, strm.streams.size() - 1)]
 			streamPlayers[i].volume_linear = rng.randf_range(strm.minVolume, strm.maxVolume)
-			streamPlayers[i].pitch_scale   = rng.randf_range(strm.minPitch, strm.maxPitch)
+			streamPlayers[i].pitch_scale   = rng.randf_range(strm.minPitch, strm.maxPitch) + customPitch
 			streamPlayers[i].play()
 			return

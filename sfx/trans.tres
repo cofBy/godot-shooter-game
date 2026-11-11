@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="soundEffect" format=3 uid="uid://cloju60ryr8yq"]
+
+[ext_resource type="Script" uid="uid://dxnral3u5xfmw" path="res://scripts/soundEffect.gd" id="1_8p477"]
+[ext_resource type="AudioStream" uid="uid://57e48jbc1sd6" path="res://sfx/transition.ogg" id="2_ucdkm"]
+
+[resource]
+script = ExtResource("1_8p477")
+streams = Array[AudioStream]([ExtResource("2_ucdkm")])
+soundName = "trans"
+minVolume = 1.0
+maxVolume = 1.0
+minPitch = 1.0
+maxPitch = 1.0
+metadata/_custom_type_script = "uid://dxnral3u5xfmw"

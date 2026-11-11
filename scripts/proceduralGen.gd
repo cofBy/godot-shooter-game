@@ -19,19 +19,19 @@ func _ready():
 	lava.material.set_shader_parameter("tilesTexture", tilesTexture())
 
 	var half := Vector2(tileMap.tile_set.tile_size) / 2.0
-	var a := lava.to_local(tileMap.to_global(tileMap.map_to_local(Vector2i(-13, -7)) - half))
-	var b := lava.to_local(tileMap.to_global(tileMap.map_to_local(Vector2i(15, 9)) - half))
+	var a := lava.to_local(tileMap.to_global(tileMap.map_to_local(Vector2i(-28, -16)) - half))
+	var b := lava.to_local(tileMap.to_global(tileMap.map_to_local(Vector2i(28, 16)) - half))
 	lava.material.set_shader_parameter("rect_min", a)
 	lava.material.set_shader_parameter("rect_max", b)
 
 	tileMap.set_cells_terrain_connect(cells, 0, 0)
 
 func tilesTexture():
-	var image := Image.create(28, 16, false, Image.FORMAT_R8)
+	var image := Image.create(56, 32, false, Image.FORMAT_R8)
 	for cell in cells:
-		var px := cell.x + 13
-		var py := cell.y + 7
-		if px >= 0 and px < 28 and py >= 0 and py < 16:
+		var px := cell.x + 28
+		var py := cell.y + 16
+		if px >= 0 and px < 56 and py >= 0 and py < 32:
 			image.set_pixel(px, py, Color.WHITE)
 	return ImageTexture.create_from_image(image)
 
@@ -46,7 +46,7 @@ func walk():
 	var x : int = 0
 	var y : int = 0
 	var angle : float = rng.randi_range(0, 3) * 90
-	while x >= -12 and x <= 12 and y >= -6 and y <= 6:
+	while x >= -24 and x <= 24 and y >= -12 and y <= 12:
 		if cells.size() >= maxCellsCount : break
 		if rng.randf() < chanceToRotate : angle += (randi_range(0, 1) - 0.5) * 180.0
 		x += int(cos(deg_to_rad(angle)))

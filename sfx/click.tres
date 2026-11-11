@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="soundEffect" format=3 uid="uid://dsx2om625sda7"]
+
+[ext_resource type="Script" uid="uid://dxnral3u5xfmw" path="res://scripts/soundEffect.gd" id="1_dxd7w"]
+[ext_resource type="AudioStream" uid="uid://clv2uu47fioqe" path="res://sfx/ui.ogg" id="2_mtytp"]
+
+[resource]
+script = ExtResource("1_dxd7w")
+streams = Array[AudioStream]([ExtResource("2_mtytp")])
+soundName = "click"
+minVolume = 0.7
+maxVolume = 1.0
+minPitch = 0.7
+maxPitch = 0.9
+metadata/_custom_type_script = "uid://dxnral3u5xfmw"

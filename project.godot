@@ -29,6 +29,10 @@ window/stretch/mode="viewport"
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
+[global_group]
+
+elastic="give it to the area no the body"
+
 [input]
 
 right={

@@ -51,11 +51,11 @@ float calculateFoam(vec2 pos){
 	if (uv01.x >= -thickness && uv01.x < 1.0 && uv01.y >= -thickness && uv01.y < 1.0) {
 		for(int x = -1; x <= 1; x++){
 			for(int y = -1; y <= 1; y++){
-				value += max(value, texelFetch(tilesTexture, ivec2((uv01 + vec2(float(x), float(y)) * thickness) * vec2(size)), 0).r) * foamStrength * 0.25;
-			}
+				value = max(value, texelFetch(tilesTexture, ivec2((uv01 + vec2(float(x), float(y)) * thickness) * vec2(size)), 0).r);
+				}
 		}
 	}
-	return clamp(value, 0.0, 1.0);
+	return clamp(value * foamStrength, 0.0, 1.0);
 }
 
 void fragment() {
@@ -70,8 +70,3 @@ void fragment() {
 	float foam = calculateFoam(local_pos + noiseOffset * foamDisplacmentStrength);
 	COLOR = vec4(texture(gradient, vec2(voronoiNoise + foam, 0)));
 }
-
-//void light() {
-//	// Called for every pixel for every light affecting the CanvasItem.
-//	// Uncomment to replace the default light processing function with this one.
-//}

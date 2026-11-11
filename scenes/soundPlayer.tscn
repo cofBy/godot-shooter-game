@@ -12,11 +12,14 @@
 [ext_resource type="Resource" uid="uid://bv6rgmrepucvm" path="res://sfx/score.tres" id="10_bvg6v"]
 [ext_resource type="PackedScene" uid="uid://b3ej2iivqpjw5" path="res://scenes/transition.tscn" id="10_eqn3n"]
 [ext_resource type="Resource" uid="uid://56knwsndij56" path="res://sfx/lose.tres" id="11_s0fln"]
+[ext_resource type="Resource" uid="uid://dsx2om625sda7" path="res://sfx/click.tres" id="12_tjdfy"]
+[ext_resource type="Resource" uid="uid://crlqmy38afmgq" path="res://sfx/select.tres" id="13_18ht3"]
+[ext_resource type="Resource" uid="uid://cloju60ryr8yq" path="res://sfx/trans.tres" id="14_18ht3"]
 
 [node name="sound player" type="Node2D" unique_id=1733549454]
 process_mode = 3
 script = ExtResource("1_iulhf")
-streams = Array[ExtResource("2_h4juq")]([ExtResource("3_jgl1y"), ExtResource("4_jgl1y"), ExtResource("5_r2igq"), ExtResource("6_t6mkj"), ExtResource("7_lbpyl"), ExtResource("8_b2ji1"), ExtResource("9_eqn3n"), ExtResource("10_bvg6v"), ExtResource("11_s0fln")])
+streams = Array[ExtResource("2_h4juq")]([ExtResource("3_jgl1y"), ExtResource("4_jgl1y"), ExtResource("5_r2igq"), ExtResource("6_t6mkj"), ExtResource("7_lbpyl"), ExtResource("8_b2ji1"), ExtResource("9_eqn3n"), ExtResource("10_bvg6v"), ExtResource("11_s0fln"), ExtResource("12_tjdfy"), ExtResource("13_18ht3"), ExtResource("14_18ht3")])
 trans = ExtResource("10_eqn3n")
 transDuration = 0.4
 blackOutTimeFrames = 20

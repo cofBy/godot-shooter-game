@@ -96,17 +96,17 @@ func _process(delta: float):
 		if text != oldText : runEffect(i)
 	oldText = text
 
-func getTexture(char: String):
+func getTexture(c: String):
 	for i in selectTextures.size():
 		var current : String = selectTextures[i].resource_path[21]
-		if current == char: return i
+		if current == c: return i
 	return 0
 
 func runEffect(index : int):
-	var char = chartInstances[index]
+	var c = chartInstances[index]
 	if effect == EFFECTS.flash:
 		for i in flashsCount:
-			char.modulate = Color(0,0,0,0)
+			c.modulate = Color(0,0,0,0)
 			await get_tree().create_timer(flashDuration * 0.5).timeout
-			char.modulate = Color(1,1,1,1)
+			c.modulate = Color(1,1,1,1)
 			await get_tree().create_timer(flashDuration * 0.5).timeout
