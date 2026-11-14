@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="gunData" format=3 uid="uid://tlimxwp808lc"]
+
+[ext_resource type="PackedScene" uid="uid://b2tfcsfdf88p5" path="res://scenes/bullet.tscn" id="1_a2kog"]
+[ext_resource type="Texture2D" uid="uid://dw3bwrypnwif" path="res://art/weapons/Esniper.png" id="2_a2kog"]
+[ext_resource type="Texture2D" uid="uid://b01byhxr0p866" path="res://art/weapons/Psiper.png" id="3_3wp2f"]
+[ext_resource type="Script" uid="uid://dmmfces08odig" path="res://scripts/gunData.gd" id="4_ywvbo"]
+
+[resource]
+script = ExtResource("4_ywvbo")
+playerGunTexture = ExtResource("3_3wp2f")
+enemyGunTexture = ExtResource("2_a2kog")
+gunOffset = Vector2(50, 30)
+bulletSpeed = 750.0
+bulletLifeTime = 10.0
+pierceAmount = 4
+ricochetCount = 4
+ricochetStrength = 1.0
+homingStrength = 0.0
+homingRadius = 0.0
+fireRate = 0.3
+bullet = ExtResource("1_a2kog")
+maxRange = 0.0
+randomRange = 5.0
+magSize = 1
+reloadTime = 3.0
+knockRandomRange = 20.0
+knockBackStrength = 1000.0
+expRadius = 0.0
+expKnockBackMultiplier = 0.0
+scoreCost = 200.0
+shootingRadius = 800.0
+shootChance = 0.1
+metadata/_custom_type_script = "uid://dmmfces08odig"

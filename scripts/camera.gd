@@ -9,7 +9,7 @@ var enemies : Array[CharacterBody2D]
 @export_range(0.0, 1.0, 0.05) var aimWeight : float
 
 func _process(_delta : float):
-	var enemiesSum : Vector2 = Vector2(0,0)
+	var enemiesSum : Vector2 = player.position
 	if enemies.size() > 0: for e in enemies.size():
 		if enemies[e] == null:
 			enemies.remove_at(e)

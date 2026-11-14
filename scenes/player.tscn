@@ -2,14 +2,27 @@
 
 [ext_resource type="Script" uid="uid://dhmjqo7qumuoc" path="res://scripts/player.gd" id="1_onrkg"]
 [ext_resource type="PackedScene" uid="uid://dnx73g4hcw8p5" path="res://scenes/deadParticle.tscn" id="2_smehm"]
-[ext_resource type="Texture2D" uid="uid://c3xq7lr57dadf" path="res://art/player/player_0.png" id="3_tuyoq"]
-[ext_resource type="Texture2D" uid="uid://bjl1v67pdnvo" path="res://art/player/player_3.png" id="3_ur7pv"]
-[ext_resource type="Texture2D" uid="uid://b2wt57d26ieef" path="res://art/player/player_1.png" id="4_fjrip"]
-[ext_resource type="Texture2D" uid="uid://dby47au8guxdo" path="res://art/player/player_2.png" id="5_smehm"]
+[ext_resource type="Texture2D" uid="uid://c3xq7lr57dadf" path="res://art/player/rat/rat_0.png" id="3_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://bjl1v67pdnvo" path="res://art/player/rat/rat_3.png" id="3_ur7pv"]
+[ext_resource type="Texture2D" uid="uid://b2wt57d26ieef" path="res://art/player/rat/rat_1.png" id="4_fjrip"]
+[ext_resource type="Texture2D" uid="uid://dby47au8guxdo" path="res://art/player/rat/rat_2.png" id="5_smehm"]
+[ext_resource type="Texture2D" uid="uid://bifir37u8fj41" path="res://art/player/dog/dog_0.png" id="7_a38lo"]
 [ext_resource type="Texture2D" uid="uid://bi0vlqccdrqoc" path="res://art/weapons/Eaxe.png" id="7_fjrip"]
 [ext_resource type="Script" uid="uid://bvkspcbfpu4v3" path="res://scripts/gun.gd" id="7_smehm"]
 [ext_resource type="Script" uid="uid://dow0emu5a7107" path="res://scripts/elasticCollider.gd" id="7_y4r1p"]
+[ext_resource type="Texture2D" uid="uid://ccfqwg2n0i83t" path="res://art/player/dog/dog_1.png" id="8_4ni07"]
 [ext_resource type="Resource" uid="uid://bbttnojwt724p" path="res://gun types/shotgun.tres" id="8_ur7pv"]
+[ext_resource type="Texture2D" uid="uid://btyeiislldafm" path="res://art/player/dog/dog_2.png" id="9_l71n6"]
+[ext_resource type="Texture2D" uid="uid://dsm2gkv7dh6py" path="res://art/player/dog/dog_3.png" id="10_ke2ow"]
+[ext_resource type="Texture2D" uid="uid://dtcrfl08xt7yp" path="res://art/player/bun/bun_0.png" id="11_ujl30"]
+[ext_resource type="Texture2D" uid="uid://b7c5b6jghvue" path="res://art/player/bun/bun_1.png" id="12_31cv2"]
+[ext_resource type="Texture2D" uid="uid://t7xfcun0d268" path="res://art/player/bun/bun_2.png" id="13_pf23h"]
+[ext_resource type="Texture2D" uid="uid://dy8on0fq235c4" path="res://art/player/bun/bun_3.png" id="14_dt7fs"]
+[ext_resource type="Texture2D" uid="uid://cdsehtin4kgah" path="res://art/player/ham/ham_0.png" id="15_wqfne"]
+[ext_resource type="Texture2D" uid="uid://weam3ctob3js" path="res://art/player/ham/ham_1.png" id="16_wnwbv"]
+[ext_resource type="Texture2D" uid="uid://djyblj3tabud5" path="res://art/player/ham/ham_2.png" id="17_gl8cc"]
+[ext_resource type="Texture2D" uid="uid://dy02qcqmug1pu" path="res://art/player/ham/ham_3.png" id="18_487ah"]
+[ext_resource type="PackedScene" uid="uid://bxtl4kp4tg0yg" path="res://scenes/shootParticles.tscn" id="22_4ni07"]
 
 [sub_resource type="Animation" id="Animation_qlg0r"]
 length = 0.001
@@ -40,38 +53,38 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("player sprite:texture")
+tracks/2/path = NodePath("player sprite:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_tuyoq")]
+"update": 0,
+"values": [-0.17453292]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("player sprite:rotation")
+tracks/3/path = NodePath("gun/gun sprite:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-0.17453292]
+"values": [0.0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("gun/gun sprite:rotation")
+tracks/4/path = NodePath(".:spriteToUse")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_tuyoq"]
@@ -105,26 +118,26 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("player sprite:texture")
+tracks/2/path = NodePath("player sprite:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_tuyoq")]
+"update": 0,
+"values": [0.0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("player sprite:rotation")
+tracks/3/path = NodePath(".:spriteToUse")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_fjrip"]
@@ -134,26 +147,26 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("player sprite:texture")
+tracks/0/path = NodePath("player sprite:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.20000002, 0.4, 0.5666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("3_tuyoq"), ExtResource("4_fjrip"), ExtResource("5_smehm"), ExtResource("4_fjrip")]
+"transitions": PackedFloat32Array(0.17075476, 0.17075476, 0.17075476, 0.17075509),
+"update": 0,
+"values": [-0.17453292519943295, 0.17453292519943295, -0.17453292519943295, 0.17453292519943295]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("player sprite:rotation")
+tracks/1/path = NodePath(".:spriteToUse")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.20000002, 0.4, 0.5666667),
-"transitions": PackedFloat32Array(0.17075476, 0.17075476, 0.17075476, 0.17075509),
-"update": 0,
-"values": [-0.17453292519943295, 0.17453292519943295, -0.17453292519943295, 0.17453292519943295]
+"times": PackedFloat32Array(0, 0.2, 0.36666667, 0.56666666),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_smehm"]
@@ -324,11 +337,10 @@ _data = {
 [node name="player" type="CharacterBody2D" unique_id=2020279129 node_paths=PackedStringArray("gun", "anim", "sprite") groups=["player"]]
 script = ExtResource("1_onrkg")
 gun = NodePath("gun")
-friction = 600.0
 anim = NodePath("player animations")
 sprite = NodePath("player sprite")
 deadParticle = ExtResource("2_smehm")
-deadTexture = ExtResource("3_ur7pv")
+sprites = Array[Texture2D]([ExtResource("3_tuyoq"), ExtResource("4_fjrip"), ExtResource("5_smehm"), ExtResource("3_ur7pv"), ExtResource("7_a38lo"), ExtResource("8_4ni07"), ExtResource("9_l71n6"), ExtResource("10_ke2ow"), ExtResource("11_ujl30"), ExtResource("12_31cv2"), ExtResource("13_pf23h"), ExtResource("14_dt7fs"), ExtResource("15_wqfne"), ExtResource("16_wnwbv"), ExtResource("17_gl8cc"), ExtResource("18_487ah")])
 
 [node name="player sprite" type="Sprite2D" parent="." unique_id=1481821429]
 z_index = 1
@@ -356,6 +368,7 @@ shape = SubResource("RectangleShape2D_473yl")
 script = ExtResource("7_smehm")
 data = ExtResource("8_ur7pv")
 holder = NodePath("..")
+shootingParticles = ExtResource("22_4ni07")
 
 [node name="gun sprite" type="Sprite2D" parent="gun" unique_id=492709942]
 z_index = 1

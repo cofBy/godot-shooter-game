@@ -5,11 +5,16 @@
 [ext_resource type="Texture2D" uid="uid://c530iq6esj4a8" path="res://shaders/perlin.png" id="2_5omg7"]
 [ext_resource type="Texture2D" uid="uid://dx04uhla4ofkc" path="res://art/env/portal_0.png" id="3_2kfqj"]
 [ext_resource type="Script" uid="uid://dv0nr6budcisj" path="res://scripts/lava.gd" id="4_6m8dx"]
-[ext_resource type="Texture2D" uid="uid://c3xq7lr57dadf" path="res://art/player/player_0.png" id="6_5omg7"]
+[ext_resource type="Texture2D" uid="uid://c3xq7lr57dadf" path="res://art/player/rat/rat_0.png" id="6_5omg7"]
 [ext_resource type="Script" uid="uid://cejewfa1vnxgm" path="res://scripts/maneMenu.gd" id="6_d65t2"]
 [ext_resource type="FontFile" uid="uid://c3pvu7per8ve0" path="res://art/UI/Sora-VariableFont_wght.ttf" id="7_2kfqj"]
+[ext_resource type="Script" uid="uid://ccxe6qupfwc1t" path="res://scripts/customLabel.gd" id="7_5dd4i"]
 [ext_resource type="Script" uid="uid://dtshvdnery8rx" path="res://scripts/customButton.gd" id="7_6m8dx"]
+[ext_resource type="PackedScene" uid="uid://bvuvo1w0pkbug" path="res://art/UI/customChar.tscn" id="8_lgwnu"]
 [ext_resource type="PackedScene" uid="uid://drptxbngkwlo6" path="res://scenes/soundPlayer.tscn" id="10_5dd4i"]
+[ext_resource type="Texture2D" uid="uid://bifir37u8fj41" path="res://art/player/dog/dog_0.png" id="12_1ajci"]
+[ext_resource type="Texture2D" uid="uid://dtcrfl08xt7yp" path="res://art/player/bun/bun_0.png" id="13_7b55j"]
+[ext_resource type="Texture2D" uid="uid://cdsehtin4kgah" path="res://art/player/ham/ham_0.png" id="14_7b55j"]
 
 [sub_resource type="Gradient" id="Gradient_d65t2"]
 interpolation_mode = 1
@@ -35,6 +40,16 @@ shader_parameter/tilesTexture = ExtResource("2_5omg7")
 shader_parameter/rect_min = Vector2(0, 0)
 shader_parameter/rect_max = Vector2(0, 0)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lgwnu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_flqon"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rcqid"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ajci"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7b55j"]
+
 [node name="Mane menu" type="Control" unique_id=1791733048]
 layout_mode = 3
 anchors_preset = 15
@@ -56,7 +71,7 @@ polygon = PackedVector2Array(-1200, 675, -1200, -675, 1200, -675, 1200, 675)
 uv = PackedVector2Array(0, 15, 0, 0, 15, 0, 15, 15)
 script = ExtResource("4_6m8dx")
 
-[node name="main panel" type="NinePatchRect" parent="." unique_id=1055966696 node_paths=PackedStringArray("playButton")]
+[node name="main panel" type="NinePatchRect" parent="." unique_id=1055966696 node_paths=PackedStringArray("playButton", "charSelectPanel", "characters")]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -78,30 +93,58 @@ axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 script = ExtResource("6_d65t2")
 playButton = NodePath("start button")
+charSelectPanel = NodePath("start button/char select panel")
+characters = [NodePath("start button/char select panel/HBoxContainer/rat"), NodePath("start button/char select panel/HBoxContainer/dog"), NodePath("start button/char select panel/HBoxContainer/bun"), NodePath("start button/char select panel/HBoxContainer/ham")]
 
-[node name="TextureRect" type="TextureRect" parent="main panel" unique_id=706064395]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 25.0
-offset_right = -25.0
-offset_bottom = 70.0
-grow_horizontal = 2
-texture = ExtResource("6_5omg7")
+[node name="lava" type="Control" parent="main panel" unique_id=1743532894]
+anchors_preset = 0
+offset_left = 225.0
+offset_top = 5.0
+offset_right = 225.0
+offset_bottom = 5.0
+scale = Vector2(0.4, 0.4)
+script = ExtResource("7_5dd4i")
+text = "lava"
+charSprite = ExtResource("8_lgwnu")
+spacing = 90.0
+posStart = 1
+wobbleSpeed = 5.0
+wobbleRange = 10.0
+wobbleFrequancy = 0.75
+wobbleAxis = Vector2(0, 1)
+wiggleSpeed = 10.0
+wiggleFrequancy = 1.0
+wiggleRange = 10.0
+
+[node name="shooter" type="Control" parent="main panel/lava" unique_id=1417365463]
+anchors_preset = 0
+offset_top = 100.0
+offset_bottom = 100.0
+scale = Vector2(1.25, 1.25)
+script = ExtResource("7_5dd4i")
+text = "shooter"
+charSprite = ExtResource("8_lgwnu")
+spacing = 90.0
+posStart = 1
+wobbleSpeed = 5.0
+wobbleRange = 10.0
+wobbleFrequancy = 0.75
+wobbleAxis = Vector2(0, 1)
+wiggleSpeed = 10.0
+wiggleFrequancy = 1.0
+wiggleRange = 10.0
 
 [node name="start button" type="Button" parent="main panel" unique_id=515583351 node_paths=PackedStringArray("defultRect", "pressedRect")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -15.0
-offset_right = 50.0
-offset_bottom = 15.0
-grow_horizontal = 2
+offset_left = 15.0
+offset_top = 10.0
+offset_right = 115.0
+offset_bottom = 40.0
 grow_vertical = 2
+toggle_mode = true
 script = ExtResource("7_6m8dx")
 defultRect = NodePath("defult")
 pressedRect = NodePath("pressed")
@@ -147,5 +190,271 @@ theme_override_fonts/font = ExtResource("7_2kfqj")
 text = "Start"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="char select panel" type="NinePatchRect" parent="main panel/start button" unique_id=1662209685]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = 6.0
+offset_right = 230.0
+offset_bottom = 66.0
+grow_vertical = 0
+texture = ExtResource("1_deho8")
+region_rect = Rect2(96, 0, 48, 48)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="main panel/start button/char select panel" unique_id=978313345]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_right = -10.0
+offset_bottom = -7.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="rat" type="Button" parent="main panel/start button/char select panel/HBoxContainer" unique_id=1263077912]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+theme_override_colors/font_focus_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_pressed_color = Color(0.62967473, 0.62967473, 0.6296747, 1)
+theme_override_colors/icon_hover_color = Color(0.91228896, 0.9122889, 0.91228884, 1)
+theme_override_fonts/font = ExtResource("7_2kfqj")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lgwnu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_flqon")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_rcqid")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1ajci")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7b55j")
+icon = ExtResource("6_5omg7")
+icon_alignment = 1
+expand_icon = true
+
+[node name="character info" type="NinePatchRect" parent="main panel/start button/char select panel/HBoxContainer/rat" unique_id=1564080908]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 225.0
+offset_top = -91.0
+offset_right = 410.0
+offset_bottom = 9.0
+grow_vertical = 0
+texture = ExtResource("1_deho8")
+region_rect = Rect2(96, 0, 48, 48)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="Label" type="Label" parent="main panel/start button/char select panel/HBoxContainer/rat/character info" unique_id=1406527866]
+custom_maximum_size = Vector2(165, 80)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_2kfqj")
+text = "RAT
+gun : shotgun
+speed : medium"
+autowrap_mode = 2
+
+[node name="dog" type="Button" parent="main panel/start button/char select panel/HBoxContainer" unique_id=1525831124]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+theme_override_colors/font_focus_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_pressed_color = Color(0.62967473, 0.62967473, 0.6296747, 1)
+theme_override_colors/icon_hover_color = Color(0.91228896, 0.9122889, 0.91228884, 1)
+theme_override_fonts/font = ExtResource("7_2kfqj")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lgwnu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_flqon")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_rcqid")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1ajci")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7b55j")
+icon = ExtResource("12_1ajci")
+icon_alignment = 1
+expand_icon = true
+
+[node name="character info" type="NinePatchRect" parent="main panel/start button/char select panel/HBoxContainer/dog" unique_id=1364652791]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 170.0
+offset_top = -91.0
+offset_right = 355.0
+offset_bottom = 9.0
+grow_vertical = 0
+texture = ExtResource("1_deho8")
+region_rect = Rect2(96, 0, 48, 48)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="Label" type="Label" parent="main panel/start button/char select panel/HBoxContainer/dog/character info" unique_id=1909273241]
+custom_maximum_size = Vector2(165, 80)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_2kfqj")
+text = "DOG
+gun : rifle
+speed : low"
+autowrap_mode = 2
+
+[node name="bun" type="Button" parent="main panel/start button/char select panel/HBoxContainer" unique_id=760647936]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+theme_override_colors/font_focus_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_pressed_color = Color(0.62967473, 0.62967473, 0.6296747, 1)
+theme_override_colors/icon_hover_color = Color(0.91228896, 0.9122889, 0.91228884, 1)
+theme_override_fonts/font = ExtResource("7_2kfqj")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lgwnu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_flqon")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_rcqid")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1ajci")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7b55j")
+icon = ExtResource("13_7b55j")
+icon_alignment = 1
+expand_icon = true
+
+[node name="character info" type="NinePatchRect" parent="main panel/start button/char select panel/HBoxContainer/bun" unique_id=668814840]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 115.0
+offset_top = -91.0
+offset_right = 300.0
+offset_bottom = 9.0
+grow_vertical = 0
+texture = ExtResource("1_deho8")
+region_rect = Rect2(96, 0, 48, 48)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="Label" type="Label" parent="main panel/start button/char select panel/HBoxContainer/bun/character info" unique_id=1381706472]
+custom_maximum_size = Vector2(165, 80)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_2kfqj")
+text = "BUN
+gun : sniper
+speed : high"
+autowrap_mode = 2
+
+[node name="ham" type="Button" parent="main panel/start button/char select panel/HBoxContainer" unique_id=572269717]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+theme_override_colors/font_focus_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_pressed_color = Color(0.62967473, 0.62967473, 0.6296747, 1)
+theme_override_colors/icon_hover_color = Color(0.91228896, 0.9122889, 0.91228884, 1)
+theme_override_fonts/font = ExtResource("7_2kfqj")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lgwnu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_flqon")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_rcqid")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1ajci")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7b55j")
+icon = ExtResource("14_7b55j")
+icon_alignment = 1
+expand_icon = true
+
+[node name="character info" type="NinePatchRect" parent="main panel/start button/char select panel/HBoxContainer/ham" unique_id=1726472796]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = -91.0
+offset_right = 245.0
+offset_bottom = 9.0
+grow_vertical = 0
+texture = ExtResource("1_deho8")
+region_rect = Rect2(96, 0, 48, 48)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="Label" type="Label" parent="main panel/start button/char select panel/HBoxContainer/ham/character info" unique_id=1259026706]
+custom_maximum_size = Vector2(165, 80)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_2kfqj")
+text = "HAM
+gun : pistol
+speed : high"
+autowrap_mode = 2
 
 [node name="sound player" parent="." unique_id=1733549454 instance=ExtResource("10_5dd4i")]

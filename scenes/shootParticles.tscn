@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bxtl4kp4tg0yg"]
+
+[sub_resource type="Curve" id="Curve_l71n6"]
+_data = [Vector2(0.3770492, 0.9662922), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="shootingParticles" type="CPUParticles2D" unique_id=1528100898]
+z_index = 50
+scale = Vector2(0.19999999, 0.19999999)
+emitting = false
+amount = 10
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.9
+spread = 25.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1250.0
+initial_velocity_max = 1250.0
+linear_accel_min = -100.0
+linear_accel_max = -100.0
+angle_max = 360.0
+scale_amount_min = 10.0
+scale_amount_max = 20.0
+scale_amount_curve = SubResource("Curve_l71n6")

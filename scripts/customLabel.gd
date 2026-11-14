@@ -86,8 +86,13 @@ func _process(delta: float):
 	time += delta
 	if text.length() != oldText.length() : resetCharachters()
 	
+	var xPos : float = 0
+	match posStart:
+		POSSTART.left  : xPos = 0
+		POSSTART.center: xPos = chartInstances.size() * spacing * 0.5
+		POSSTART.right : xPos = chartInstances.size() * spacing
+	
 	for i in chartInstances.size():
-		var xPos : float = 0 if posStart == POSSTART.left else chartInstances.size() * spacing * 0.5 if posStart == POSSTART.center else chartInstances.size() * spacing
 		var charS = chartInstances[i]
 		charS.position = Vector2(i * spacing - xPos, 0) + wobbleRange * sin(charS.position.x * wobbleFrequancy + time * wobbleSpeed) * wobbleAxis
 		charS.rotation = deg_to_rad(wiggleRange) * sin(charS.position.x * wiggleFrequancy + time * wiggleSpeed)
@@ -104,7 +109,7 @@ func getTexture(c: String):
 
 func runEffect(index : int):
 	var c = chartInstances[index]
-	if effect == EFFECTS.flash:
+	if effect == EFFECTS.flash and c != null:
 		for i in flashsCount:
 			c.modulate = Color(0,0,0,0)
 			await get_tree().create_timer(flashDuration * 0.5).timeout

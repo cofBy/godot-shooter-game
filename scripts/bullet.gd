@@ -62,7 +62,7 @@ func _physics_process(_delta):
 	
 	var dir : Vector2 = lerp(initialRotation, homingDir, homingStrength * homingDistance)
 	rotation = atan2(dir.y, dir.x)
-	position += transform.x * (speed) * _delta
+	position += transform.x * speed * _delta
 	speed = max(speed - damping * _delta, 0)
 
 func _process(_delta):
@@ -80,30 +80,26 @@ func _process(_delta):
 	
 	if enemy != null:
 		if piercesTimer <= 0:
+			piercesTimer = timePerPierce
 			enemy.hit(position, knockBackStrength)
 			hitEnemies.append(enemy)
-			
 			currentPierces -= 1
-			piercesTimer = timePerPierce
 			if ricochetTimes < ricochetCount:
 				var normal : Vector2 = round((position - enemy.position).normalized()).normalized()
 				initialRotation = reflect(initialRotation, normal)
 				ricochetTimes += 1
 				speed *= ricochetStrength
-		else:
-			piercesTimer -= _delta
+			enemy = null
+	piercesTimer -= _delta
 
 func _on_area_2d_body_entered(body: Node2D):
 	if safeTimer < safeTime:
 		if body.is_in_group(hitGroup):
+			piercesTimer = timePerPierce
 			enemy = body
-	else: enemy = body
-
-func _on_area_2d_body_exited(body: Node2D) -> void:
-	if safeTimer < safeTime:
-		if body.is_in_group(hitGroup):
-			enemy = null
-	else: enemy = body
+	else:
+		enemy = body
+		piercesTimer = timePerPierce
 
 func reflect(v : Vector2, n : Vector2):
 	return v - 2.0 * v.dot(n) * n

@@ -2,8 +2,6 @@ extends CharacterBody2D
 
 @export var gun : Node2D
 @export_group("movment")
-@export var speed : float = 300.0
-@export var friction : float = 300.0
 var knockback : Vector2 = Vector2(0,0)
 
 @export_group("polish")
@@ -15,12 +13,22 @@ var stepTimer : float = 0
 @export_group("lava collision")
 @export var collider : Node
 @export var deadParticle : PackedScene
-@export var deadTexture : Texture2D
 var isDead : bool
 signal died
 
 @export_group("score")
 @export var score : int = 0
+
+@export_group("character")
+@export var sprites  : Array[Texture2D]
+@export var gunTypes : Array[Resource]
+@export var speeds   : Array[float]
+@export var frictions: Array[float]
+var spriteToUse : int
+
+func _ready():
+	gun.data = gunTypes[SOUND.selectedCharacter]
+	gun.init()
 
 func input():
 	var temp : Vector2
@@ -29,6 +37,7 @@ func input():
 	return temp
 
 func _process(_delta):
+	sprite.texture = sprites[spriteToUse + SOUND.selectedCharacter * 4]
 	var vel : float = input().length()
 	if vel > 0 :
 		anim.play("run")
@@ -48,8 +57,8 @@ func _physics_process(_delta):
 	var moveDir : Vector2 = input()
 	if moveDir != Vector2(0,0) : moveDir = moveDir.normalized()
 	
-	velocity = moveDir * speed + knockback
-	knockback = knockback.move_toward(Vector2.ZERO, friction * _delta)
+	velocity = moveDir * speeds[SOUND.selectedCharacter] + knockback
+	knockback = knockback.move_toward(Vector2.ZERO, frictions[SOUND.selectedCharacter] * _delta)
 	
 	if abs(moveDir.x) > 0:
 		sprite.flip_h = moveDir.x < 0
@@ -60,7 +69,7 @@ func die():
 	var particleInstnace = deadParticle.instantiate()
 	get_tree().root.add_child(particleInstnace)
 	particleInstnace.position = position
-	particleInstnace.texture = deadTexture
+	particleInstnace.texture = sprites[3 + SOUND.selectedCharacter * 4]
 	particleInstnace.restart()
 	particleInstnace.get_child(0).restart()
 	visible = false
@@ -71,4 +80,4 @@ func die():
 func hit(pos : Vector2, strength : float):
 	knockback += (position - pos).normalized() * strength
 	SOUND.playSound("hurt")
-	SOUND.cameraShake(10, 0.1)
+	SOUND.cameraShake(6, 0.07)

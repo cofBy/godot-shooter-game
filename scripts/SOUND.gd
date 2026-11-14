@@ -16,6 +16,8 @@ var transTimer : float
 var transInstance
 
 
+var selectedCharacter : int
+
 func _ready():
 	transTimer = 0.0
 	for strm in streams:

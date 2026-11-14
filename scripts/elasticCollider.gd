@@ -10,11 +10,9 @@ func onElasticCollision(area: Area2D):
 		var velDir : Vector2  = body.velocity - other.velocity
 		var velNormal : float = velDir.dot(posDir)
 		
-		body.position += posDir * 10
-		
 		if velNormal > 0: return
 		
 		var speedNormal  = velNormal * posDir
 		var speedTangent = velDir - speedNormal
 		
-		body.knockback -= speedNormal + speedTangent
+		body.knockback += -speedNormal * 0.5 + speedTangent

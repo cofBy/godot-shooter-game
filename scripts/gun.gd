@@ -11,8 +11,7 @@ var rng = RandomNumberGenerator.new()
 @export var holder : CharacterBody2D
 @export var isEnemy : bool = false
 @onready var anim : AnimationPlayer = $"gun animations"
-
-func _ready(): if isEnemy == false: init()
+@export var shootingParticles : PackedScene
 
 func init():
 	currentBullets = data.magSize
@@ -31,10 +30,16 @@ func _process(_delta):
 			if Input.is_action_just_pressed("shoot"):
 				tryShoot(rotation)
 	
-	if data.magSize > 0 and (currentBullets <= 0 or Input.is_action_just_pressed("reload") and currentBullets < data.magSize):
-		if startReload == false:
-			reload()
-		startReload = true
+	if isEnemy == false:
+		if data.magSize > 0 and (currentBullets <= 0 or Input.is_action_just_pressed("reload") and currentBullets < data.magSize):
+			if startReload == false:
+				reload()
+			startReload = true
+	else:
+		if data.magSize > 0 and (currentBullets <= 0 and currentBullets < data.magSize):
+			if startReload == false:
+				reload()
+			startReload = true
 	if startReload:
 		reloadTimer += _delta
 		if reloadTimer > data.reloadTime:
@@ -68,6 +73,14 @@ func tryShoot(angle: float):
 func fire(angle: float):
 	currentBullets -= 1
 	timer = data.fireRate
+	
+	if data.isMelee == false:
+		var shootingInstance = shootingParticles.instantiate()
+		get_tree().root.add_child(shootingInstance)
+		shootingInstance.position = global_position + data.gunOffset
+		shootingInstance.rotation = rotation
+		shootingInstance.restart()
+	
 	for i in data.bulletAmount:
 		if data.isMelee:
 			anim.play("meleeHit")
@@ -100,4 +113,5 @@ func fire(angle: float):
 			bulletInstance.hitGroup = "enemy"
 		get_tree().root.add_child(bulletInstance)
 	
-	holder.knockback += -Vector2(cos(rotation), sin(rotation)) * data.playerKnockBack
+	var rAngle = (rng.randf() - 0.5) * deg_to_rad(data.knockRandomRange)
+	holder.knockback += -Vector2(cos(rotation + rAngle), sin(rotation + rAngle)) * data.playerKnockBack

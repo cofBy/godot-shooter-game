@@ -44,6 +44,7 @@ extends Resource
 
 @export_group("knockBack")
 @export var playerKnockBack : float = 500.0
+@export var knockRandomRange : float = 0.0
 @export var knockBackStrength : float = 600.0
 
 @export_group("exploding bullets")

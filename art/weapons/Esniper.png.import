@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dby47au8guxdo"
-path="res://.godot/imported/player_2.png-49dea678b9b64487d396236ae3f26fdc.ctex"
+uid="uid://dw3bwrypnwif"
+path="res://.godot/imported/Esniper.png-73926a7956677643086d733a41ed86f5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/player/player_2.png"
-dest_files=["res://.godot/imported/player_2.png-49dea678b9b64487d396236ae3f26fdc.ctex"]
+source_file="res://art/weapons/Esniper.png"
+dest_files=["res://.godot/imported/Esniper.png-73926a7956677643086d733a41ed86f5.ctex"]
 
 [params]
 

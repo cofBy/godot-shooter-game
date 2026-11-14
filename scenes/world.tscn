@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://85po1hhpllj7" path="res://art/UI/tilemap_packed.png" id="15_navra"]
 [ext_resource type="Script" uid="uid://ccxe6qupfwc1t" path="res://scripts/customLabel.gd" id="16_dss4m"]
 [ext_resource type="PackedScene" uid="uid://bvuvo1w0pkbug" path="res://art/UI/customChar.tscn" id="17_7t5mc"]
+[ext_resource type="Resource" uid="uid://tlimxwp808lc" path="res://gun types/sniper.tres" id="18_ctatt"]
 [ext_resource type="PackedScene" uid="uid://drptxbngkwlo6" path="res://scenes/soundPlayer.tscn" id="22_oo54l"]
 [ext_resource type="Script" uid="uid://dtshvdnery8rx" path="res://scripts/customButton.gd" id="32_4kbfs"]
 [ext_resource type="FontFile" uid="uid://c3pvu7per8ve0" path="res://art/UI/Sora-VariableFont_wght.ttf" id="33_f17e3"]
@@ -213,8 +214,8 @@ script = ExtResource("1_kpybi")
 speed = 5.0
 player = NodePath("../player")
 maxAimInfluince = 200.0
-playerWeight = 0.6
-aimWeight = 0.3
+playerWeight = 0.7
+aimWeight = 0.5
 
 [node name="Control" type="Control" parent="Camera2D" unique_id=2069703263 node_paths=PackedStringArray("player", "bulletsLabel", "lostPanel", "retryButton", "mainMenuButton", "scoreLabel", "finalScore", "highScore")]
 process_mode = 3
@@ -574,6 +575,9 @@ lava = NodePath("../lava")
 
 [node name="player" parent="." unique_id=2020279129 node_paths=PackedStringArray("collider") instance=ExtResource("1_nnsk1")]
 collider = NodePath("../grass")
+gunTypes = Array[Resource]([ExtResource("13_37qwj"), ExtResource("13_xo05s"), ExtResource("18_ctatt"), ExtResource("14_o8fc1")])
+speeds = Array[float]([300.0, 200.0, 450.0, 400.0])
+frictions = Array[float]([500.0, 600.0, 250.0, 200.0])
 
 [node name="spawner" type="Node2D" parent="." unique_id=2123303888 node_paths=PackedStringArray("player", "camera", "map")]
 script = ExtResource("4_k0juu")

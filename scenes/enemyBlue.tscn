@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bvkspcbfpu4v3" path="res://scripts/gun.gd" id="6_on660"]
 [ext_resource type="Script" uid="uid://dow0emu5a7107" path="res://scripts/elasticCollider.gd" id="7_7hffy"]
 [ext_resource type="Texture2D" uid="uid://d7xpk37ien1i" path="res://art/weapons/Ppistol.png" id="8_acjvw"]
+[ext_resource type="PackedScene" uid="uid://bxtl4kp4tg0yg" path="res://scenes/shootParticles.tscn" id="9_acjvw"]
 
 [sub_resource type="Gradient" id="Gradient_606l4"]
 offsets = PackedFloat32Array(0.8608696, 1)
@@ -385,6 +386,7 @@ position = Vector2(0, 33.67)
 script = ExtResource("6_on660")
 holder = NodePath("..")
 isEnemy = true
+shootingParticles = ExtResource("9_acjvw")
 
 [node name="gun sprite" type="Sprite2D" parent="gun" unique_id=474665326]
 z_index = 1
