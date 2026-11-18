@@ -26,7 +26,8 @@ func _ready():
 	mainMenuButton.pressed.connect(SOUND.transition.bind("res://scenes/main_menu.tscn"))
 
 func _process(_delta: float):
-	bulletsLabel.text = str(player.gun.currentBullets) + "-" + str(player.gun.data.magSize)
+	if SOUND.selectedCharacter == 3 : bulletsLabel.text = "0-0"
+	else : bulletsLabel.text = str(player.gun.currentBullets) + "-" + str(player.gun.data.magSize)
 	scoreLabel.text = str(player.score)
 	finalScore.text = "score " + str(player.score)
 

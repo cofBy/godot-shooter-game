@@ -453,7 +453,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("7_2kfqj")
 text = "HAM
-gun : pistol
+gun : crashing 😭
 speed : high"
 autowrap_mode = 2
 

@@ -575,9 +575,9 @@ lava = NodePath("../lava")
 
 [node name="player" parent="." unique_id=2020279129 node_paths=PackedStringArray("collider") instance=ExtResource("1_nnsk1")]
 collider = NodePath("../grass")
-gunTypes = Array[Resource]([ExtResource("13_37qwj"), ExtResource("13_xo05s"), ExtResource("18_ctatt"), ExtResource("14_o8fc1")])
+gunTypes = Array[Resource]([ExtResource("13_37qwj"), ExtResource("13_xo05s"), ExtResource("18_ctatt"), null])
 speeds = Array[float]([300.0, 200.0, 450.0, 400.0])
-frictions = Array[float]([500.0, 600.0, 250.0, 200.0])
+frictions = Array[float]([500.0, 450.0, 250.0, 400.0])
 
 [node name="spawner" type="Node2D" parent="." unique_id=2123303888 node_paths=PackedStringArray("player", "camera", "map")]
 script = ExtResource("4_k0juu")

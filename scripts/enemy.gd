@@ -5,7 +5,6 @@ extends CharacterBody2D
 var rng = RandomNumberGenerator.new()
 
 @export_group("knockBack")
-@export var knockBackRes : float = 100.0
 @export var friction : float = 200.0
 var knockback : Vector2 = Vector2.ZERO
 
@@ -54,7 +53,6 @@ func _process(_delta):
 
 func _physics_process(delta: float):
 	knockback = knockback.move_toward(Vector2.ZERO, friction * delta)
-	velocity = (player.position - position).normalized() * speed + knockback
 	match state:
 		STATES.idle:
 			anim.play("idle")
@@ -81,9 +79,11 @@ func _physics_process(delta: float):
 			SOUND.playSound("score")
 			SOUND.cameraShake(20, 0.07)
 	
+	velocity = (player.position - position).normalized() * speed + knockback
 	move_and_slide()
 
 func hit(pos : Vector2, strength : float):
-	knockback += (position - pos).normalized() * (strength - knockBackRes)
+	knockback += (global_position - pos).normalized() * strength
+	speed *= 0.9
 	SOUND.playSound("hurt")
 	if state == STATES.idle : state = STATES.agro

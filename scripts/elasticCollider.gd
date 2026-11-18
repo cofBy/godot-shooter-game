@@ -15,4 +15,6 @@ func onElasticCollision(area: Area2D):
 		var speedNormal  = velNormal * posDir
 		var speedTangent = velDir - speedNormal
 		
-		body.knockback += -speedNormal * 0.5 + speedTangent
+		var force : float = 0.5
+		if SOUND.selectedCharacter == 3: force = 1
+		body.knockback += -speedNormal * force + speedTangent

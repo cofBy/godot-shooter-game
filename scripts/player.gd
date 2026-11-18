@@ -57,12 +57,12 @@ func _physics_process(_delta):
 	var moveDir : Vector2 = input()
 	if moveDir != Vector2(0,0) : moveDir = moveDir.normalized()
 	
-	velocity = moveDir * speeds[SOUND.selectedCharacter] + knockback
 	knockback = knockback.move_toward(Vector2.ZERO, frictions[SOUND.selectedCharacter] * _delta)
 	
 	if abs(moveDir.x) > 0:
 		sprite.flip_h = moveDir.x < 0
 	
+	velocity = moveDir * speeds[SOUND.selectedCharacter] + knockback
 	move_and_slide()
 
 func die():
@@ -78,6 +78,6 @@ func die():
 
 
 func hit(pos : Vector2, strength : float):
-	knockback += (position - pos).normalized() * strength
+	knockback += (global_position - pos).normalized() * strength
 	SOUND.playSound("hurt")
 	SOUND.cameraShake(6, 0.07)

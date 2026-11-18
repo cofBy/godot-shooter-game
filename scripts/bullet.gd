@@ -1,5 +1,8 @@
 extends Node2D
 
+@export var raycast : RayCast2D
+var oldPos : Vector2
+
 @export var safeTime : float
 var safeTimer : float
 
@@ -38,8 +41,10 @@ func _ready():
 	homingArea.scale = homingRadius * Vector2.ONE
 	expArea.scale = expRadius * Vector2.ONE
 
+
 func _physics_process(_delta):
 	safeTimer += _delta
+	
 	var bodies : Array[Node2D] = homingArea.get_overlapping_bodies()
 	var closestBody : Node2D
 	var closestDistance : float = 99999
@@ -78,10 +83,18 @@ func _process(_delta):
 		
 		queue_free()
 	
+	if raycast != null:
+		raycast.position = (oldPos - global_position) * 0.5
+		raycast.target_position = (oldPos - global_position)
+		if raycast.is_colliding():
+			var body = raycast.get_collider()
+			hit(body)
+	oldPos = global_position
+	
 	if enemy != null:
 		if piercesTimer <= 0:
 			piercesTimer = timePerPierce
-			enemy.hit(position, knockBackStrength)
+			enemy.hit(oldPos, knockBackStrength)
 			hitEnemies.append(enemy)
 			currentPierces -= 1
 			if ricochetTimes < ricochetCount:
@@ -92,14 +105,14 @@ func _process(_delta):
 			enemy = null
 	piercesTimer -= _delta
 
-func _on_area_2d_body_entered(body: Node2D):
-	if safeTimer < safeTime:
-		if body.is_in_group(hitGroup):
-			piercesTimer = timePerPierce
-			enemy = body
-	else:
-		enemy = body
-		piercesTimer = timePerPierce
-
 func reflect(v : Vector2, n : Vector2):
 	return v - 2.0 * v.dot(n) * n
+
+func hit(body : Node2D):
+	if not hitEnemies.has(body):
+		if safeTimer < safeTime:
+			if body.is_in_group(hitGroup): enemy = body
+		else: enemy = body
+
+func bodyEntered(body: Node2D) -> void:
+	hit(body)

@@ -14,6 +14,10 @@ var rng = RandomNumberGenerator.new()
 @export var shootingParticles : PackedScene
 
 func init():
+	if isEnemy == false and SOUND.selectedCharacter == 3:
+		queue_free()
+		return
+	
 	currentBullets = data.magSize
 	
 	var gunSprite : Sprite2D = $"gun sprite"
@@ -77,7 +81,7 @@ func fire(angle: float):
 	if data.isMelee == false:
 		var shootingInstance = shootingParticles.instantiate()
 		get_tree().root.add_child(shootingInstance)
-		shootingInstance.position = global_position + data.gunOffset
+		shootingInstance.position = holder.global_position + Vector2(cos(rotation), sin(rotation)) * data.gunOffset
 		shootingInstance.rotation = rotation
 		shootingInstance.restart()
 	

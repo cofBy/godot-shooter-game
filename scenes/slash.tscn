@@ -22,8 +22,10 @@ radius = 43.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_xb5fl"]
 radius = 1.0
 
-[node name="bullet" type="Node2D" unique_id=1945413029]
+[node name="bullet" type="Node2D" unique_id=1945413029 node_paths=PackedStringArray("raycast")]
 script = ExtResource("1_3c2nd")
+raycast = NodePath("RayCast2D")
+safeTime = 0.25
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=399366435]
 texture_filter = 1
@@ -49,5 +51,6 @@ shape = SubResource("CircleShape2D_xb5fl")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="explosion area" unique_id=1724271294]
 shape = SubResource("CircleShape2D_xb5fl")
 
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1665563014]
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

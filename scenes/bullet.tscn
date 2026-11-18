@@ -3,28 +3,22 @@
 [ext_resource type="Script" uid="uid://dpaifwr0652rl" path="res://scripts/bullet.gd" id="1_y25gk"]
 [ext_resource type="Texture2D" uid="uid://b17bt53t6553b" path="res://art/weapons/bullet.png" id="2_y25gk"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xb5fl"]
-size = Vector2(156.44444, 187.07693)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_xb5fl"]
 radius = 1.0
 
-[node name="bullet" type="Node2D" unique_id=1945413029]
+[sub_resource type="CircleShape2D" id="CircleShape2D_y25gk"]
+radius = 19.0
+
+[node name="bullet" type="Node2D" unique_id=1945413029 node_paths=PackedStringArray("raycast")]
 script = ExtResource("1_y25gk")
-safeTime = 0.35
+raycast = NodePath("RayCast2D")
+safeTime = 0.5
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=399366435]
 texture_filter = 1
 rotation = 1.5707964
 scale = Vector2(5, 5)
 texture = ExtResource("2_y25gk")
-
-[node name="Area2D" type="Area2D" parent="." unique_id=812738824]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1925189902]
-position = Vector2(-33, 0)
-scale = Vector2(0.421875, 0.203125)
-shape = SubResource("RectangleShape2D_xb5fl")
 
 [node name="homing area" type="Area2D" parent="." unique_id=145197431]
 
@@ -36,5 +30,13 @@ shape = SubResource("CircleShape2D_xb5fl")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="explosion area" unique_id=1724271294]
 shape = SubResource("CircleShape2D_xb5fl")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1055261716]
+position = Vector2(-32, 0)
+target_position = Vector2(65, 0)
+
+[node name="hit area" type="Area2D" parent="." unique_id=22352613]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hit area" unique_id=29135471]
+shape = SubResource("CircleShape2D_y25gk")
+
+[connection signal="body_entered" from="hit area" to="." method="bodyEntered"]
